@@ -1,0 +1,5 @@
+'Aimeos.Shop:Plugin':
+  superTypes: ['TYPO3.Neos:Plugin']
+  ui:
+    label: 'Aimeos web shop'
+    group: 'plugins'
