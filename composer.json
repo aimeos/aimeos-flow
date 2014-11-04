@@ -11,6 +11,7 @@
         "forum": "https://help.aimeos.org",
         "wiki": "https://docs.aimeos.org"
     },
+    "minimum-stability": "dev",
     "require": {
         "typo3/flow": "*",
         "typo3/swiftmailer": "dev-master",
