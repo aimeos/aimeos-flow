@@ -15,7 +15,7 @@
         "typo3/flow": "*",
         "typo3/swiftmailer": "dev-master",
         "arcavias/arcavias-core": "dev-master",
-        "aimeos/aimeos-extinstaller": "dev-master",
+        "aimeos/extinstaller": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-zend2-i18n": "dev-master",
         "aimeos/ai-flow": "dev-master"
