@@ -18,7 +18,7 @@
         "arcavias/arcavias-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-zend2-i18n": "dev-master",
-        "aimeos/ai-flow": "dev-master"
+        "aimeos/ai-flow": "dev-master",
         "composer/installer": "~1.0",
     },
     "autoload": {
