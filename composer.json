@@ -19,7 +19,7 @@
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-zend2-i18n": "dev-master",
         "aimeos/ai-flow": "dev-master",
-        "composer/installer": "~1.0"
+        "composer/installers": "~1.0"
     },
     "autoload": {
         "psr-0": {
