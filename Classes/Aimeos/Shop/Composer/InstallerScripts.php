@@ -14,10 +14,11 @@ class InstallerScripts
 	 * Post composer install or update tasks
 	 *
 	 * @param \Composer\Script\CommandEvent $event
-	 * @throws \Exception If an error occured
 	 */
 	public static function postUpdateAndInstall( CommandEvent $event )
 	{
+		$options = array();
+
 		if( $event->isDevMode() ) {
 			$options['options'] = 'setup/default/demo:1';
 		}

@@ -248,7 +248,7 @@ class Base
 				$i18n = new \MW_Translation_Zend2( $i18nPaths, 'gettext', $langid, array( 'disableNotices' => true ) );
 				
 				if( function_exists( 'apc_store' ) === true && $this->getValue( 'useApc', false ) == true ) {
-					$conf = new \MW_Translation_Decorator_APC( $i18n, $this->getValue( 'apcPrefix', 'aimeos:' ) );
+					$i18n = new \MW_Translation_Decorator_APC( $i18n, $this->getValue( 'apcPrefix', 'aimeos:' ) );
 				}
 	
 				if( isset( $this->settings['i18n'][$langid] ) ) {
@@ -314,7 +314,7 @@ class Base
 	/**
 	 * Injects the Flow URI builder
 	 *
-	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $objectManager
+	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder
 	 * @return void
 	 */
 	public function injectUriBuilder( \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder )
@@ -327,8 +327,8 @@ class Base
 	 * Returns the value for the given setting name
 	 *
 	 * @param string $name Setting name
-	 * @param string $default Default value returned if no setting is available
-	 * @return string|array|null Setting value
+	 * @param mixed $default Default value returned if no setting is available
+	 * @return mixed Setting value
 	 */
 	protected function getValue( $name, $default = null )
 	{

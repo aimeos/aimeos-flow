@@ -233,7 +233,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 * Returns the enabled site items which may be limited by the input arguments.
 	 *
 	 * @param \MShop_Context_Item_Interface $context Context item object
-	 * @param string $sites|null Unique site codes
+	 * @param string $sites Unique site codes
 	 * @return \MShop_Locale_Item_Site_Interface[] List of site items
 	 */
 	protected function getSiteItems( \MShop_Context_Item_Interface $context, $sites )
