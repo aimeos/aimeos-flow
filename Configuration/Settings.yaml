@@ -1,0 +1,37 @@
+TYPO3:
+  Flow:
+    object:
+      excludeClasses:
+        'zendframework.*': ['.*']
+        'arcavias.*': ['.*']
+        'aimeos.*': ['.*']
+
+Aimeos:
+  Shop:
+    useApc: true
+    apcPrefix: "aimeos:"
+    extDir: Packages/Extensions
+
+    resource:
+      db:
+        adapter: mysql
+        stmt: ["SET NAMES 'utf8'", "SET SESSION sql_mode='ANSI'"]
+        host:
+        port:
+        database:
+        username:
+        password:
+        limit: 2
+        opt-persistent: 0
+
+    classes:
+        
+    client:
+
+    controller:
+
+    i18n:
+
+    madmin:
+
+    mshop:

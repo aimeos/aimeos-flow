@@ -1,5 +1,0 @@
-TYPO3:
-  Flow:
-    object:
-      excludeClasses:
-        'arcavias.arcavias-core': ['.*']
