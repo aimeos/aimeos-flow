@@ -183,7 +183,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Creates new translation objects
 	 *
-	 * @param MShop_Context_Item_Interface $context Context object
+	 * @param \MShop_Context_Item_Interface $context Context object
 	 * @param array List of paths to the i18n files
 	 * @return array List of translation objects implementing MW_Translation_Interface
 	 */
@@ -233,7 +233,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 * Returns the enabled site items which may be limited by the input arguments.
 	 *
 	 * @param \MShop_Context_Item_Interface $context Context item object
-	 * @param string $sites|null Unique site codes
+	 * @param string $sites
 	 * @return \MShop_Locale_Item_Site_Interface[] List of site items
 	 */
 	protected function getSiteItems( \MShop_Context_Item_Interface $context, $sites )
