@@ -183,7 +183,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Creates new translation objects
 	 *
-	 * @param MShop_Context_Item_Interface $context Context object
+	 * @param \MShop_Context_Item_Interface $context Context object
 	 * @param array List of paths to the i18n files
 	 * @return array List of translation objects implementing MW_Translation_Interface
 	 */

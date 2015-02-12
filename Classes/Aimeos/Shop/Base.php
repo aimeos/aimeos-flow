@@ -138,7 +138,7 @@ class Base
 	/**
 	 * Returns the Arcavias object.
 	 *
-	 * @return Arcavias Arcavias object
+	 * @return \Arcavias Arcavias object
 	 */
 	public function getAimeos()
 	{
@@ -156,7 +156,7 @@ class Base
 	 * Creates a new configuration object.
 	 *
 	 * @param array $local Multi-dimensional associative list with local configuration
-	 * @return MW_Config_Interface Configuration object
+	 * @return \MW_Config_Interface Configuration object
 	 */
 	public function getConfig( array $local = array() )
 	{
