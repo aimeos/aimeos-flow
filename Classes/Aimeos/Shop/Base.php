@@ -19,24 +19,24 @@ use TYPO3\Flow\Annotations as Flow;
 class Base
 {
 	/**
+	 * @var \MShop_Context_Item_Interface
+	 */
+	private static $context;
+
+	/**
 	 * @var \Arcavias
 	 */
 	private $aimeos;
 
 	/**
-	 * @var \MW_Config_Interface
+	 * @var \TYPO3\Flow\Cache\Frontend\StringFrontend
 	 */
-	private $config;
-
-	/**
-	 * @var \MShop_Context_Item_Interface
-	 */
-	private $context;
+	private $cache;
 
 	/**
 	 * @var array
 	 */
-	private $i18n;
+	private $i18n = array();
 
 	/**
 	 * @var \MShop_Locale_Item_Interface
@@ -44,25 +44,156 @@ class Base
 	private $locale;
 
 	/**
-	 * @var \TYPO3\Flow\Session\SessionInterface
-	 */
-	private $session;
-
-	/**
 	 * @var array
 	 */
 	private $settings;
-
-	/**
-	 * @var \TYPO3\Flow\Mvc\Routing\UriBuilder
-	 */
-	private $uriBuilder;
 
 	/**
 	 * @var array
 	 * @Flow\Inject(setting="persistence.backendOptions", package="TYPO3.Flow")
 	 */
 	protected $resource;
+
+	/**
+	 * @var \TYPO3\SwiftMailer\MailerInterface
+	 * @Flow\Inject
+	 */
+	protected $mailer;
+
+	/**
+	 * @var \TYPO3\Flow\Session\SessionInterface
+	 * @Flow\Inject(lazy = FALSE)
+	 */
+	protected $session;
+
+
+	/**
+	 * Returns the Arcavias object.
+	 *
+	 * @return \Arcavias Arcavias object
+	 */
+	public function getAimeos()
+	{
+		if( $this->aimeos === null )
+		{
+			$extDirs = ( isset( $this->setting['flow']['extdir'] ) ? (array) $this->setting['flow']['extdir'] : array() );
+			$this->aimeos = new \Arcavias( $extDirs, false );
+		}
+
+		return $this->aimeos;
+	}
+
+
+	/**
+	 * Returns the current context.
+	 *
+	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
+	 */
+	public function getContext( \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	{
+		if( self::$context === null )
+		{
+			$context = new \MShop_Context_Item_Default();
+
+			$config = $this->getConfig();
+			$context->setConfig( $config );
+
+			$dbm = new \MW_DB_Manager_PDO( $config );
+			$context->setDatabaseManager( $dbm );
+
+			$cache = new \MW_Cache_None();
+			$context->setCache( $cache );
+
+			$mail = new \MW_Mail_Swift( $this->mailer );
+			$context->setMail( $mail );
+
+			$logger = \MAdmin_Log_Manager_Factory::createManager( $context );
+			$context->setLogger( $logger );
+
+			self::$context = $context;
+		}
+
+		$context = self::$context;
+
+		if( $request !== null )
+		{
+			$localeItem = $this->getLocale( $context, $request );
+
+			$context->setLocale( $localeItem );
+			$context->setI18n( $this->getI18n( $context, array( $localeItem->getLanguageId() ) ) );
+
+			$cache = $this->getCache( $context, $localeItem->getSiteId() );
+			$context->setCache( $cache );
+		}
+
+		$session = new \MW_Session_Flow( $this->session );
+		$context->setSession( $session );
+
+		$view = $this->createView( $context, $uriBuilder, $request );
+		$context->setView( $view );
+
+		$this->addUser( $context );
+
+		return $context;
+	}
+
+
+	/**
+	 * Returns the body and header sections created by the clients configured for the given page name.
+	 *
+	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param string $name Name of the configured page
+	 * @return array Associative list with body and header output separated by client name
+	 */
+	public function getPageSections( \MShop_Context_Item_Interface $context, $pageName )
+	{
+		$aimeos = $this->getAimeos();
+		$templatePaths = $aimeos->getCustomPaths( 'client/html' );
+		$pagesConfig = $this->settings['page'];
+		$result = array( 'aibody' => array(), 'aiheader' => array() );
+
+		if( isset( $pagesConfig[$pageName] ) )
+		{
+			foreach( (array) $pagesConfig[$pageName] as $clientName )
+			{
+				$client = \Client_Html_Factory::createClient( $context, $templatePaths, $clientName );
+				$client->setView( $context->getView() );
+				$client->process();
+
+				$varName = str_replace( '/', '_', $clientName );
+
+				$result['aibody'][$varName] = $client->getBody();
+				$result['aiheader'][$varName] = $client->getHeader();
+			}
+		}
+
+		return $result;
+	}
+
+
+	/**
+	 * Inject the settings
+	 *
+	 * @param array $settings
+	 * @return void
+	 */
+	public function injectSettings( array $settings )
+	{
+		$this->settings = $settings;
+	}
+
+
+	/**
+	 * Sets the Aimeos shop cache
+	 *
+	 * @param \TYPO3\Flow\Cache\Frontend\StringFrontend $cache Cache for shop data
+	 * @return void
+	 */
+	public function setCache( \TYPO3\Flow\Cache\Frontend\StringFrontend $cache )
+	{
+		$this->cache = $cache;
+	}
 
 
 	/**
@@ -73,7 +204,7 @@ class Base
 	protected function addUser( \MShop_Context_Item_Interface $context )
 	{
 		$username = '';
-	
+
 		$context->setEditor( $username );
 	}
 	
@@ -81,38 +212,41 @@ class Base
 	/**
 	 * Creates the view object for the HTML client.
 	 *
+	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 * @return \MW_View_Interface View object
 	 */
-	public function createView( $useParams = true )
+	protected function createView( \MShop_Context_Item_Interface $context,
+			\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder,
+			\TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
-		$params = $urlParams = array();
-
-/*		if( $useParams === true )
-		{
-			$request = $this->requestStack->getMasterRequest();
-			$params = $request->request->all() + $request->query->all() + $request->attributes->get( '_route_params' );
-
-			// required for reloading to the current page
-			$params['target'] = $request->get( '_route' );
-
-			$urlParams = $this->getUrlParams();
-		}
-*/
-
-		$context = $this->getContext();
+		$params = $fixed = array();
 		$config = $context->getConfig();
 
-		$langid = $context->getLocale()->getLanguageId();
-		$i18n = $this->getI18n( array( $langid ) );
+		if( $request !== null )
+		{
+			$params = $request->getArguments();
+			$fixed = $this->getFixedParams( $request );
+
+			$langid = $context->getLocale()->getLanguageId();
+			$i18n = $this->getI18n( $context, array( $langid ) );
+
+			$translation = $i18n[$langid];
+		}
+		else
+		{
+			$translation = new \MW_Translation_None( 'en' );
+		}
 
 
 		$view = new \MW_View_Default();
 
-		$helper = new \MW_View_Helper_Url_Flow( $view, $this->uriBuilder, $urlParams );
-		$view->addHelper( 'url', $helper );
-
-		$helper = new \MW_View_Helper_Translate_Default( $view, $i18n[$langid] );
+		$helper = new \MW_View_Helper_Translate_Default( $view, $translation );
 		$view->addHelper( 'translate', $helper );
+
+		$helper = new \MW_View_Helper_Url_Flow( $view, $uriBuilder, $fixed );
+		$view->addHelper( 'url', $helper );
 
 		$helper = new \MW_View_Helper_Parameter_Default( $view, $params );
 		$view->addHelper( 'param', $helper );
@@ -136,206 +270,140 @@ class Base
 
 
 	/**
-	 * Returns the Arcavias object.
+	 * Returns the cache object for the context
 	 *
-	 * @return \Arcavias Arcavias object
+	 * @param \MShop_Context_Item_Interface $context Context object including config
+	 * @param string $siteid Unique site ID
+	 * @return \MW_Cache_Interface Cache object
 	 */
-	public function getAimeos()
+	protected function getCache( \MShop_Context_Item_Interface $context, $siteid )
 	{
-		if( $this->aimeos === null )
+		$config = $context->getConfig();
+
+		switch( $config->get( 'flow/cache/name', 'Flow' ) )
 		{
-			$extDirs = (array) $this->getValue( 'extDir', array() );
-			$this->aimeos = new \Arcavias( $extDirs, false );
+			case 'Flow':
+				$conf = array( 'siteid' => $config->get( 'flow/cache/prefix' ) . $siteid );
+				return \MW_Cache_Factory::createManager( 'Flow', $conf, $this->cache );
+
+			case 'None':
+				$config->set( 'client/html/basket/cache/enable', false );
+				return \MW_Cache_Factory::createManager( 'None', array(), null );
+
+			default:
+				return new MAdmin_Cache_Proxy_Default( $context );
 		}
-	
-		return $this->aimeos;
 	}
 
 
 	/**
 	 * Creates a new configuration object.
 	 *
-	 * @param array $local Multi-dimensional associative list with local configuration
 	 * @return \MW_Config_Interface Configuration object
 	 */
-	public function getConfig( array $local = array() )
+	protected function getConfig()
 	{
-		if( $this->config === null )
-		{
-			$this->settings['resource']['db']['host'] = $this->resource['host'];
-			$this->settings['resource']['db']['database'] = $this->resource['dbname'];
-			$this->settings['resource']['db']['username'] = $this->resource['user'];
-			$this->settings['resource']['db']['password'] = $this->resource['password'];
+		$this->settings['resource']['db']['host'] = $this->resource['host'];
+		$this->settings['resource']['db']['database'] = $this->resource['dbname'];
+		$this->settings['resource']['db']['username'] = $this->resource['user'];
+		$this->settings['resource']['db']['password'] = $this->resource['password'];
 
-			$configPaths = $this->getAimeos()->getConfigPaths( 'mysql' );
-			$conf = new \MW_Config_Array( $this->settings, $configPaths );
+		$configPaths = $this->getAimeos()->getConfigPaths( 'mysql' );
+		$config = new \MW_Config_Array( $this->settings, $configPaths );
 
-			if( function_exists( 'apc_store' ) === true && $this->getValue( 'useApc', false ) == true ) {
-				$conf = new \MW_Config_Decorator_APC( $conf, $this->getValue( 'apcPrefix', 'aimeos:' ) );
-			}
-
-			$this->config = $conf;
+		if( function_exists( 'apc_store' ) === true && $config->get( 'flow/apc/enabled', false ) == true ) {
+			$config = new \MW_Config_Decorator_APC( $config, $config->get( 'flow/apc/prefix', 'flow:' ) );
 		}
 
-		if( !empty( $local ) ) {
-			return new \MW_Config_Decorator_Memory( $this->config, $local );
-		}
-
-		return $this->config;
+		return $config;
 	}
-
-
-	/**
-	 * Returns the current context.
-	 *
-	 * @return \MShop_Context_Item_Interface Context object
-	 */
-	public function getContext( $locale = true )
-	{
-		if( $this->context === null )
-		{
-			$context = new \MShop_Context_Item_Default();
 	
-			$config = $this->getConfig();
-			$context->setConfig( $config );
-	
-			$dbm = new \MW_DB_Manager_PDO( $config );
-			$context->setDatabaseManager( $dbm );
-	
-			$cache = new \MW_Cache_None();
-			$context->setCache( $cache );
-	
-			$session = new \MW_Session_Flow( $this->session );
-			$context->setSession( $session );
-	
-			$logger = \MAdmin_Log_Manager_Factory::createManager( $context );
-			$context->setLogger( $logger );
-	
-			$this->addUser( $context );
-	
-			$this->context = $context;
-		}
-	
-		if( $locale === true )
-		{
-			$locale = $this->getLocale( $this->context );
-	
-			$this->context->setLocale( $locale );
-			$this->context->setI18n( $this->getI18n( array( $locale->getLanguageId() ) ) );
-	
-//			$cache = new \MAdmin_Cache_Proxy_Default( $this->context );
-//			$this->context->setCache( $cache );
-		}
-	
-		return $this->context;
-	}
-
 
 	/**
 	 * Creates new translation objects.
 	 *
+	 * @param \MShop_Context_Item_Interface $context Context object including config
 	 * @param array $languageIds List of two letter ISO language IDs
 	 * @return \MW_Translation_Interface[] List of translation objects
 	 */
-	public function getI18n( array $languageIds )
+	protected function getI18n( \MShop_Context_Item_Interface $context, array $languageIds )
 	{
 		$i18nPaths = $this->getAimeos()->getI18nPaths();
-	
+
 		foreach( $languageIds as $langid )
 		{
 			if( !isset( $this->i18n[$langid] ) )
 			{
+				$conf = $context->getConfig();
 				$i18n = new \MW_Translation_Zend2( $i18nPaths, 'gettext', $langid, array( 'disableNotices' => true ) );
-				
-				if( function_exists( 'apc_store' ) === true && $this->getValue( 'useApc', false ) == true ) {
-					$i18n = new \MW_Translation_Decorator_APC( $i18n, $this->getValue( 'apcPrefix', 'aimeos:' ) );
+
+				if( function_exists( 'apc_store' ) === true && $conf->get( 'flow/apc/enabled', false ) == true ) {
+					$i18n = new \MW_Translation_Decorator_APC( $i18n, $conf->get( 'flow/apc/prefix', 'flow:' ) );
 				}
-	
+
 				if( isset( $this->settings['i18n'][$langid] ) ) {
 					$i18n = new \MW_Translation_Decorator_Memory( $i18n, $this->settings['i18n'][$langid] );
 				}
-	
+
 				$this->i18n[$langid] = $i18n;
 			}
 		}
-	
+
 		return $this->i18n;
 	}
-	
-	
+
+
 	/**
 	 * Returns the locale item for the current request
 	 *
 	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 * @return \MShop_Locale_Item_Interface Locale item object
 	 */
-	protected function getLocale( \MShop_Context_Item_Interface $context )
+	protected function getLocale( \MShop_Context_Item_Interface $context, \TYPO3\Flow\Mvc\RequestInterface $request )
 	{
 		if( $this->locale === null )
 		{
-/*			$attr = $this->requestStack->getMasterRequest()->attributes;
+			$params = $request->getArguments();
 
-			$currency = $attr->get( 'currency', 'EUR' );
-			$site = $attr->get( 'site', 'default' );
-			$lang = $attr->get( 'locale', 'en' );
-*/
+			$currency = ( isset( $params['currency'] ) ? $params['currency'] : 'EUR' );
+			$site = ( isset( $params['site'] ) ? $params['site'] : 'default' );
+			$lang = ( isset( $params['locale'] ) ? $params['locale'] : 'en' );
+
+			$disableSites = ( isset( $this->settings['disableSites'] ) ? true : false );
+
 			$localeManager = \MShop_Locale_Manager_Factory::createManager( $context );
-			$this->locale = $localeManager->bootstrap( 'default', 'en', 'EUR', false );
+			$this->locale = $localeManager->bootstrap( $site, $lang, $currency, $disableSites );
 		}
-	
+
 		return $this->locale;
 	}
 
 
 	/**
-	 * Injects the Flow session object
+	 * Returns the fixed parameters that should be included in every URL
 	 *
-	 * @param \TYPO3\Flow\Session\SessionInterface $session
-	 * @return void
+	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
+	 * @return array Associative list of site, language and currency if available
 	 */
-	public function injectSession( \TYPO3\Flow\Session\SessionInterface $session )
+	protected function getFixedParams( \TYPO3\Flow\Mvc\RequestInterface $request )
 	{
-		$this->session = $session;
-	}
+		$fixed = array();
 
+		$params = $request->getArguments();
 
-	/**
-	 * Inject the settings
-	 *
-	 * @param array $settings
-	 * @return void
-	 */
-	public function injectSettings( array $settings )
-	{
-		$this->settings = $settings;
-	}
-
-
-	/**
-	 * Injects the Flow URI builder
-	 *
-	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder
-	 * @return void
-	 */
-	public function injectUriBuilder( \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder )
-	{
-		$this->uriBuilder = $uriBuilder;
-	}
-
-
-	/**
-	 * Returns the value for the given setting name
-	 *
-	 * @param string $name Setting name
-	 * @param mixed $default Default value returned if no setting is available
-	 * @return mixed Setting value
-	 */
-	protected function getValue( $name, $default = null )
-	{
-		if( isset( $this->settings[$name] ) ) {
-			return $this->settings[$name];
+		if( isset( $params['site'] ) ) {
+			$fixed['site'] = $params['site'];
 		}
-		
-		return $default;
+
+		if( isset( $params['locale'] ) ) {
+			$fixed['locale'] = $params['locale'];
+		}
+
+		if( isset( $params['currency'] ) ) {
+			$fixed['currency'] = $params['currency'];
+		}
+
+		return $fixed;
 	}
 }

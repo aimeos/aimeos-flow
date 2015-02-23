@@ -1,0 +1,2 @@
+AimeosShop_Cache:
+  frontend: TYPO3\Flow\Cache\Frontend\StringFrontend

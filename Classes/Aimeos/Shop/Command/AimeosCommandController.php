@@ -24,9 +24,10 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function cacheCommand( $sites = '' )
 	{
+		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
 
-		$context = $base->getContext( false );
+		$context = $base->getContext( $uriBuilder, $this->request );
 		$context->setEditor( 'aimeos:cache' );
 
 		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
@@ -77,11 +78,13 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function jobsCommand( $jobs, $sites = 'default' )
 	{
+		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
 		$aimeos = $base->getAimeos();
 		
-		$context = $base->getContext( false );
+		$context = $base->getContext( $uriBuilder, $this->request );
 		$context->setI18n( $this->createI18n( $context, $aimeos->getI18nPaths() ) );
+		$context->setView( $context->getView() );
 		$context->setEditor( 'aimeos:jobs' );
 
 		$jobs = explode( ' ', $jobs );
@@ -116,12 +119,13 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function setupCommand( $site = 'default', array $options = array() )
 	{
+		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
 
-		$ctx = $base->getContext( false );
-		$ctx->setEditor( 'aimeos:setup' );
+		$context = $base->getContext( $uriBuilder, $this->request );
+		$context->setEditor( 'aimeos:setup' );
 
-		$config = $base->getConfig();
+		$config = $context->getConfig();
 		$config->set( 'setup/site', $site );
 		$dbconfig = $this->getDbConfig( $config );
 		$this->setOptions( $config, $options );
@@ -135,7 +139,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			throw new Exception( 'Unable to extend include path' );
 		}
 
-		$manager = new \MW_Setup_Manager_Multiple( $ctx->getDatabaseManager(), $dbconfig, $taskPaths, $ctx );
+		$manager = new \MW_Setup_Manager_Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
 
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
 
