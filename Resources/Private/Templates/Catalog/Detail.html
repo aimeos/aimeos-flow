@@ -1,0 +1,28 @@
+<f:layout name="Default" />
+
+<f:section name="AimeosScripts">
+	<script type="text/javascript" src="{f:uri.resource(path: 'themes/aimeos-detail.js', package: 'Aimeos.Shop')}"></script>
+</f:section>
+
+<f:section name="AimeosHeader">
+	<f:format.raw>{aiheader.basket_mini}</f:format.raw>
+	<f:format.raw>{aiheader.catalog_stage}</f:format.raw>
+	<f:format.raw>{aiheader.catalog_detail}</f:format.raw>
+	<f:format.raw>{aiheader.catalog_session}</f:format.raw>
+</f:section>
+
+<f:section name="AimeosHead">
+	<f:format.raw>{aibody.basket_mini}</f:format.raw>
+</f:section>
+
+<f:section name="AimeosStage">
+	<f:format.raw>{aibody.catalog_stage}</f:format.raw>
+</f:section>
+
+<f:section name="AimeosBody">
+	<f:format.raw>{aibody.catalog_detail}</f:format.raw>
+</f:section>
+
+<f:section name="AimeosAside">
+	<f:format.raw>{aibody.catalog_session}</f:format.raw>
+</f:section>

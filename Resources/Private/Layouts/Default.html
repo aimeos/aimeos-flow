@@ -2,13 +2,46 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title><f:render section="Title" /></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<f:render section="AimeosHeader" optional="TRUE" />
+		<title>Aimeos shop</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{f:uri.resource(path: 'themes/elegance/common.css', package: 'Aimeos.Shop')}">
+		<link rel="stylesheet" href="{f:uri.resource(path: 'themes/elegance/aimeos.css', package: 'Aimeos.Shop')}">
+        <f:render section="AimeosStyles" optional="TRUE" />
 		<f:base />
 	</head>
 	<body>
 		<f:flashMessages class="flashmessages" />
 
-		<h1><f:render section="Title" /></h1>
-		<f:render section="Content" />
+		<div class="navbar navbar-static" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+			</div>
+			<f:render section="AimeosHead" optional="TRUE" />
+		</div>
+
+		<div class="col-xs-12">
+			<f:render section="AimeosNav" optional="TRUE" />
+			<f:render section="AimeosStage" optional="TRUE" />
+			<f:render section="AimeosBody" optional="TRUE" />
+			<f:render section="AimeosAside" optional="TRUE" />
+		</div>
+
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{f:uri.resource(path: 'themes/jquery-ui.custom.min.js', package: 'Aimeos.Shop')}"></script>
+        <script type="text/javascript" src="{f:uri.resource(path: 'themes/aimeos.js', package: 'Aimeos.Shop')}"></script>
+        <script type="text/javascript" src="{f:uri.resource(path: 'themes/elegance/aimeos.js', package: 'Aimeos.Shop')}"></script>
+        <f:render section="AimeosScripts" optional="TRUE" />
 	</body>
 </html>

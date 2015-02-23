@@ -1,0 +1,183 @@
+-
+  name: 'Admin JSON RPC request'
+  uriPattern: 'admin/do'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Admin'
+    '@action': 'do'
+    '@format': 'html'
+
+-
+  name: 'Admin index page'
+  uriPattern: 'admin(/{site}/{lang}/{tab})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Admin'
+    '@action': 'index'
+    '@format': 'html'
+    'site': 'default'
+    'lang': 'en'
+    'tab': '0'
+  appendExceedingArguments: true
+
+-
+  name: 'Account index page'
+  uriPattern: 'myaccount'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Account pinned products'
+  uriPattern: 'detail/pin/{pin_action}/{pin_id}/{d_prodid}(/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Account favorite products'
+  uriPattern: 'myaccount/favorite(/{fav_action}/{fav_id}/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+    'fav_action': ''
+    'fav_id': ''
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Account watched products'
+  uriPattern: 'myaccount/watch(/{wat_action}/{wat_id}/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+    'wat_action': ''
+    'wat_id': ''
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Basket page'
+  uriPattern: 'basket'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Basket'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog count XHR'
+  uriPattern: 'count'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'count'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog detail page'
+  uriPattern: 'detail/{d_prodid}(/{d_name}/{l_pos})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'detail'
+    '@format': 'html'
+    'd_name': ''
+    'l_pos': '0'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog list page'
+  uriPattern: 'list(/{f_catid}/{f_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'list'
+    '@format': 'html'
+    'f_catid': ''
+    'f_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog stock XHR'
+  uriPattern: 'stock'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'stock'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog suggest XHR'
+  uriPattern: 'suggest'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'suggest'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout page'
+  uriPattern: 'checkout(/{c_step})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'index'
+    '@format': 'html'
+    'c_step': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout confirm page'
+  uriPattern: 'confirm'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'confirm'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout update page'
+  uriPattern: 'update'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'update'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Example terms and conditions page'
+  uriPattern: 'terms'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Page'
+    '@action': 'terms'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Example privacy policy page'
+  uriPattern: 'privacy'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Page'
+    '@action': 'privacy'
+    '@format': 'html'
+  appendExceedingArguments: true
