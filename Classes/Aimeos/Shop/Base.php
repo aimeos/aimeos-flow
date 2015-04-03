@@ -366,9 +366,9 @@ class Base
 		{
 			$params = $request->getArguments();
 
-			$currency = ( isset( $params['currency'] ) ? $params['currency'] : 'EUR' );
 			$site = ( isset( $params['site'] ) ? $params['site'] : 'default' );
-			$lang = ( isset( $params['locale'] ) ? $params['locale'] : 'en' );
+			$lang = ( isset( $params['locale'] ) ? $params['locale'] : '' );
+			$currency = ( isset( $params['currency'] ) ? $params['currency'] : '' );
 
 			$disableSites = ( isset( $this->settings['disableSites'] ) ? true : false );
 
