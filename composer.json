@@ -30,7 +30,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Aimeos\\Shop": "Classes"
+            "Aimeos\\Shop": "Classes",
+            "Aimeos\\Flow": "Classes"
         }
     },
     "extra": {

@@ -9,4 +9,4 @@ Aimeos\Shop\Base:
             value: AimeosShop_Cache
 
 Typo3\Flow\Property\TypeConverter\MediaTypeConverterInterface:
-  className: 'TYPO3\Flow\Property\TypeConverter\AimeosTypeConverter'
+  className: 'Aimeos\Flow\AimeosTypeConverter'
