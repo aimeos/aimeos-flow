@@ -7,3 +7,6 @@ Aimeos\Shop\Base:
         arguments:
           1:
             value: AimeosShop_Cache
+
+Typo3\Flow\Property\TypeConverter\MediaTypeConverterInterface:
+  className: 'TYPO3\Flow\Property\TypeConverter\AimeosTypeConverter'
