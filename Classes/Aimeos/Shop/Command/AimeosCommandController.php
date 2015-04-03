@@ -1,11 +1,19 @@
 <?php
 
+/**
+ * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
+ * @copyright Aimeos (aimeos.org), 2015
+ */
+
+
 namespace Aimeos\Shop\Command;
 
 use TYPO3\Flow\Annotations as Flow;
 
 
 /**
+ * Aimeos CLI controller for cronjobs
+ *
  * @Flow\Scope("singleton")
  */
 class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
