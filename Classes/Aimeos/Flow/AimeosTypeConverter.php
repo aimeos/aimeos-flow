@@ -6,9 +6,11 @@
  */
 
 
-namespace TYPO3\Flow\Property\TypeConverter;
+namespace Aimeos\Flow;
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Property\TypeConverter\MediaTypeConverter;
+use TYPO3\Flow\Property\TypeConverter\MediaTypeConverterInterface;
 use TYPO3\Flow\Property\PropertyMappingConfigurationInterface;
 
 
