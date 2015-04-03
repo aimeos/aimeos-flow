@@ -76,7 +76,7 @@ class Base
 	{
 		if( $this->aimeos === null )
 		{
-			$extDirs = ( isset( $this->setting['flow']['extdir'] ) ? (array) $this->setting['flow']['extdir'] : array() );
+			$extDirs = ( isset( $this->settings['flow']['extdir'] ) ? (array) $this->settings['flow']['extdir'] : array() );
 			$this->aimeos = new \Arcavias( $extDirs, false );
 		}
 
