@@ -88,9 +88,11 @@ class Base
 	 * Returns the current context.
 	 *
 	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 */
-	public function getContext( \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	public function getContext( \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder,
+		array $templatePaths, \TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
 		if( self::$context === null )
 		{
@@ -130,7 +132,7 @@ class Base
 		$session = new \MW_Session_Flow( $this->session );
 		$context->setSession( $session );
 
-		$view = $this->createView( $context, $uriBuilder, $request );
+		$view = $this->createView( $context, $uriBuilder, $templatePaths, $request );
 		$context->setView( $view );
 
 		$this->addUser( $context );
@@ -207,19 +209,20 @@ class Base
 
 		$context->setEditor( $username );
 	}
-	
+
 
 	/**
 	 * Creates the view object for the HTML client.
 	 *
 	 * @param \MShop_Context_Item_Interface $context Context object
 	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 * @return \MW_View_Interface View object
 	 */
 	protected function createView( \MShop_Context_Item_Interface $context,
-			\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder,
-			\TYPO3\Flow\Mvc\RequestInterface $request = null )
+		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
+		\TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
 		$params = $fixed = array();
 		$config = $context->getConfig();
@@ -247,6 +250,9 @@ class Base
 
 		$helper = new \MW_View_Helper_Url_Flow( $view, $uriBuilder, $fixed );
 		$view->addHelper( 'url', $helper );
+
+		$helper = new \MW_View_Helper_Partial_Default( $view, $config, $templatePaths );
+		$view->addHelper( 'partial', $helper );
 
 		$helper = new \MW_View_Helper_Parameter_Default( $view, $params );
 		$view->addHelper( 'param', $helper );
@@ -317,7 +323,7 @@ class Base
 
 		return $config;
 	}
-	
+
 
 	/**
 	 * Creates new translation objects.

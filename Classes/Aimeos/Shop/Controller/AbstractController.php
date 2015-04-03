@@ -21,7 +21,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	 * @Flow\Inject
 	 */
 	protected $base;
-	
+
 
 	/**
 	 * Returns the body and header output for the given page name
@@ -30,7 +30,8 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	 */
 	protected function getPageSections( $pageName )
 	{
-		$context = $this->base->getContext( $this->uriBuilder, $this->request );
+		$templatePaths = $this->base->getAimeos()->getCustomPaths( 'client/html' );
+		$context = $this->base->getContext( $this->uriBuilder, $templatePaths, $this->request );
 		return $this->base->getPageSections( $context, $pageName );
 	}
 }

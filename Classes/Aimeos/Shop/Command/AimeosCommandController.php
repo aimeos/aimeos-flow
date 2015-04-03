@@ -88,9 +88,11 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	{
 		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
+
 		$aimeos = $base->getAimeos();
-		
-		$context = $base->getContext( $uriBuilder, $this->request );
+		$templatePaths = $aimeos->getCustomPaths( 'controller/jobs/layouts' );
+
+		$context = $base->getContext( $uriBuilder, $templatePaths, $this->request );
 		$context->setI18n( $this->createI18n( $context, $aimeos->getI18nPaths() ) );
 		$context->setView( $context->getView() );
 		$context->setEditor( 'aimeos:jobs' );
@@ -229,14 +231,14 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	protected function getDbConfig( \MW_Config_Interface $conf )
 	{
 		$dbconfig = $conf->get( 'resource', array() );
-	
+
 		foreach( $dbconfig as $rname => $dbconf )
 		{
 			if( strncmp( $rname, 'db', 2 ) !== 0 ) {
 				unset( $dbconfig[$rname] );
 			}
 		}
-	
+
 		return $dbconfig;
 	}
 
