@@ -8,5 +8,5 @@ Aimeos\Shop\Base:
           1:
             value: AimeosShop_Cache
 
-Typo3\Flow\Property\TypeConverter\MediaTypeConverterInterface:
+TYPO3\Flow\Property\TypeConverter\MediaTypeConverterInterface:
   className: 'Aimeos\Flow\AimeosTypeConverter'
