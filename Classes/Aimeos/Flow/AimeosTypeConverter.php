@@ -24,6 +24,9 @@ use TYPO3\Flow\Property\PropertyMappingConfigurationInterface;
  */
 class AimeosTypeConverter extends MediaTypeConverter implements MediaTypeConverterInterface
 {
+	protected $priority = 0;
+
+
 	/**
 	 * Convert the given $source to $targetType depending on the MediaTypeConverterInterface::CONFIGURATION_MEDIA_TYPE property mapping configuration
 	 *

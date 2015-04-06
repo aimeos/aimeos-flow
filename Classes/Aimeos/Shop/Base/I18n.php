@@ -47,7 +47,7 @@ class I18n
 	 */
 	public function get( array $languageIds )
 	{
-		$i18nPaths = $this->aimeos->getI18nPaths();
+		$i18nPaths = $this->aimeos->get()->getI18nPaths();
 
 		foreach( $languageIds as $langid )
 		{
