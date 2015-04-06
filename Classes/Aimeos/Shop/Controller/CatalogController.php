@@ -21,7 +21,7 @@ class CatalogController extends AbstractController
 	 */
 	public function countAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'catalog-count' ) );
+		$this->view->assignMultiple( $this->getSections( 'catalog-count' ) );
 	}
 
 
@@ -32,10 +32,10 @@ class CatalogController extends AbstractController
 	 */
 	public function detailAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'catalog-detail' ) );
+		$this->view->assignMultiple( $this->getSections( 'catalog-detail' ) );
 	}
-	
-	
+
+
 	/**
 	 * Content for catalog list page
 	 *
@@ -43,7 +43,7 @@ class CatalogController extends AbstractController
 	 */
 	public function listAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'catalog-list' ) );
+		$this->view->assignMultiple( $this->getSections( 'catalog-list' ) );
 	}
 
 
@@ -52,7 +52,7 @@ class CatalogController extends AbstractController
 	 */
 	public function stockAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'catalog-stock' ) );
+		$this->view->assignMultiple( $this->getSections( 'catalog-stock' ) );
 	}
 
 
@@ -61,6 +61,6 @@ class CatalogController extends AbstractController
 	 */
 	public function suggestAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'catalog-suggest' ) );
+		$this->view->assignMultiple( $this->getSections( 'catalog-suggest' ) );
 	}
 }

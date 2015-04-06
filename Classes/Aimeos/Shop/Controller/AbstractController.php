@@ -17,10 +17,10 @@ use TYPO3\Flow\Annotations as Flow;
 abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
 	/**
-	 * @var \Aimeos\Shop\Base
+	 * @var \Aimeos\Shop\Base\Page
 	 * @Flow\Inject
 	 */
-	protected $base;
+	protected $page;
 
 
 	/**
@@ -28,10 +28,8 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	 *
 	 * @param string $pageName Page name as defined in the Settings.yaml file
 	 */
-	protected function getPageSections( $pageName )
+	protected function getSections( $pageName )
 	{
-		$templatePaths = $this->base->getAimeos()->getCustomPaths( 'client/html' );
-		$context = $this->base->getContext( $this->uriBuilder, $templatePaths, $this->request );
-		return $this->base->getPageSections( $context, $pageName );
+		return $this->page->getSections( $this->request, $pageName );
 	}
 }

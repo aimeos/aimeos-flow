@@ -32,10 +32,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function cacheCommand( $sites = '' )
 	{
-		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
-		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
-
-		$context = $base->getContext( $uriBuilder, $this->request );
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:cache' );
 
 		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
@@ -86,23 +83,15 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function jobsCommand( $jobs, $sites = 'default' )
 	{
-		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
-		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
-
-		$aimeos = $base->getAimeos();
-		$templatePaths = $aimeos->getCustomPaths( 'controller/jobs/layouts' );
-
-		$context = $base->getContext( $uriBuilder, $templatePaths, $this->request );
-		$context->setI18n( $this->createI18n( $context, $aimeos->getI18nPaths() ) );
-		$context->setView( $context->getView() );
-		$context->setEditor( 'aimeos:jobs' );
+		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
+		$context = $this->getContext();
 
 		$jobs = explode( ' ', $jobs );
 		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
 
-		foreach( explode( ' ', $sites ) as $siteCode )
+		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
-			$localeItem = $localeManager->bootstrap( $siteCode, 'en', '', false );
+			$localeItem = $localeManager->bootstrap( $siteItem->getCode(), 'en', '', false );
 			$context->setLocale( $localeItem );
 
 			$this->outputFormatted( 'Executing jobs for site <b>%s</b>', array( $siteCode ) );
@@ -129,10 +118,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function setupCommand( $site = 'default', array $options = array() )
 	{
-		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
-		$base = $this->objectManager->get( '\\Aimeos\\Shop\\Base' );
-
-		$context = $base->getContext( $uriBuilder, $this->request );
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:setup' );
 
 		$config = $context->getConfig();
@@ -140,7 +126,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$dbconfig = $this->getDbConfig( $config );
 		$this->setOptions( $config, $options );
 
-		$taskPaths = $base->getAimeos()->getSetupPaths( $site );
+		$taskPaths = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get()->getSetupPaths( $site );
 
 		$includePaths = $taskPaths;
 		$includePaths[] = get_include_path();
@@ -154,16 +140,6 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
 
 		$manager->run( 'mysql' );
-	}
-
-
-	/**
-	 * @param \TYPO3\Flow\Object\ObjectManagerInterface $objectManager
-	 * @return void
-	 */
-	public function injectObjectManager( \TYPO3\Flow\Object\ObjectManagerInterface $objectManager )
-	{
-		$this->objectManager = $objectManager;
 	}
 
 
@@ -195,30 +171,29 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 
 	/**
-	 * Creates new translation objects
+	 * Returns a context object for the jobs command
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
-	 * @param array List of paths to the i18n files
-	 * @return array List of translation objects implementing MW_Translation_Interface
+	 * @return \MShop_Context_Item_Default Context object
 	 */
-	protected function createI18n( \MShop_Context_Item_Interface $context, array $i18nPaths )
+	protected function getContext()
 	{
-		$list = array();
-		$translations = array();
-		$langManager = \MShop_Factory::createManager( $context, 'locale/language' );
+		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
+		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/layouts' );
 
-		foreach( $langManager->searchItems( $langManager->createSearch( true ) ) as $id => $langItem )
-		{
-			$i18n = new \MW_Translation_Zend2( $i18nPaths, 'gettext', $id, array( 'disableNotices' => true ) );
+		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 
-			if( isset( $translations[$id] ) ) {
-				$i18n = new \MW_Translation_Decorator_Memory( $i18n, $translations[$id] );
-			}
+		$langManager = \MShop_Locale_Manager_Factory::createManager( $context )->getSubManager( 'language' );
+		$langids = array_keys( $langManager->searchItems( $langManager->createSearch( true ) ) );
 
-			$list[$id] = $i18n;
-		}
+		$i18n = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\I18n' )->get( $langids );
+		$view = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\View' )->create( $context->getConfig(), $uriBuilder, $tmplPaths );
 
-		return $list;
+		$context->setEditor( 'aimeos:jobs' );
+		$context->setView( $view );
+		$context->setI18n( $i18n );
+
+		return $context;
 	}
 
 
@@ -260,6 +235,16 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		}
 
 		return $manager->searchItems( $search );
+	}
+
+
+	/**
+	 * @param \TYPO3\Flow\Object\ObjectManagerInterface $objectManager
+	 * @return void
+	 */
+	public function injectObjectManager( \TYPO3\Flow\Object\ObjectManagerInterface $objectManager )
+	{
+		$this->objectManager = $objectManager;
 	}
 
 
