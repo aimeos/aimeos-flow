@@ -21,7 +21,6 @@
     "prefer-stable": true,
     "require": {
         "typo3/flow": "~2.0",
-        "typo3/swiftmailer": "dev-master",
         "arcavias/arcavias-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-zend2-i18n": "dev-master",
