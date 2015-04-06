@@ -61,6 +61,8 @@ class Page
 	 */
 	public function getSections( \TYPO3\Flow\Mvc\RequestInterface $request, $pageName )
 	{
+		$this->uriBuilder->setRequest( $request );
+
 		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
 		$pagesConfig = $this->settings['page'];
 		$result = array( 'aibody' => array(), 'aiheader' => array() );
@@ -73,7 +75,7 @@ class Page
 		{
 			foreach( (array) $pagesConfig[$pageName] as $clientName )
 			{
-				$client = \Client_Html_Factory::createClient( $context, $templatePaths, $clientName );
+				$client = \Client_Html_Factory::createClient( $context, $tmplPaths, $clientName );
 				$client->setView( clone $view );
 				$client->process();
 

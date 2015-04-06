@@ -45,13 +45,13 @@ class View
 	{
 		$params = $fixed = array();
 
-		if( $request !== null && $locale !== null )
+		if( $request !== null && $langid !== null )
 		{
 			$params = $request->getArguments();
 			$fixed = $this->getFixedParams( $request );
 
 			// required for reloading to the current page
-			$params['target'] = $request->get( '_route' );
+			// $params['target'] = $request->getArgument( '_route' );
 
 			$i18n = $this->i18n->get( array( $langid ) );
 			$translation = $i18n[$langid];

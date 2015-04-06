@@ -94,7 +94,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			$localeItem = $localeManager->bootstrap( $siteItem->getCode(), 'en', '', false );
 			$context->setLocale( $localeItem );
 
-			$this->outputFormatted( 'Executing jobs for site <b>%s</b>', array( $siteCode ) );
+			$this->outputFormatted( 'Executing jobs for site <b>%s</b>', array( $siteItem->getCode() ) );
 
 			foreach( $jobs as $jobname )
 			{

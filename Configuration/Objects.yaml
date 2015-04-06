@@ -1,4 +1,4 @@
-Aimeos\Shop\Base:
+Aimeos\Shop\Base\Context:
   properties:
     cache:
       object:

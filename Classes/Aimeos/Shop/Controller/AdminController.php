@@ -17,12 +17,18 @@ use TYPO3\Flow\Annotations as Flow;
 class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
 	private $_controller;
-	
+
 	/**
-	 * @var \Aimeos\Shop\Base
+	 * @var \Aimeos\Shop\Base\Aimeos
 	 * @Flow\Inject
 	 */
-	protected $base;
+	protected $aimeos;
+
+	/**
+	 * @var \Aimeos\Shop\Base\Context
+	 * @Flow\Inject
+	 */
+	protected $context;
 
 
 	/**
@@ -34,10 +40,10 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	public function indexAction( $site = 'default', $lang = 'en', $tab = 0 )
 	{
-		$context = $this->base->getContext( $this->uriBuilder, $this->request );
+		$context = $this->context->get( $this->request );
 		$context = $this->setLocale( $context, $lang );
 
-		$aimeos = $this->base->getAimeos();
+		$aimeos = $this->aimeos->get();
 		$cntlPaths = $aimeos->getCustomPaths( 'controller/extjs' );
 		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
 		$cssFiles = $jsFiles = array();
@@ -90,9 +96,9 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	public function doAction()
 	{
-		$context = $this->base->getContext( $this->uriBuilder, $this->request );
+		$context = $this->context->get( $this->request );
 		$context = $this->setLocale( $context );
-		$cntlPaths = $this->base->getAimeos()->getCustomPaths( 'controller/extjs' );
+		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
 
 		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
 
@@ -108,7 +114,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getJsonLanguages( \MShop_Context_Item_Interface $context )
 	{
-		$paths = $this->base->getAimeos()->getI18nPaths();
+		$paths = $this->aimeos->get()->getI18nPaths();
 		$langs = array();
 
 		if( !isset( $paths['client/extjs'] ) ) {

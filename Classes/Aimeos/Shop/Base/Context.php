@@ -49,6 +49,12 @@ class Context
 	protected $resource;
 
 	/**
+	 * @var \Aimeos\Shop\Base\Aimeos
+	 * @Flow\Inject
+	 */
+	protected $aimeos;
+
+	/**
 	 * @var \Aimeos\Shop\Base\I18n
 	 * @Flow\Inject
 	 */
@@ -73,7 +79,7 @@ class Context
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 * @return \MShop_Context_Item_Interface
 	 */
-	public function getContext( \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	public function get( \TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
 		if( self::$context === null )
 		{
@@ -136,11 +142,11 @@ class Context
 	/**
 	 * Returns the cache object for the context
 	 *
-	 * @param \MShop_Config_Interface $config Config object
+	 * @param \MW_Config_Interface $config Config object
 	 * @param string $siteid Unique site ID
 	 * @return \MW_Cache_Interface Cache object
 	 */
-	protected function getCache( \MShop_Config_Interface $config, $siteid )
+	protected function getCache( \MW_Config_Interface $config, $siteid )
 	{
 		switch( $config->get( 'flow/cache/name', 'Flow' ) )
 		{
@@ -170,7 +176,7 @@ class Context
 		$this->settings['resource']['db']['username'] = $this->resource['user'];
 		$this->settings['resource']['db']['password'] = $this->resource['password'];
 
-		$configPaths = $this->getAimeos()->getConfigPaths( 'mysql' );
+		$configPaths = $this->aimeos->get()->getConfigPaths( 'mysql' );
 		$config = new \MW_Config_Array( $this->settings, $configPaths );
 
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
