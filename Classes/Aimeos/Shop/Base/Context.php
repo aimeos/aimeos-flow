@@ -142,11 +142,11 @@ class Context
 	/**
 	 * Returns the cache object for the context
 	 *
-	 * @param \MShop_Config_Interface $config Config object
+	 * @param \MW_Config_Interface $config Config object
 	 * @param string $siteid Unique site ID
 	 * @return \MW_Cache_Interface Cache object
 	 */
-	protected function getCache( \MShop_Config_Interface $config, $siteid )
+	protected function getCache( \MW_Config_Interface $config, $siteid )
 	{
 		switch( $config->get( 'flow/cache/name', 'Flow' ) )
 		{

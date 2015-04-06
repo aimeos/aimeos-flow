@@ -86,11 +86,11 @@ Aimeos:
         media:
           default:
             # Base directory to the document root of the website
-            basedir: %kernel.root_dir%/../web
+            basedir: %FLOW_PATH_WEB%
             # Upload related settings
             upload:
               # Media directory where the uploaded files will be stored, must be relative to the path in "basedir"
-              directory: uploads
+              directory: Uploads
               # Directory permissions (in octal notation) which are applied to newly created directories
               # dirperms: 0775
               # File permissions (in octal notation) which are applied to newly created files
@@ -98,7 +98,7 @@ Aimeos:
           # Mime icon related settings
           mimeicon:
             # Directory where icons for the mime types stored. Must be relative to the path in "basedir"
-            directory: bundles/aimeosshop/mimeicons
+            directory: _Resources/Static/Packages/Aimeos.Shop/mimeicons
             # File extension of mime type icons
             extension: .png
           # Parameter for images
