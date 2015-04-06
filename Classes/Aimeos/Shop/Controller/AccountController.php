@@ -21,6 +21,6 @@ class AccountController extends AbstractController
 	 */
 	public function indexAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'account-index' ) );
+		$this->view->assignMultiple( $this->getSections( 'account-index' ) );
 	}
 }

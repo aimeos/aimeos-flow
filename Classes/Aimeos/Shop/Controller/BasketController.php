@@ -23,6 +23,6 @@ class BasketController extends AbstractController
 	 */
 	public function indexAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'basket-index' ) );
+		$this->view->assignMultiple( $this->getSections( 'basket-index' ) );
 	}
 }

@@ -8,8 +8,6 @@
 
 namespace Aimeos\Shop\Controller;
 
-use TYPO3\Flow\Annotations as Flow;
-
 
 /**
  * Configurable content for single pages

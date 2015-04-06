@@ -23,7 +23,7 @@ class CheckoutController extends AbstractController
 	 */
 	public function indexAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'checkout-index' ) );
+		$this->view->assignMultiple( $this->getSections( 'checkout-index' ) );
 	}
 
 
@@ -34,7 +34,7 @@ class CheckoutController extends AbstractController
 	 */
 	public function confirmAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'checkout-confirm' ) );
+		$this->view->assignMultiple( $this->getSections( 'checkout-confirm' ) );
 	}
 
 
@@ -45,6 +45,6 @@ class CheckoutController extends AbstractController
 	 */
 	public function updateAction()
 	{
-		$this->view->assignMultiple( $this->getPageSections( 'checkout-update' ) );
+		$this->view->assignMultiple( $this->getSections( 'checkout-update' ) );
 	}
 }
