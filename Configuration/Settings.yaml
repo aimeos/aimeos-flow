@@ -46,6 +46,13 @@ Aimeos:
 
     client:
       html:
+        account:
+          favorite:
+            url:
+              action: index
+          watch:
+            url:
+              action: index
         checkout:
           standard:
             summary:
