@@ -3,3 +3,13 @@
   ui:
     label: 'Aimeos web shop'
     group: 'plugins'
+  options:
+    pluginViews:
+      'CatalogList':
+        label: 'Aimeos Catalog List'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['list']
+      'CatalogDetail':
+        label: 'Aimeos Catalog Detail'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['detail']
