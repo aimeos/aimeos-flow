@@ -24,7 +24,7 @@ use TYPO3\Flow\Property\PropertyMappingConfigurationInterface;
  */
 class AimeosTypeConverter extends MediaTypeConverter implements MediaTypeConverterInterface
 {
-	protected $priority = 0;
+	protected $priority = -2;
 
 
 	/**
