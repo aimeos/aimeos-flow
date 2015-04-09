@@ -1,38 +1,25 @@
-privilegeTargets:
-  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-    Aimeos_Shop_Admin:
-      matcher: 'method(Aimeos\Shop\Controller\AdminController->(index|do)Action())'
-    Aimeos_Shop_Account:
-      matcher: 'method(Aimeos\Shop\Controller\AccountController->indexAction())'
-    Aimeos_Shop_Basket:
-      matcher: 'method(Aimeos\Shop\Controller\BasketController->indexAction())'
-    Aimeos_Shop_Catalog:
-      matcher: 'method(Aimeos\Shop\Controller\CatalogController->(count|detail|list||stock|suggest)Action())'
-    Aimeos_Shop_Checkout:
-      matcher: 'method(Aimeos\Shop\Controller\CheckoutController->(confirm|index|update)Action())'
+resources:
+  methods:
+    Aimeos_Shop_Admin: 'within(Aimeos\Shop\Controller\AdminController)'
+    Aimeos_Shop_Account: 'within(Aimeos\Shop\Controller\AccountController)'
+    Aimeos_Shop_Basket: 'within(Aimeos\Shop\Controller\BasketController)'
+    Aimeos_Shop_Catalog: 'within(Aimeos\Shop\Controller\CatalogController)'
+    Aimeos_Shop_Checkout: 'within(Aimeos\Shop\Controller\CheckoutController)'
 
 roles:
-#  Editor:
-#    parentRoles: ['TYPO3.Neos:Editor']
-#    privileges:
-#      -
-#        privilegeTarget: Aimeos_Shop_Admin
-#        permission: GRANT
+  Editor: ['TYPO3.Neos:Editor']
+
+acls:
+  Editor:
+    methods:
+      Aimeos_Shop_Admin: GRANT
 
   AuthenticatedUser:
-    privileges:
-      -
-        privilegeTarget: Aimeos_Shop_Account
-        permission: GRANT
+    methods:
+      Aimeos_Shop_Account: GRANT
 
   Everybody:
-    privileges:
-      -
-        privilegeTarget: Aimeos_Shop_Basket
-        permission: GRANT
-      -
-        privilegeTarget: Aimeos_Shop_Catalog
-        permission: GRANT
-      -
-        privilegeTarget: Aimeos_Shop_Checkout
-        permission: GRANT
+    methods:
+      Aimeos_Shop_Basket: GRANT
+      Aimeos_Shop_Catalog: GRANT
+      Aimeos_Shop_Checkout: GRANT
