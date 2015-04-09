@@ -12,12 +12,12 @@ privilegeTargets:
       matcher: 'method(Aimeos\Shop\Controller\CheckoutController->(confirm|index|update)Action())'
 
 roles:
-  Editor:
-    parentRoles: ['TYPO3.Neos:Editor']
-    privileges:
-      -
-        privilegeTarget: Aimeos_Shop_Admin
-        permission: GRANT
+#  Editor:
+#    parentRoles: ['TYPO3.Neos:Editor']
+#    privileges:
+#      -
+#        privilegeTarget: Aimeos_Shop_Admin
+#        permission: GRANT
 
   AuthenticatedUser:
     privileges:
