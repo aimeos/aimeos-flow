@@ -1,6 +1,6 @@
 prototype(Aimeos.Shop:Plugin) < prototype(TYPO3.Neos:Plugin)
 prototype(Aimeos.Shop:Plugin) {
     package = 'Aimeos.Shop'
-    controller = 'Standard'
-    action = 'index'
+    controller = 'Catalog'
+    action = 'list'
 }
