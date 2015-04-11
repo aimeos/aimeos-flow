@@ -17,10 +17,45 @@ use TYPO3\Flow\Annotations as Flow;
 abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
 	/**
+	 * @var \Aimeos\Shop\Base\Aimeos
+	 * @Flow\Inject
+	 */
+	protected $aimeos;
+
+	/**
+	 * @var \Aimeos\Shop\Base\Context
+	 * @Flow\Inject
+	 */
+	protected $context;
+
+	/**
 	 * @var \Aimeos\Shop\Base\Page
 	 * @Flow\Inject
 	 */
 	protected $page;
+
+
+	/**
+	 * Returns the output of the client and adds the header.
+	 *
+	 * @param Client_Html_Interface $client Html client object
+	 * @return string HTML code for inserting into the HTML body
+	 */
+	protected function getOutput( $clientName )
+	{
+		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
+		$context = $this->context->get( $this->request );
+		$langid = $context->getLocale()->getLanguageId();
+		$view = $this->view->create( $context->getConfig(), $this->uriBuilder, $tmplPaths, $this->request, $langid );
+
+		$client = \Client_Html_Factory::createClient( $context, $tmplPaths, $clientName );
+		$client->setView( $view );
+		$client->process();
+
+		// $this->response->addAdditionalHeaderData( (string) $client->getHeader() );
+
+		return $client->getBody();
+	}
 
 
 	/**

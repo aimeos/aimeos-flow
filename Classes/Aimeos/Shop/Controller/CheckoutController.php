@@ -17,6 +17,39 @@ use TYPO3\Flow\Annotations as Flow;
 class CheckoutController extends AbstractController
 {
 	/**
+	 * Returns the output of the checkout confirm component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function cmpconfirmAction()
+	{
+		return $this->getOutput( 'checkout/confirm' );
+	}
+
+
+	/**
+	 * Returns the output of the checkout standard component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function cmpstandardAction()
+	{
+		return $this->getOutput( 'checkout/standard' );
+	}
+
+
+	/**
+	 * Returns the output of the checkout update component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function cmpupdateAction()
+	{
+		return $this->getOutput( 'checkout/update' );
+	}
+
+
+	/**
 	 * Content for checkout standard page
 	 *
 	 * @Flow\Session(autoStart = TRUE)

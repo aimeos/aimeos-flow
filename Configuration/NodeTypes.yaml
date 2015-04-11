@@ -5,11 +5,79 @@
     group: 'plugins'
   options:
     pluginViews:
-      'CatalogList':
-        label: 'Aimeos Catalog List'
+      'AccountFavorite':
+        label: 'Aimeos Account Favorite'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['list']
+          'Aimeos\Shop\Controller\AccountController': ['cmpfavorite']
+      'AccountHistory':
+        label: 'Aimeos Account History'
+        controllerActions:
+          'Aimeos\Shop\Controller\AccountController': ['cmphistory']
+      'AccountWatch':
+        label: 'Aimeos Account Watch'
+        controllerActions:
+          'Aimeos\Shop\Controller\AccountController': ['cmpwatch']
+
+      'BasketMini':
+        label: 'Aimeos Basket Mini'
+        controllerActions:
+          'Aimeos\Shop\Controller\BasketController': ['cmpmini']
+      'BasketRelated':
+        label: 'Aimeos Basket Related'
+        controllerActions:
+          'Aimeos\Shop\Controller\BasketController': ['cmprelated']
+      'BasketStandard':
+        label: 'Aimeos Basket Standard'
+        controllerActions:
+          'Aimeos\Shop\Controller\BasketController': ['cmpstandard']
+
+      'CatalogCount':
+        label: 'Aimeos Catalog Count JSON'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpcount']
       'CatalogDetail':
         label: 'Aimeos Catalog Detail'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['detail']
+          'Aimeos\Shop\Controller\CatalogController': ['cmpdetail']
+      'CatalogFilter':
+        label: 'Aimeos Catalog Filter'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpfilter']
+      'CatalogList':
+        label: 'Aimeos Catalog List'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmplist']
+      'CatalogSession':
+        label: 'Aimeos Catalog Session'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpsession']
+      'CatalogStage':
+        label: 'Aimeos Catalog Stage'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpstage']
+      'CatalogStock':
+        label: 'Aimeos Catalog Stock JS'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpstock']
+      'CatalogSuggest':
+        label: 'Aimeos Catalog Suggest JSON'
+        controllerActions:
+          'Aimeos\Shop\Controller\CatalogController': ['cmpsuggest']
+
+      'CheckoutConfirm':
+        label: 'Aimeos Checkout Confirm'
+        controllerActions:
+          'Aimeos\Shop\Controller\CheckoutController': ['cmpconfirm']
+      'CheckoutStandard':
+        label: 'Aimeos Checkout Standard'
+        controllerActions:
+          'Aimeos\Shop\Controller\CheckoutController': ['cmpstandard']
+      'CheckoutUpdate':
+        label: 'Aimeos Checkout Update'
+        controllerActions:
+          'Aimeos\Shop\Controller\CheckoutController': ['cmpupdate']
+
+      'LocaleSelect':
+        label: 'Aimeos Locale Select'
+        controllerActions:
+          'Aimeos\Shop\Controller\LocaleController': ['cmpselect']

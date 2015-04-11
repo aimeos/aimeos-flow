@@ -113,10 +113,11 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 * of the database, this may take a while.
 	 *
 	 * @param string $site Site for updating database entries
+	 * @param string|null $tplsite Template site for creating or updating database entries
 	 * @param array $option Optional setup configuration, name and value are separated by ":" like "setup/default/demo:1".
 	 * @return void
 	 */
-	public function setupCommand( $site = 'default', array $option = array() )
+	public function setupCommand( $site = 'default', $tplsite = null, array $option = array() )
 	{
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:setup' );
@@ -126,7 +127,9 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$dbconfig = $this->getDbConfig( $config );
 		$this->setOptions( $config, $options );
 
-		$taskPaths = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get()->getSetupPaths( $site );
+		$tplsite = ( $tplsite ? : $site );
+
+		$taskPaths = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get()->getSetupPaths( $tplsite );
 
 		$includePaths = $taskPaths;
 		$includePaths[] = get_include_path();
