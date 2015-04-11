@@ -5,6 +5,7 @@ resources:
     Aimeos_Shop_Basket: 'within(Aimeos\Shop\Controller\BasketController)'
     Aimeos_Shop_Catalog: 'within(Aimeos\Shop\Controller\CatalogController)'
     Aimeos_Shop_Checkout: 'within(Aimeos\Shop\Controller\CheckoutController)'
+    Aimeos_Shop_Locale: 'within(Aimeos\Shop\Controller\LocaleController)'
 
 roles:
   Editor: ['TYPO3.Neos:Editor']
@@ -23,3 +24,4 @@ acls:
       Aimeos_Shop_Basket: GRANT
       Aimeos_Shop_Catalog: GRANT
       Aimeos_Shop_Checkout: GRANT
+      Aimeos_Shop_Locale: GRANT
