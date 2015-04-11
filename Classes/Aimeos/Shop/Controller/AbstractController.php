@@ -34,6 +34,12 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	 */
 	protected $page;
 
+	/**
+	 * @var \Aimeos\Shop\Base\View
+	 * @Flow\Inject
+	 */
+	protected $viewContainer;
+
 
 	/**
 	 * Returns the output of the client and adds the header.
@@ -46,7 +52,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
 		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
-		$view = $this->view->create( $context->getConfig(), $this->uriBuilder, $tmplPaths, $this->request, $langid );
+		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, $tmplPaths, $this->request, $langid );
 
 		$client = \Client_Html_Factory::createClient( $context, $tmplPaths, $clientName );
 		$client->setView( $view );
