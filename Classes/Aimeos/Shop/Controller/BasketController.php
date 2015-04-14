@@ -23,7 +23,7 @@ class BasketController extends AbstractController
 	 */
 	public function cmpminiAction()
 	{
-		return $this->getOutput( 'basket/mini' );
+		$this->view->assign( 'output', $this->getOutput( 'basket/mini' ) );
 	}
 
 
@@ -34,7 +34,7 @@ class BasketController extends AbstractController
 	 */
 	public function cmprelatedAction()
 	{
-		return $this->getOutput( 'basket/related' );
+		$this->view->assign( 'output', $this->getOutput( 'basket/related' ) );
 	}
 
 
@@ -45,7 +45,7 @@ class BasketController extends AbstractController
 	 */
 	public function cmpstandardAction()
 	{
-		return $this->getOutput( 'basket/standard' );
+		$this->view->assign( 'output', $this->getOutput( 'basket/standard' ) );
 	}
 
 

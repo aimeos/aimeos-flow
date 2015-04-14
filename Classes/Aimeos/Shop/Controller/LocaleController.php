@@ -23,6 +23,6 @@ class LocaleController extends AbstractController
 	 */
 	public function cmpselectAction()
 	{
-		return $this->getOutput( 'locale/select' );
+		$this->view->assign( 'output', $this->getOutput( 'locale/select' ) );
 	}
 }

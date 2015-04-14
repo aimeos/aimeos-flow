@@ -23,7 +23,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpcountAction()
 	{
-		return $this->getOutput( 'catalog/count' );
+		$this->view->assign( 'output', $this->getOutput( 'catalog/count' ) );
 	}
 
 
@@ -34,7 +34,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpdetailAction()
 	{
-		return $this->getOutput( 'catalog/detail' );
+		$this->view->assign( 'output', $this->getOutput( 'catalog/detail' ) );
 	}
 
 
@@ -45,7 +45,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpfilterAction()
 	{
-		return $this->getOutput( 'catalog/filter' );
+		$this->view->assign( 'output', $this->getOutput( 'catalog/filter' ) );
 	}
 
 
@@ -56,7 +56,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmplistAction()
 	{
-		return $this->getOutput( 'catalog/list' );
+		$this->view->assign( 'output',  $this->getOutput( 'catalog/list' ) );
 	}
 
 
@@ -67,7 +67,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpsessionAction()
 	{
-		return $this->getOutput( 'catalog/session' );
+		$this->view->assign( 'output',  $this->getOutput( 'catalog/session' ) );
 	}
 
 
@@ -78,7 +78,7 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpstageAction()
 	{
-		return $this->getOutput( 'catalog/stage' );
+		$this->view->assign( 'output',  $this->getOutput( 'catalog/stage' ) );
 	}
 
 
@@ -89,7 +89,18 @@ class CatalogController extends AbstractController
 	 */
 	public function cmpstockAction()
 	{
-		return $this->getOutput( 'catalog/stock' );
+		$this->view->assign( 'output', $this->getOutput( 'catalog/stock' ) );
+	}
+
+
+	/**
+	 * Returns the output of the catalog suggest component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function cmpsuggestAction()
+	{
+		$this->view->assign( 'output', $this->getOutput( 'catalog/suggest' ) );
 	}
 
 
@@ -137,16 +148,5 @@ class CatalogController extends AbstractController
 	public function suggestAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-suggest' ) );
-	}
-
-
-	/**
-	 * Returns the output of the catalog suggest component
-	 *
-	 * @return string Rendered HTML for the body
-	 */
-	public function cmpsuggestAction()
-	{
-		return $this->getOutput( 'catalog/suggest' );
 	}
 }

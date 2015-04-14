@@ -19,7 +19,7 @@
           'Aimeos\Shop\Controller\AccountController': ['cmpwatch']
 
       'BasketMini':
-        label: 'Aimeos Basket Mini'
+        label: 'Aimeos Basket Small'
         controllerActions:
           'Aimeos\Shop\Controller\BasketController': ['cmpmini']
       'BasketRelated':
@@ -78,6 +78,6 @@
           'Aimeos\Shop\Controller\CheckoutController': ['cmpupdate']
 
       'LocaleSelect':
-        label: 'Aimeos Locale Select'
+        label: 'Aimeos Locale Selector'
         controllerActions:
           'Aimeos\Shop\Controller\LocaleController': ['cmpselect']
