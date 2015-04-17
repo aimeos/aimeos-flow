@@ -125,7 +125,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$config = $context->getConfig();
 		$config->set( 'setup/site', $site );
 		$dbconfig = $this->getDbConfig( $config );
-		$this->setOptions( $config, $options );
+		$this->setOptions( $config, $option );
 
 		$tplsite = ( $tplsite ? : $site );
 
