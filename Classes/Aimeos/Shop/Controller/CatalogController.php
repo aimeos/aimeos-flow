@@ -126,6 +126,8 @@ class CatalogController extends AbstractController
 
 	/**
 	 * Content for catalog list page
+	 *
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function listAction()
 	{
