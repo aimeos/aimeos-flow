@@ -138,6 +138,8 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			throw new Exception( 'Unable to extend include path' );
 		}
 
+		spl_autoload_register( '\Aimeos\Shop\Command\AimeosCommandController::autoload', true );
+
 		$manager = new \MW_Setup_Manager_Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
 
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
