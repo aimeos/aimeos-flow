@@ -38,5 +38,15 @@
         "installer-paths": {
             "Packages/Extensions/{$name}/": ["type:aimeos-extension"]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "cp -r vendor/arcavias/arcavias-core/client/extjs/* Resources/Public/client/extjs/",
+            "cp -r vendor/arcavias/arcavias-core/client/html/themes/* Resources/Public/themes/"
+        ],
+        "post-update-cmd": [
+            "cp -r vendor/arcavias/arcavias-core/client/extjs/* Resources/Public/client/extjs/",
+            "cp -r vendor/arcavias/arcavias-core/client/html/themes/* Resources/Public/themes/"
+        ]
     }
 }
