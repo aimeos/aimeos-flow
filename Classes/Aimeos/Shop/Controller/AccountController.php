@@ -21,7 +21,7 @@ class AccountController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpfavoriteAction()
+	public function favoriteComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/favorite' ) );
 	}
@@ -32,7 +32,7 @@ class AccountController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmphistoryAction()
+	public function historyComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/history' ) );
 	}
@@ -43,7 +43,7 @@ class AccountController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpwatchAction()
+	public function watchComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/watch' ) );
 	}

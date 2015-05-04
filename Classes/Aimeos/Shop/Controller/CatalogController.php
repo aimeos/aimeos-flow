@@ -21,7 +21,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpcountAction()
+	public function countComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/count' ) );
 	}
@@ -32,7 +32,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpdetailAction()
+	public function detailComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/detail' ) );
 	}
@@ -43,7 +43,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpfilterAction()
+	public function filterComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/filter' ) );
 	}
@@ -54,7 +54,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmplistAction()
+	public function listComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/list' ) );
 	}
@@ -65,7 +65,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpsessionAction()
+	public function sessionComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/session' ) );
 	}
@@ -76,7 +76,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpstageAction()
+	public function stageComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/stage' ) );
 	}
@@ -87,7 +87,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpstockAction()
+	public function stockComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/stock' ) );
 	}
@@ -98,7 +98,7 @@ class CatalogController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpsuggestAction()
+	public function suggestComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/suggest' ) );
 	}

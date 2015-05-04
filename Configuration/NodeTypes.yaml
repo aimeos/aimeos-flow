@@ -8,76 +8,76 @@
       'AccountFavorite':
         label: 'Aimeos Account Favorite'
         controllerActions:
-          'Aimeos\Shop\Controller\AccountController': ['cmpfavorite']
+          'Aimeos\Shop\Controller\AccountController': ['favoriteComponent']
       'AccountHistory':
         label: 'Aimeos Account History'
         controllerActions:
-          'Aimeos\Shop\Controller\AccountController': ['cmphistory']
+          'Aimeos\Shop\Controller\AccountController': ['historyComponent']
       'AccountWatch':
         label: 'Aimeos Account Watch'
         controllerActions:
-          'Aimeos\Shop\Controller\AccountController': ['cmpwatch']
+          'Aimeos\Shop\Controller\AccountController': ['watchComponent']
 
       'BasketMini':
         label: 'Aimeos Basket Small'
         controllerActions:
-          'Aimeos\Shop\Controller\BasketController': ['cmpmini']
+          'Aimeos\Shop\Controller\BasketController': ['miniComponent']
       'BasketRelated':
         label: 'Aimeos Basket Related'
         controllerActions:
-          'Aimeos\Shop\Controller\BasketController': ['cmprelated']
+          'Aimeos\Shop\Controller\BasketController': ['relatedComponent']
       'BasketStandard':
         label: 'Aimeos Basket Standard'
         controllerActions:
-          'Aimeos\Shop\Controller\BasketController': ['cmpstandard']
+          'Aimeos\Shop\Controller\BasketController': ['standardComponent']
 
       'CatalogCount':
         label: 'Aimeos Catalog Count JSON'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpcount']
+          'Aimeos\Shop\Controller\CatalogController': ['countComponent']
       'CatalogDetail':
         label: 'Aimeos Catalog Detail'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpdetail']
+          'Aimeos\Shop\Controller\CatalogController': ['detailComponent']
       'CatalogFilter':
         label: 'Aimeos Catalog Filter'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpfilter']
+          'Aimeos\Shop\Controller\CatalogController': ['filterComponent']
       'CatalogList':
         label: 'Aimeos Catalog List'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmplist']
+          'Aimeos\Shop\Controller\CatalogController': ['listComponent']
       'CatalogSession':
         label: 'Aimeos Catalog Session'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpsession']
+          'Aimeos\Shop\Controller\CatalogController': ['sessionComponent']
       'CatalogStage':
         label: 'Aimeos Catalog Stage'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpstage']
+          'Aimeos\Shop\Controller\CatalogController': ['stageComponent']
       'CatalogStock':
         label: 'Aimeos Catalog Stock JS'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpstock']
+          'Aimeos\Shop\Controller\CatalogController': ['stockComponent']
       'CatalogSuggest':
         label: 'Aimeos Catalog Suggest JSON'
         controllerActions:
-          'Aimeos\Shop\Controller\CatalogController': ['cmpsuggest']
+          'Aimeos\Shop\Controller\CatalogController': ['suggestComponent']
 
       'CheckoutConfirm':
         label: 'Aimeos Checkout Confirm'
         controllerActions:
-          'Aimeos\Shop\Controller\CheckoutController': ['cmpconfirm']
+          'Aimeos\Shop\Controller\CheckoutController': ['confirmComponent']
       'CheckoutStandard':
         label: 'Aimeos Checkout Standard'
         controllerActions:
-          'Aimeos\Shop\Controller\CheckoutController': ['cmpstandard']
+          'Aimeos\Shop\Controller\CheckoutController': ['standardComponent']
       'CheckoutUpdate':
         label: 'Aimeos Checkout Update'
         controllerActions:
-          'Aimeos\Shop\Controller\CheckoutController': ['cmpupdate']
+          'Aimeos\Shop\Controller\CheckoutController': ['updateComponent']
 
       'LocaleSelect':
         label: 'Aimeos Locale Selector'
         controllerActions:
-          'Aimeos\Shop\Controller\LocaleController': ['cmpselect']
+          'Aimeos\Shop\Controller\LocaleController': ['selectComponent']

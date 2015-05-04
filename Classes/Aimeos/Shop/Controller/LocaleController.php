@@ -21,7 +21,7 @@ class LocaleController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpselectAction()
+	public function selectComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'locale/select' ) );
 	}

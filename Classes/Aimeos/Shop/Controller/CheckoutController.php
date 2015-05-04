@@ -21,7 +21,7 @@ class CheckoutController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpconfirmAction()
+	public function confirmComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/confirm' ) );
 	}
@@ -32,7 +32,7 @@ class CheckoutController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpstandardAction()
+	public function standardComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/standard' ) );
 	}
@@ -43,7 +43,7 @@ class CheckoutController extends AbstractController
 	 *
 	 * @return string Rendered HTML for the body
 	 */
-	public function cmpupdateAction()
+	public function updateComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/update' ) );
 	}
