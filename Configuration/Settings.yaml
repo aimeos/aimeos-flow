@@ -49,22 +49,62 @@ Aimeos:
         account:
           favorite:
             url:
-              action: index
+              action: favoriteComponent
+          favorite:
+            url:
+              action: historyComponent
           watch:
             url:
-              action: index
-        checkout:
+              action: watchComponent
+        basket:
+          mini:
+            url:
+              action: miniComponent
+          related:
+            url:
+              action: relatedComponent
           standard:
-            summary:
-              option:
-                terms:
-                  url:
-                    controller: Page
-                    action: terms
-                  privacy:
-                    url:
-                      controller: Page
-                      action: privacy
+            url:
+              action: standardComponent
+        catalog:
+          count:
+            url:
+              action: countComponent
+          detail:
+            url:
+              action: detailComponent
+          filter:
+            url:
+              action: filterComponent
+          list:
+            url:
+              action: listComponent
+          session:
+            url:
+              action: sessionComponent
+          stage:
+            url:
+              action: stageComponent
+          stock:
+            url:
+              action: stockComponent
+          suggest:
+            url:
+              action: suggestComponent
+        checkout:
+          confirm:
+            url:
+              action: confirmComponent
+          standard:
+            url:
+              action: standardComponent
+          update:
+            url:
+              action: updateComponent
+        locale:
+          select:
+            url:
+              action: selectComponent
 
     controller:
       extjs:
