@@ -1,7 +1,7 @@
 {
     "name": "aimeos/aimeos-flow",
     "description": "High performance web shop",
-    "keywords": ["aimeos", "flow", "neos", "shop", "e-commerce"],
+    "keywords": ["aimeos", "flow", "neos", "e-commerce", "ecommerce", "shop", "portal", "market place"],
     "homepage": "http://aimeos.org",
     "type": "typo3-flow-package",
     "license": "LGPL-3.0+",
