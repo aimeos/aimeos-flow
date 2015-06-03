@@ -91,14 +91,14 @@ class Context
 			$dbm = new \MW_DB_Manager_PDO( $config );
 			$context->setDatabaseManager( $dbm );
 
-			$cache = new \MW_Cache_None();
-			$context->setCache( $cache );
-
 			$mail = new \MW_Mail_Swift( $this->mailer );
 			$context->setMail( $mail );
 
 			$logger = \MAdmin_Log_Manager_Factory::createManager( $context );
 			$context->setLogger( $logger );
+
+			$cache = $this->getCache( $context );
+			$context->setCache( $cache );
 
 			self::$context = $context;
 		}
@@ -112,9 +112,6 @@ class Context
 
 			$i18n = $this->i18n->get( array( $localeItem->getLanguageId() ) );
 			$context->setI18n( $i18n );
-
-			$cache = $this->getCache( $context->getConfig(), $localeItem->getSiteId() );
-			$context->setCache( $cache );
 		}
 
 		$session = new \MW_Session_Flow( $this->session );
@@ -142,24 +139,22 @@ class Context
 	/**
 	 * Returns the cache object for the context
 	 *
-	 * @param \MW_Config_Interface $config Config object
-	 * @param string $siteid Unique site ID
+	 * @param \MShop_Context_Item_Interface $context Context object
 	 * @return \MW_Cache_Interface Cache object
 	 */
-	protected function getCache( \MW_Config_Interface $config, $siteid )
+	protected function getCache( \MShop_Context_Item_Interface $context )
 	{
-		switch( $config->get( 'flow/cache/name', 'Flow' ) )
+		switch( $context->getConfig()->get( 'flow/cache/name', 'Flow' ) )
 		{
-			case 'Flow':
-				$conf = array( 'siteid' => $config->get( 'flow/cache/prefix' ) . $siteid );
-				return \MW_Cache_Factory::createManager( 'Flow', $conf, $this->cache );
-
 			case 'None':
 				$config->set( 'client/html/basket/cache/enable', false );
 				return \MW_Cache_Factory::createManager( 'None', array(), null );
 
+			case 'Flow':
+				return new \MAdmin_Cache_Proxy_Flow( $context, $this->cache );
+
 			default:
-				return new MAdmin_Cache_Proxy_Default( $context );
+				return new \MAdmin_Cache_Proxy_Default( $context );
 		}
 	}
 
