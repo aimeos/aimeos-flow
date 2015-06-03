@@ -31,8 +31,8 @@
     "autoload": {
         "psr-0": {
             "Aimeos\\Shop": "Classes",
-            "Aimeos\\MAdmin": "Classes",
-            "Aimeos\\Flow": "Classes"
+            "Aimeos\\Flow": "Classes",
+            "MAdmin": "Classes"
         }
     },
     "extra": {

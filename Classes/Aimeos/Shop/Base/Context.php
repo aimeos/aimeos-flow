@@ -151,7 +151,7 @@ class Context
 				return \MW_Cache_Factory::createManager( 'None', array(), null );
 
 			case 'Flow':
-				return new \Aimeos\MAdmin\Cache\Proxy\Flow( $context, $this->cache );
+				return new \MAdmin_Cache_Proxy_Flow( $context, $this->cache );
 
 			default:
 				return new \MAdmin_Cache_Proxy_Default( $context );
