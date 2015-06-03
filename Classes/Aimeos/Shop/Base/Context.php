@@ -144,14 +144,14 @@ class Context
 	 */
 	protected function getCache( \MShop_Context_Item_Interface $context )
 	{
-		switch( $config->get( 'flow/cache/name', 'Flow' ) )
+		switch( $context->getConfig()->get( 'flow/cache/name', 'Flow' ) )
 		{
 			case 'None':
 				$config->set( 'client/html/basket/cache/enable', false );
 				return \MW_Cache_Factory::createManager( 'None', array(), null );
 
 			case 'Flow':
-//				return new \Aimeos\MAdmin\Cache\Proxy\Flow( $context, $this->cache );
+				return new \Aimeos\MAdmin\Cache\Proxy\Flow( $context, $this->cache );
 
 			default:
 				return new \MAdmin_Cache_Proxy_Default( $context );
