@@ -82,6 +82,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			'smd' => $controller->getJsonSmd( $jsonUrl ),
 			'urlTemplate' => urldecode( $adminUrl ),
 			'uploaddir' => $context->getConfig()->get( 'flow/uploaddir', '/.' ),
+			'version' => $this->getVersion(),
 			'activeTab' => $tab,
 		);
 
@@ -218,6 +219,27 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		}
 
 		return $result;
+	}
+
+
+	/**
+	 * Returns the version of the Aimeos package
+	 *
+	 * @return string Version string
+	 */
+	protected function getVersion()
+	{
+		if( ( $content = @file_get_contents( FLOW_PATH_ROOT . 'composer.lock' ) ) !== false
+				&& ( $content = json_decode( $content, true ) ) !== null && isset( $content['packages'] )
+		) {
+			foreach( (array) $content['packages'] as $item )
+			{
+				if( $item['name'] === 'aimeos/aimeos-flow' ) {
+					return $item['version'];
+				}
+			}
+		}
+		return '';
 	}
 
 
