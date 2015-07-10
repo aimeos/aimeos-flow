@@ -71,6 +71,9 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 * - order/service/delivery (sends paid orders to the ERP system or logistic partner)
 	 * - order/service/payment (captures authorized payments after the configured amount of time automatically)
 	 * - product/bought (updates the suggested products based on what other customers bought once a day)
+	 * - product/export (export products)
+	 * - product/export/sitemap (generate product sitemaps for search engines)
+	 * - product/import/csv (import products from CSV files)
 	 *
 	 * Each of these maintenance tasks must be executed for all shop instances
 	 * if you have more than one site in your installation. The sites parameter
@@ -91,7 +94,10 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
-			$localeItem = $localeManager->bootstrap( $siteItem->getCode(), 'en', '', false );
+			$localeItem = $localeManager->bootstrap( $siteItem->getCode(), '', '', false );
+			$localeItem->setLanguageId( null );
+			$localeItem->setCurrencyId( null );
+
 			$context->setLocale( $localeItem );
 
 			$this->outputFormatted( 'Executing jobs for site <b>%s</b>', array( $siteItem->getCode() ) );

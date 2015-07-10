@@ -12,7 +12,7 @@
 	window.MShop = {
 
 			i18n: {
-				lang: '{lang}',
+				lang: '<f:format.raw>{lang}</f:format.raw>',
 				content: <f:format.raw>{i18nContent}</f:format.raw>,
                 available: <f:format.raw>{languages}</f:format.raw>
 			},
@@ -30,10 +30,15 @@
 
 				urlTemplate: '<f:format.raw>{urlTemplate}</f:format.raw>',
 
-				activeTab: {activeTab},
+				activeTab: <f:format.raw>{activeTab}</f:format.raw>,
 
 				baseurl: {
 					content: '<f:format.raw>{uploaddir}</f:format.raw>'
+				},
+
+				update: {
+					type: 'Flow',
+					version: '<f:format.raw>{version}</f:format.raw>'
 				}
 			}
 		}
