@@ -243,18 +243,13 @@
 
 .locale-select ul.select-menu {
 	text-transform: uppercase;
-	border: 1px solid #FFF;
 	position: relative;
 	list-style: none;
-	padding: 0.4em;
-}
-
-.locale-select li.select-dropdown:hover {
-	border: solid 1px #D0D0D0;
+	padding: 0em;
 }
 
 .locale-select li.select-dropdown {
-	border: 1px solid #FFF;
+	border: 1px solid transparent;
 	display: inline-block;
 	padding: 0;
 }
@@ -283,11 +278,14 @@
 }
 
 .locale-select ul.select-menu ul {
+	list-style: outside none none;
 	background-color: #FFF;
 	position: absolute;
 	visibility: hidden;
 	z-index: 99999;
 	opacity: 0;
+	padding: 0em;
+	padding-left: 0.65em;
 }
 
 .locale-select-language,
@@ -1705,7 +1703,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	border-bottom: solid 8px #555;
 }
 
-.checkout-standard .steps .order {
+.checkout-standard .steps .order,
+.checkout-standard .steps .process {
 	display: none;
 }
 
@@ -1734,7 +1733,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	counter-increment: step;
 }
 
-.checkout-standard .form-list .mandatory label {
+.checkout-standard .form-list .mandatory {
 	font-weight: bold;
 }
 
@@ -1818,7 +1817,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: none;
 }
 
-.checkout-standard > section:last-child .button-group {
+.checkout-standard section:last-child .button-group {
 	display: block;
 }
 
@@ -1883,11 +1882,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: none; 
 }
 
-.checkout-standard-address .form-list .mandatory {
-	font-weight: bold;
-	display: list-item;
-}
-
+.checkout-standard-address .form-list .mandatory,
 .checkout-standard-address .form-list .optional {
 	display: list-item;
 }
@@ -2018,12 +2013,22 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .checkout-standard-order {
 	padding: 0 0 0 1em;
 }
-.checkout-standard-order-payment {
+
+.checkout-standard-order .form-list .mandatory {
+	font-weight: bold;
+	display: list-item;
+}
+
+.checkout-standard-process {
 	text-align: center;
 }
 
-.checkout-standard-order-payment p {
+.checkout-standard-process p {
 	margin: 1em 0;
+}
+
+.checkout-standard-process .button-group {
+	display: block;
 }
 
 /* Checkout confirm basic part */
@@ -2096,7 +2101,13 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	display: inline-block;
 	font-size: 1em;
 	margin: 0;
- }
+}
+
+
+.account-history-order li.attr-item .name,
+.account-history-order li.attr-item .value {
+	min-width: 0;
+}
 
 
 /*! jQuery UI - v1.10.0 - 2013-01-17

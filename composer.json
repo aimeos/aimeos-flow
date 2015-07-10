@@ -2,27 +2,21 @@
     "name": "aimeos/aimeos-flow",
     "description": "High performance web shop",
     "keywords": ["aimeos", "flow", "neos", "e-commerce", "ecommerce", "shop", "portal", "market place"],
-    "homepage": "http://aimeos.org",
+    "homepage": "https://aimeos.org",
     "type": "typo3-flow-package",
     "license": "LGPL-3.0+",
     "support": {
         "source": "https://github.com/aimeos/aimeos-flow",
         "issues": "https://github.com/aimeos/aimeos-flow/issues",
-        "forum": "https://help.aimeos.org",
-        "wiki": "https://docs.aimeos.org"
+        "forum": "https://aimeos.org/help",
+        "wiki": "https://aimeos.org/docs"
     },
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/aimeos/arcavias-core"
-		}
-	],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "typo3/flow": "~2.0",
-	"typo3/swiftmailer": "~5.0",
-        "arcavias/arcavias-core": "dev-master",
+        "typo3/swiftmailer": "~5.0",
+        "aimeos/aimeos-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-zend2-i18n": "dev-master",
         "aimeos/ai-flow": "dev-master",
@@ -41,12 +35,12 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cp -r vendor/arcavias/arcavias-core/client/extjs/* Resources/Public/client/extjs/",
-            "cp -r vendor/arcavias/arcavias-core/client/html/themes/* Resources/Public/themes/"
+            "cp -r vendor/aimeos/aimeos-core/client/extjs/* Resources/Public/client/extjs/",
+            "cp -r vendor/aimeos/aimeos-core/client/html/themes/* Resources/Public/themes/"
         ],
         "post-update-cmd": [
-            "cp -r vendor/arcavias/arcavias-core/client/extjs/* Resources/Public/client/extjs/",
-            "cp -r vendor/arcavias/arcavias-core/client/html/themes/* Resources/Public/themes/"
+            "cp -r vendor/aimeos/aimeos-core/client/extjs/* Resources/Public/client/extjs/",
+            "cp -r vendor/aimeos/aimeos-core/client/html/themes/* Resources/Public/themes/"
         ]
     }
 }
