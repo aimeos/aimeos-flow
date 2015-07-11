@@ -1,5 +1,5 @@
-<a href="http://aimeos.org/">
-    <img src="http://aimeos.org/fileadmin/template/icons/logo.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
+<a href="https://aimeos.org/">
+    <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="Aimeos logo" title="Aimeos" align="right" height="60" />
 </a>
 
 # Aimeos TYPO3 Flow/Neos package
@@ -9,6 +9,8 @@ integrating the Aimeos e-commerce library into Flow/Neos. The package provides
 controllers for e.g. faceted filter, product lists and detail views, for
 searching products as well as baskets and the checkout process. A full set of
 pages including routing is also available for a quick start in TYPO3 Flow.
+
+[![Aimeos Flow demo](https://aimeos.org/fileadmin/user_upload/flow-demo.jpg)](http://flow.demo.aimeos.org/)
 
 ## Table of content
 
@@ -50,10 +52,6 @@ Then add these lines to your composer.json of your Flow/Neos project:
             "Packages/Extensions/{$name}/": ["type:aimeos-extension"]
         }
     },
-    "repositories": [ {
-        "type": "vcs",
-        "url": "https://github.com/aimeos/arcavias-core"
-    } ],
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
@@ -110,8 +108,8 @@ and is available for free.
 
 ## Links
 
-* [Web site](http://aimeos.org)
-* [Documentation](http://aimeos.org/docs)
-* [Help](http://aimeos.org/help)
+* [Web site](https://aimeos.org/Flow)
+* [Documentation](https://aimeos.org/docs/Flow)
+* [Help](https://aimeos.org/help)
 * [Issue tracker](https://github.com/aimeos/aimeos-flow/issues)
 * [Source code](https://github.com/aimeos/aimeos-flow)
