@@ -90,6 +90,12 @@ class View
 		$helper = new \MW_View_Helper_Encoder_Default( $view );
 		$view->addHelper( 'encoder', $helper );
 
+		if( $request !== null )
+		{
+			$helper = new \MW_View_Helper_Request_Flow( $view, $request );
+			$view->addHelper( 'request', $helper );
+		}
+
 		return $view;
 	}
 
