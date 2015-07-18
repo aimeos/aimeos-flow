@@ -92,7 +92,7 @@ class View
 
 		if( $request !== null )
 		{
-			$helper = new \MW_View_Helper_Request_Flow( $view, $request );
+			$helper = new \MW_View_Helper_Request_Flow( $view, $request->getHttpRequest() );
 			$view->addHelper( 'request', $helper );
 		}
 
