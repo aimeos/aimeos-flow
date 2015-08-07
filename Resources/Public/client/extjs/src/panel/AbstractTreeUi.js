@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel');
@@ -140,7 +140,7 @@ MShop.panel.AbstractTreeUi = Ext.extend(Ext.tree.TreePanel, {
                     node.getOwnerTree().actionAdd.setDisabled(node.id !== 'root');
                 }
                 // cut off item itself
-                response.responseData = response.responseText.items.children;
+                response.responseData = response.responseText.items.children || {};
                 return Ext.tree.TreeLoader.prototype.processResponse.apply(this, arguments);
             },
 
@@ -252,7 +252,8 @@ MShop.panel.AbstractTreeUi = Ext.extend(Ext.tree.TreePanel, {
         this.actionAdd.setDisabled(!node && this.getRootNode().id !== 'root');
         this.actionEdit.setDisabled(!node);
         this.actionDelete.setDisabled(!node);
-        this.actionExport.setDisabled(!node);
+        this.actionExport.setDisabled(!this.exportMethod || !node);
+        this.actionImport.setDisabled(!this.importMethod);
     },
 
     onStoreException : MShop.panel.AbstractListUi.prototype.onStoreException,

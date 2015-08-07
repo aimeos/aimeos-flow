@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel.product.stock');
@@ -10,10 +10,8 @@ Ext.ns('MShop.panel.product.stock');
  * 
  * @extends Mshop.panel.AbstractListItemUi
  */
-MShop.panel.product.stock.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
+MShop.panel.product.stock.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
 
-    recordName : 'Product_Stock',
-    idProperty : 'product.stock.id',
     siteidProperty : 'product.stock.siteid',
 
     initComponent : function() {

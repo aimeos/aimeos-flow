@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel.text');
@@ -32,6 +32,7 @@ MShop.panel.text.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                     bodyCssClass : this.readOnlyClass
                 },
                 items : [{
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     xtype : 'form',
                     border : false,
                     layout : 'fit',

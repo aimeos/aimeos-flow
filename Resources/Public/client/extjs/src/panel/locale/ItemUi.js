@@ -1,12 +1,12 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
 Ext.ns('MShop.panel.locale');
 
-MShop.panel.locale.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
+MShop.panel.locale.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
 
     recordName : 'Locale',
     idProperty : 'locale.id',
@@ -37,6 +37,7 @@ MShop.panel.locale.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                     bodyCssClass : this.readOnlyClass
                 },
                 items : [{
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     xtype : 'form',
                     flex : 1,
                     ref : '../../mainForm',

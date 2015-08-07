@@ -1,11 +1,11 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel.product.tag');
 
-MShop.panel.product.tag.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
+MShop.panel.product.tag.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
     siteidProperty : 'product.tag.siteid',
 
     initComponent : function() {
@@ -32,6 +32,7 @@ MShop.panel.product.tag.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                     bodyCssClass : this.readOnlyClass
                 },
                 items : [{
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     xtype : 'form',
                     border : false,
                     flex : 1,

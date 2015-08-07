@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2014
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
@@ -12,8 +12,6 @@ MShop.panel.coupon.code.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
 
 
     initComponent : function() {
-
-        this.title = MShop.I18n.dt('client/extjs', 'Coupon code item details');
 
         MShop.panel.AbstractItemUi.prototype.setSiteCheck(this);
 
@@ -38,7 +36,7 @@ MShop.panel.coupon.code.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
                 },
                 items : [{
                     xtype : 'form',
-                    title : 'Details',
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     flex : 1,
                     ref : '../../mainForm',
                     autoScroll : true,

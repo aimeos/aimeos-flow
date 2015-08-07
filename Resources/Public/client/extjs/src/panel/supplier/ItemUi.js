@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2014
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel.supplier');
@@ -30,7 +30,7 @@ MShop.panel.supplier.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                 },
                 items : [{
                     xtype : 'form',
-                    title : 'Details',
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     flex : 1,
                     ref : '../../mainForm',
                     autoScroll : true,
@@ -50,6 +50,13 @@ MShop.panel.supplier.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                         }, {
                             xtype : 'MShop.elements.status.combo',
                             name : 'supplier.status'
+                        }, {
+                            xtype : 'textfield',
+                            fieldLabel : MShop.I18n.dt('client/extjs', 'Code'),
+                            name : 'supplier.code',
+                            allowBlank : false,
+                            maxLength : 32,
+                            emptyText : MShop.I18n.dt('client/extjs', 'Unique code (required)')
                         }, {
                             xtype : 'textarea',
                             fieldLabel : MShop.I18n.dt('client/extjs', 'Label'),

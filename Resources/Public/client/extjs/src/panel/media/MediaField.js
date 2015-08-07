@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
@@ -153,7 +153,7 @@ MShop.panel.media.MediaField = Ext.extend(Ext.form.Field, {
         var errmsg = MShop.I18n.dt('client/extjs', 'Could not upload file. Please notify your administrator');
 
         if(response && response.data && response.data.error) {
-            msg = response.data.error.message ? response.data.error.message : errmsg;
+            msg = response.data.error.message ? Ext.util.Format.nl2br( response.data.error.message ) : errmsg;
             code = response.data.error.code ? response.data.error.code : 0;
         }
 

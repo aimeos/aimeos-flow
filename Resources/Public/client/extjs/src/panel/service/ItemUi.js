@@ -1,13 +1,17 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 Ext.ns('MShop.panel.service');
 
 MShop.panel.service.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
 
+    siteidProperty : 'service.siteid',
+
     initComponent : function() {
+
+        MShop.panel.AbstractListItemUi.prototype.setSiteCheck(this);
 
         this.items = [{
             xtype : 'tabpanel',
@@ -30,7 +34,7 @@ MShop.panel.service.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
                 },
                 items : [{
                     xtype : 'form',
-                    title : 'Details',
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     flex : 1,
                     ref : '../../mainForm',
                     autoScroll : true,

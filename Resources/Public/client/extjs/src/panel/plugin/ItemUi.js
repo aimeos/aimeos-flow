@@ -1,13 +1,18 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
 Ext.ns('MShop.panel.plugin');
 
-MShop.panel.plugin.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
+MShop.panel.plugin.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
+
+    siteidProperty : 'plugin.siteid',
+
     initComponent : function() {
+
+        MShop.panel.AbstractListItemUi.prototype.setSiteCheck(this);
 
         this.items = [{
             xtype : 'tabpanel',

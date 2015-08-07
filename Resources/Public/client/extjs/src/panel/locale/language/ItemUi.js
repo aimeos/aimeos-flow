@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2014
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
@@ -10,7 +10,7 @@ Ext.ns('MShop.panel.locale.language');
 /**
  * @todo refactor some of these overloads to his abstracts
  */
-MShop.panel.locale.language.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, {
+MShop.panel.locale.language.ItemUi = Ext.extend(MShop.panel.AbstractItemUi, {
 
     recordName : 'Locale_Language',
     idProperty : 'locale.language.id',
@@ -38,6 +38,7 @@ MShop.panel.locale.language.ItemUi = Ext.extend(MShop.panel.AbstractListItemUi, 
                     bodyCssClass : this.readOnlyClass
                 },
                 items : [{
+                    title : MShop.I18n.dt('client/extjs', 'Details'),
                     xtype : 'form',
                     flex : 1,
                     ref : '../../mainForm',

@@ -1,6 +1,6 @@
 /*!
  * Copyright (c) Metaways Infosystems GmbH, 2011
- * LGPLv3, http://www.arcavias.com/en/license
+ * LGPLv3, http://opensource.org/licenses/LGPL-3.0
  */
 
 
@@ -26,12 +26,9 @@ MShop.panel.locale.site.ListUi = Ext.extend(MShop.panel.AbstractListUi, {
     initComponent : function() {
         this.title = MShop.I18n.dt('client/extjs', 'Site');
 
-        MShop.panel.AbstractListUi.prototype.initActions.call(this);
-        MShop.panel.AbstractListUi.prototype.initToolbar.call(this);
-
-        this.initStore();
-
         MShop.panel.locale.site.ListUi.superclass.initComponent.call(this);
+
+        this.actionAdd.setDisabled(true);
     },
 
     getColumns : function() {
@@ -111,7 +108,7 @@ MShop.panel.locale.site.ListUi = Ext.extend(MShop.panel.AbstractListUi, {
     },
 
     initToolbar : function() {
-        this.tbar = [this.actionAdd, this.actionEdit, this.actionDelete, this.actionExport, this.importButton];
+        this.tbar = [this.actionAdd, this.actionEdit, this.actionDelete, this.actionExport, this.actionImport];
     },
 
     initStore : function() {
