@@ -35,18 +35,21 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:cache' );
 
-		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
-
-		$this->outputFormatted( 'Clearing the Aimeos content cache for site' );
+		$localeManager = \MShop_Locale_Manager_Factory::createManager( $context );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
 			$localeItem = $localeManager->bootstrap( $siteItem->getCode(), '', '', false );
-			$context->setLocale( $localeItem );
 
-			$this->outputFormatted( '  <b>%s</b>', array( $siteItem->getCode() ) );
+			$lcontext = clone $context;
+			$lcontext->setLocale( $localeItem );
 
-			\MAdmin_Cache_Manager_Factory::createManager( $context )->getCache()->flush();
+			$cache = new \MAdmin_Cache_Proxy_Default( $lcontext );
+			$lcontext->setCache( $cache );
+
+			$this->outputFormatted( 'Clearing the Aimeos cache for site <b>%s</b>', array( $siteItem->getCode() ) );
+
+			\MAdmin_Cache_Manager_Factory::createManager( $lcontext )->getCache()->flush();
 		}
 	}
 
