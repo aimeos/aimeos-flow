@@ -46,7 +46,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$aimeos = $this->aimeos->get();
 		$cntlPaths = $aimeos->getCustomPaths( 'controller/extjs' );
 		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
-		$cssFiles = $jsFiles = array();
+		$cssFiles = array();
 
 		foreach( $aimeos->getCustomPaths( 'client/extjs' ) as $base => $paths )
 		{
@@ -59,9 +59,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 				}
 
 				$jsb2 = new \MW_Jsb2_Default( $jsbAbsPath, dirname( $path ) );
-
 				$cssFiles = array_merge( $cssFiles, $jsb2->getUrls( 'css' ) );
-				$jsFiles = array_merge( $jsFiles, $jsb2->getUrls( 'js' ) );
 			}
 		}
 
@@ -71,7 +69,6 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		$vars = array(
 			'lang' => $lang,
-			'jsFiles' => $jsFiles,
 			'cssFiles' => $cssFiles,
 			'languages' => $this->getJsonLanguages( $context),
 			'config' => $this->getJsonClientConfig( $context ),
@@ -87,8 +84,6 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		);
 
 		$this->view->assignMultiple( $vars );
-		$this->view->assign( 'jsFiles', $jsFiles );
-		$this->view->assign( 'cssFiles', $cssFiles );
 	}
 
 
@@ -104,6 +99,41 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
 
 		return $controller->process( $this->request->getArguments(), 'php://input' );
+	}
+
+
+	/**
+	 * Returns the JS file content
+	 *
+	 * @return Response Response object
+	 */
+	public function fileAction()
+	{
+		$contents = '';
+		$jsFiles = array();
+
+		foreach( Base::getAimeos()->getCustomPaths( 'client/extjs' ) as $base => $paths )
+		{
+			foreach( $paths as $path )
+			{
+				$jsbAbsPath = $base . '/' . $path;
+				$jsb2 = new \MW_Jsb2_Default( $jsbAbsPath, dirname( $jsbAbsPath ) );
+				$jsFiles = array_merge( $jsFiles, $jsb2->getUrls( 'js', '' ) );
+			}
+		}
+
+		foreach( $jsFiles as $file )
+		{
+			if( ( $content = file_get_contents( $file ) ) === false ) {
+				throw new \Exception( sprintf( 'File "%1$s" not found', $jsbAbsPath ) );
+			}
+
+			$response->appendContent( $content );
+		}
+
+		$this->response->setHeader( 'Content-Type', 'application/javascript' );
+
+		return $response;
 	}
 
 

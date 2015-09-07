@@ -8,6 +8,15 @@
     '@format': 'html'
 
 -
+  name: 'Admin JS file request'
+  uriPattern: 'admin/file'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Admin'
+    '@action': 'file'
+    '@format': 'html'
+
+-
   name: 'Admin index page'
   uriPattern: 'admin(/{site}/{lang}/{tab})'
   defaults:

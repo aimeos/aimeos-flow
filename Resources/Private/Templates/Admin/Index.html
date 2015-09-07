@@ -44,9 +44,9 @@
 		}
 
 	</script>
-<f:for each="{jsFiles}" as="filename">
-	<script type="text/javascript" src="{f:uri.resource(path: filename, package: 'Aimeos.Shop')}"></script>
-</f:for>
+
+	<script type="text/javascript" src="{f:uri.action="file"}"></script>
+
 </head>
 <body>
 	<noscript><p>You need to enable javascript!</p></noscript>
