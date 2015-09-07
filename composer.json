@@ -14,7 +14,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "typo3/flow": "~2.0",
+        "typo3/flow": "~2.0||~3.0",
         "typo3/swiftmailer": "~5.0",
         "aimeos/aimeos-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
