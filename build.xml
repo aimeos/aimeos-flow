@@ -3,7 +3,6 @@
 <project name="Aimeos Flow package" default="update">
 
 	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" />
-	<property name="extdir" value="${project.basedir}/ext" />
 
 
 	<target name="update" description="Updates the package">
