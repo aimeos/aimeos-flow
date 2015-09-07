@@ -59,7 +59,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 				}
 
 				$jsb2 = new \MW_Jsb2_Default( $jsbAbsPath, dirname( $path ) );
-				$cssFiles = array_merge( $cssFiles, $jsb2->getUrls( 'css' ) );
+				$cssFiles = array_merge( $cssFiles, $jsb2->getUrls( 'css', '' ) );
 			}
 		}
 
@@ -124,11 +124,9 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		foreach( $jsFiles as $file )
 		{
-			if( ( $content = file_get_contents( $file ) ) === false ) {
-				throw new \Exception( sprintf( 'File "%1$s" not found', $jsbAbsPath ) );
+			if( ( $content = file_get_contents( $file ) ) !== false ) {
+				$this->response->appendContent( $content );
 			}
-
-			$this->response->appendContent( $content );
 		}
 
 		$this->response->setHeader( 'Content-Type', 'application/javascript' );
