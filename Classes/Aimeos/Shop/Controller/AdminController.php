@@ -109,7 +109,6 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	public function fileAction()
 	{
-		$contents = '';
 		$jsFiles = array();
 		$aimeos = $this->aimeos->get();
 
