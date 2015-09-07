@@ -111,8 +111,9 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	{
 		$contents = '';
 		$jsFiles = array();
+		$aimeos = $this->aimeos->get();
 
-		foreach( Base::getAimeos()->getCustomPaths( 'client/extjs' ) as $base => $paths )
+		foreach( $aimeos->getCustomPaths( 'client/extjs' ) as $base => $paths )
 		{
 			foreach( $paths as $path )
 			{
@@ -128,12 +129,12 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 				throw new \Exception( sprintf( 'File "%1$s" not found', $jsbAbsPath ) );
 			}
 
-			$response->appendContent( $content );
+			$this->response->appendContent( $content );
 		}
 
 		$this->response->setHeader( 'Content-Type', 'application/javascript' );
 
-		return $response;
+		return $this->response;
 	}
 
 
