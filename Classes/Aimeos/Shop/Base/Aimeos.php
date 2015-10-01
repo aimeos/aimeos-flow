@@ -23,7 +23,7 @@ use TYPO3\Flow\Annotations as Flow;
 class Aimeos
 {
 	/**
-	 * @var \Arcavias
+	 * @var \Aimeos
 	 */
 	private $aimeos;
 
@@ -34,16 +34,16 @@ class Aimeos
 
 
 	/**
-	 * Returns the Arcavias object.
+	 * Returns the Aimeos object.
 	 *
-	 * @return \Arcavias Arcavias object
+	 * @return \Aimeos Aimeos object
 	 */
 	public function get()
 	{
 		if( $this->aimeos === null )
 		{
 			$extDirs = ( isset( $this->settings['flow']['extdir'] ) ? (array) $this->settings['flow']['extdir'] : array() );
-			$this->aimeos = new \Arcavias( $extDirs, false );
+			$this->aimeos = new \Aimeos( $extDirs, false );
 		}
 
 		return $this->aimeos;

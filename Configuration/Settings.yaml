@@ -3,7 +3,6 @@ TYPO3:
     object:
       excludeClasses:
         'zendframework.*': ['.*']
-        'arcavias.*': ['.*']
         'aimeos.*': ['.*']
 
 Aimeos:
