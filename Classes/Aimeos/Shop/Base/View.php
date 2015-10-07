@@ -32,7 +32,7 @@ class View
 	/**
 	 * Creates the view object for the HTML client.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Aimeos\MW\Config\Iface $config Config object
 	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
 	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
 	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object

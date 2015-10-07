@@ -44,7 +44,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	/**
 	 * Returns the output of the client and adds the header.
 	 *
-	 * @param Client_Html_Interface $client Html client object
+	 * @param string $clientName Html client name
 	 * @return string HTML code for inserting into the HTML body
 	 */
 	protected function getOutput( $clientName )

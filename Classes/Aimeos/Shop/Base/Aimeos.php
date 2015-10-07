@@ -23,7 +23,7 @@ use TYPO3\Flow\Annotations as Flow;
 class Aimeos
 {
 	/**
-	 * @var \Aimeos
+	 * @var \Aimeos\Bootstrap
 	 */
 	private $aimeos;
 
@@ -36,7 +36,7 @@ class Aimeos
 	/**
 	 * Returns the Aimeos object.
 	 *
-	 * @return \Aimeos Aimeos object
+	 * @return \Aimeos\Bootstrap Aimeos object
 	 */
 	public function get()
 	{

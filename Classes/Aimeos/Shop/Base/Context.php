@@ -144,7 +144,9 @@ class Context
 	 */
 	protected function getCache( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		switch( $context->getConfig()->get( 'flow/cache/name', 'Flow' ) )
+		$config = $context->getConfig();
+
+		switch( $config->get( 'flow/cache/name', 'Flow' ) )
 		{
 			case 'None':
 				$config->set( 'client/html/basket/cache/enable', false );
@@ -177,7 +179,7 @@ class Context
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 		$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
 
-		if( function_exists( 'apc_store' ) === true && $apc == true ) {
+		if( function_exists( 'apc_store' ) === true && $apc === true ) {
 			$config = new \Aimeos\MW\Config\Decorator\APC( $config, $prefix );
 		}
 
