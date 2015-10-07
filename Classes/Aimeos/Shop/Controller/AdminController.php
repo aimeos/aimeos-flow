@@ -45,7 +45,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		$aimeos = $this->aimeos->get();
 		$cntlPaths = $aimeos->getCustomPaths( 'controller/extjs' );
-		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
+		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );
 		$cssFiles = array();
 
 		foreach( $aimeos->getCustomPaths( 'client/extjs' ) as $base => $paths )
@@ -58,7 +58,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 					throw new Exception( sprintf( 'JSB2 file "%1$s" not found', $jsbAbsPath ) );
 				}
 
-				$jsb2 = new \MW_Jsb2_Default( $jsbAbsPath, dirname( $path ) );
+				$jsb2 = new \Aimeos\MW\Jsb2\Standard( $jsbAbsPath, dirname( $path ) );
 				$cssFiles = array_merge( $cssFiles, $jsb2->getUrls( 'css', '' ) );
 			}
 		}
@@ -96,7 +96,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$context = $this->setLocale( $context );
 		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
 
-		$controller = new \Controller_ExtJS_JsonRpc( $context, $cntlPaths );
+		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );
 
 		return $controller->process( $this->request->getArguments(), 'php://input' );
 	}
@@ -117,7 +117,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			foreach( $paths as $path )
 			{
 				$jsbAbsPath = $base . '/' . $path;
-				$jsb2 = new \MW_Jsb2_Default( $jsbAbsPath, dirname( $jsbAbsPath ) );
+				$jsb2 = new \Aimeos\MW\Jsb2\Standard( $jsbAbsPath, dirname( $jsbAbsPath ) );
 				$jsFiles = array_merge( $jsFiles, $jsb2->getUrls( 'js', '' ) );
 			}
 		}
@@ -138,10 +138,10 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a list of all available translations.
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @return array List of language IDs with labels
 	 */
-	protected function getJsonLanguages( \MShop_Context_Item_Interface $context )
+	protected function getJsonLanguages( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$paths = $this->aimeos->get()->getI18nPaths();
 		$langs = array();
@@ -171,10 +171,10 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the JSON encoded configuration for the ExtJS client.
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context item object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @return string JSON encoded configuration object
 	 */
-	protected function getJsonClientConfig( \MShop_Context_Item_Interface $context )
+	protected function getJsonClientConfig( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$config = $context->getConfig()->get( 'client/extjs', array() );
 		return json_encode( array( 'client' => array( 'extjs' => $config ) ), JSON_FORCE_OBJECT );
@@ -190,7 +190,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getJsonClientI18n( array $i18nPaths, $lang )
 	{
-		$i18n = new \MW_Translation_Zend2( $i18nPaths, 'gettext', $lang, array( 'disableNotices' => true ) );
+		$i18n = new \Aimeos\MW\Translation\Zend2( $i18nPaths, 'gettext', $lang, array( 'disableNotices' => true ) );
 
 		$content = array(
 			'client/extjs' => $i18n->getAll( 'client/extjs' ),
@@ -204,14 +204,14 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the JSON encoded site item.
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context item object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param string $site Unique site code
 	 * @return string JSON encoded site item object
 	 * @throws Exception If no site item was found for the code
 	 */
-	protected function getJsonSiteItem( \MShop_Context_Item_Interface $context, $site )
+	protected function getJsonSiteItem( \Aimeos\MShop\Context\Item\Iface $context, $site )
 	{
-		$manager = \MShop_Factory::createManager( $context, 'locale/site' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale/site' );
 
 		$criteria = $manager->createSearch();
 		$criteria->setConditions( $criteria->compare( '==', 'locale.site.code', $site ) );
@@ -228,13 +228,13 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns a list of arrays with "id" and "label"
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param array $langIds List of language IDs
 	 * @return array List of associative lists with "id" and "label" as keys
 	 */
-	protected function getLanguages( \MShop_Context_Item_Interface $context, array $langIds )
+	protected function getLanguages( \Aimeos\MShop\Context\Item\Iface $context, array $langIds )
 	{
-		$languageManager = \MShop_Factory::createManager( $context, 'locale/language' );
+		$languageManager = \Aimeos\MShop\Factory::createManager( $context, 'locale/language' );
 		$result = array();
 
 		$search = $languageManager->createSearch();
@@ -274,18 +274,18 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Sets the locale item in the given context
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param string $sitecode Unique site code
 	 * @param string $language ISO language code, e.g. "en" or "en_GB"
-	 * @return \MShop_Context_Item_Interface Modified context object
+	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
 	 */
-	protected function setLocale( \MShop_Context_Item_Interface $context, $sitecode = 'default', $locale = null )
+	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode = 'default', $locale = null )
 	{
-		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
+		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
 
 		try {
 			$localeItem = $localeManager->bootstrap( $sitecode, $locale, '', false );
-		} catch( \MShop_Locale_Exception $e ) {
+		} catch( \Aimeos\MShop\Locale\Exception $e ) {
 			$localeItem = $localeManager->createItem();
 		}
 

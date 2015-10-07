@@ -43,7 +43,7 @@ class Aimeos
 		if( $this->aimeos === null )
 		{
 			$extDirs = ( isset( $this->settings['flow']['extdir'] ) ? (array) $this->settings['flow']['extdir'] : array() );
-			$this->aimeos = new \Aimeos( $extDirs, false );
+			$this->aimeos = new \Aimeos\Bootstrap( $extDirs, false );
 		}
 
 		return $this->aimeos;

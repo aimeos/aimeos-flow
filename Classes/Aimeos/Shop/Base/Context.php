@@ -23,12 +23,12 @@ use TYPO3\Flow\Annotations as Flow;
 class Context
 {
 	/**
-	 * @var \MShop_Context_Item_Interface
+	 * @var \Aimeos\MShop\Context\Item\Iface
 	 */
 	private static $context;
 
 	/**
-	 * @var \MShop_Locale_Item_Interface
+	 * @var \Aimeos\MShop\Locale\Item\Iface
 	 */
 	private $locale;
 
@@ -77,24 +77,24 @@ class Context
 	 * Returns the current context.
 	 *
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
-	 * @return \MShop_Context_Item_Interface
+	 * @return \Aimeos\MShop\Context\Item\Iface
 	 */
 	public function get( \TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
 		if( self::$context === null )
 		{
-			$context = new \MShop_Context_Item_Default();
+			$context = new \Aimeos\MShop\Context\Item\Standard();
 
 			$config = $this->getConfig();
 			$context->setConfig( $config );
 
-			$dbm = new \MW_DB_Manager_PDO( $config );
+			$dbm = new \Aimeos\MW\DB\Manager\PDO( $config );
 			$context->setDatabaseManager( $dbm );
 
-			$mail = new \MW_Mail_Swift( $this->mailer );
+			$mail = new \Aimeos\MW\Mail\Swift( $this->mailer );
 			$context->setMail( $mail );
 
-			$logger = \MAdmin_Log_Manager_Factory::createManager( $context );
+			$logger = \Aimeos\MAdmin\Log\Manager\Factory::createManager( $context );
 			$context->setLogger( $logger );
 
 			$cache = $this->getCache( $context );
@@ -114,7 +114,7 @@ class Context
 			$context->setI18n( $i18n );
 		}
 
-		$session = new \MW_Session_Flow( $this->session );
+		$session = new \Aimeos\MW\Session\Flow( $this->session );
 		$context->setSession( $session );
 
 		$this->addUser( $context );
@@ -126,9 +126,9 @@ class Context
 	/**
 	 * Adds the user ID and name if available
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 */
-	protected function addUser( \MShop_Context_Item_Interface $context )
+	protected function addUser( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$username = '';
 
@@ -139,22 +139,22 @@ class Context
 	/**
 	 * Returns the cache object for the context
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
-	 * @return \MW_Cache_Interface Cache object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @return \Aimeos\MW\Cache\Iface Cache object
 	 */
-	protected function getCache( \MShop_Context_Item_Interface $context )
+	protected function getCache( \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		switch( $context->getConfig()->get( 'flow/cache/name', 'Flow' ) )
 		{
 			case 'None':
 				$config->set( 'client/html/basket/cache/enable', false );
-				return \MW_Cache_Factory::createManager( 'None', array(), null );
+				return \Aimeos\MW\Cache\Factory::createManager( 'None', array(), null );
 
 			case 'Flow':
-				return new \MAdmin_Cache_Proxy_Flow( $context, $this->cache );
+				return new \Aimeos\MAdmin\Cache\Proxy\Flow( $context, $this->cache );
 
 			default:
-				return new \MAdmin_Cache_Proxy_Default( $context );
+				return new \Aimeos\MAdmin\Cache\Proxy\Standard( $context );
 		}
 	}
 
@@ -162,7 +162,7 @@ class Context
 	/**
 	 * Creates a new configuration object.
 	 *
-	 * @return \MW_Config_Interface Configuration object
+	 * @return \Aimeos\MW\Config\Iface Configuration object
 	 */
 	protected function getConfig()
 	{
@@ -172,13 +172,13 @@ class Context
 		$this->settings['resource']['db']['password'] = $this->resource['password'];
 
 		$configPaths = $this->aimeos->get()->getConfigPaths( 'mysql' );
-		$config = new \MW_Config_Array( $this->settings, $configPaths );
+		$config = new \Aimeos\MW\Config\PHPArray( $this->settings, $configPaths );
 
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 		$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
 
 		if( function_exists( 'apc_store' ) === true && $apc == true ) {
-			$config = new \MW_Config_Decorator_APC( $config, $prefix );
+			$config = new \Aimeos\MW\Config\Decorator\APC( $config, $prefix );
 		}
 
 		return $config;
@@ -188,11 +188,11 @@ class Context
 	/**
 	 * Returns the locale item for the current request
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
-	 * @return \MShop_Locale_Item_Interface Locale item object
+	 * @return \Aimeos\MShop\Locale\Item\Iface Locale item object
 	 */
-	protected function getLocale( \MShop_Context_Item_Interface $context, \TYPO3\Flow\Mvc\RequestInterface $request )
+	protected function getLocale( \Aimeos\MShop\Context\Item\Iface $context, \TYPO3\Flow\Mvc\RequestInterface $request )
 	{
 		if( $this->locale === null )
 		{
@@ -204,7 +204,7 @@ class Context
 
 			$disableSites = (bool) ( isset( $this->settings['flow']['disableSites'] ) ? $this->settings['flow']['disableSites'] : false );
 
-			$localeManager = \MShop_Locale_Manager_Factory::createManager( $context );
+			$localeManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context );
 			$this->locale = $localeManager->bootstrap( $site, $lang, $currency, $disableSites );
 		}
 

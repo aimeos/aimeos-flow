@@ -35,7 +35,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:cache' );
 
-		$localeManager = \MShop_Locale_Manager_Factory::createManager( $context );
+		$localeManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
@@ -44,12 +44,12 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			$lcontext = clone $context;
 			$lcontext->setLocale( $localeItem );
 
-			$cache = new \MAdmin_Cache_Proxy_Default( $lcontext );
+			$cache = new \Aimeos\MAdmin\Cache\Proxy\Standard( $lcontext );
 			$lcontext->setCache( $cache );
 
 			$this->outputFormatted( 'Clearing the Aimeos cache for site <b>%s</b>', array( $siteItem->getCode() ) );
 
-			\MAdmin_Cache_Manager_Factory::createManager( $lcontext )->getCache()->flush();
+			\Aimeos\MAdmin\Cache\Manager\Factory::createManager( $lcontext )->getCache()->flush();
 		}
 	}
 
@@ -93,7 +93,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$context = $this->getContext();
 
 		$jobs = explode( ' ', $jobs );
-		$localeManager = \MShop_Factory::createManager( $context, 'locale' );
+		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
@@ -108,7 +108,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			foreach( $jobs as $jobname )
 			{
 				$this->outputFormatted( '  <b>%s</b>', array( $jobname ) );
-				\Controller_Jobs_Factory::createController( $context, $aimeos, $jobname )->run();
+				\Aimeos\Controller\Jobs\Factory::createController( $context, $aimeos, $jobname )->run();
 			}
 		}
 	}
@@ -149,7 +149,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 		spl_autoload_register( '\Aimeos\Shop\Command\AimeosCommandController::autoload', true );
 
-		$manager = new \MW_Setup_Manager_Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
+		$manager = new \Aimeos\MW\Setup\Manager\Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
 
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
 
@@ -187,7 +187,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Returns a context object for the jobs command
 	 *
-	 * @return \MShop_Context_Item_Default Context object
+	 * @return \Aimeos\MShop\Context\Item\Standard Context object
 	 */
 	protected function getContext()
 	{
@@ -197,7 +197,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 
-		$langManager = \MShop_Locale_Manager_Factory::createManager( $context )->getSubManager( 'language' );
+		$langManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context )->getSubManager( 'language' );
 		$langids = array_keys( $langManager->searchItems( $langManager->createSearch( true ) ) );
 
 		$i18n = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\I18n' )->get( $langids );
@@ -214,10 +214,10 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Returns the database configuration from the config object.
 	 *
-	 * @param \MW_Config_Interface $conf Config object
+	 * @param \Aimeos\MW\Config\Iface $conf Config object
 	 * @return array Multi-dimensional associative list of database configuration parameters
 	 */
-	protected function getDbConfig( \MW_Config_Interface $conf )
+	protected function getDbConfig( \Aimeos\MW\Config\Iface $conf )
 	{
 		$dbconfig = $conf->get( 'resource', array() );
 
@@ -235,13 +235,13 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Returns the enabled site items which may be limited by the input arguments.
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context item object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context item object
 	 * @param string $sites Unique site codes
-	 * @return \MShop_Locale_Item_Site_Interface[] List of site items
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface[] List of site items
 	 */
-	protected function getSiteItems( \MShop_Context_Item_Interface $context, $sites )
+	protected function getSiteItems( \Aimeos\MShop\Context\Item\Iface $context, $sites )
 	{
-		$manager = \MShop_Factory::createManager( $context, 'locale/site' );
+		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale/site' );
 		$search = $manager->createSearch();
 
 		if( $sites !== '' ) {
@@ -265,11 +265,11 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	/**
 	 * Extracts the configuration options from the input object and updates the configuration values in the config object.
 	 *
-	 * @param \MW_Config_Interface $conf Configuration object
+	 * @param \Aimeos\MW\Config\Iface $conf Configuration object
 	 * @param array $options List of option key/value pairs
 	 * @param array Associative list of database configurations
 	 */
-	protected function setOptions( \MW_Config_Interface $conf, array $options )
+	protected function setOptions( \Aimeos\MW\Config\Iface $conf, array $options )
 	{
 		foreach( $options as $option )
 		{

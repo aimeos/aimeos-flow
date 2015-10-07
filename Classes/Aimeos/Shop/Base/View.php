@@ -32,14 +32,14 @@ class View
 	/**
 	 * Creates the view object for the HTML client.
 	 *
-	 * @param \MShop_Context_Item_Interface $context Context object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
 	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
 	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
 	 * @param string|null $langid Language ID
-	 * @return \MW_View_Interface View object
+	 * @return \Aimeos\MW\View\Iface View object
 	 */
-	public function create( \MW_Config_Interface $config,
+	public function create( \Aimeos\MW\Config\Iface $config,
 		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
 		\TYPO3\Flow\Mvc\RequestInterface $request = null, $langid = null )
 	{
@@ -58,41 +58,41 @@ class View
 		}
 		else
 		{
-			$translation = new \MW_Translation_None( 'en' );
+			$translation = new \Aimeos\MW\Translation\None( 'en' );
 		}
 
 
-		$view = new \MW_View_Default();
+		$view = new \Aimeos\MW\View\Standard();
 
-		$helper = new \MW_View_Helper_Translate_Default( $view, $translation );
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $translation );
 		$view->addHelper( 'translate', $helper );
 
-		$helper = new \MW_View_Helper_Url_Flow( $view, $uriBuilder, $fixed );
+		$helper = new \Aimeos\MW\View\Helper\Url\Flow( $view, $uriBuilder, $fixed );
 		$view->addHelper( 'url', $helper );
 
-		$helper = new \MW_View_Helper_Partial_Default( $view, $config, $templatePaths );
+		$helper = new \Aimeos\MW\View\Helper\Partial\Standard( $view, $config, $templatePaths );
 		$view->addHelper( 'partial', $helper );
 
-		$helper = new \MW_View_Helper_Parameter_Default( $view, $params );
+		$helper = new \Aimeos\MW\View\Helper\Parameter\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 
-		$helper = new \MW_View_Helper_Config_Default( $view, $config );
+		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
 		$sepDec = $config->get( 'client/html/common/format/seperatorDecimal', '.' );
 		$sep1000 = $config->get( 'client/html/common/format/seperator1000', ' ' );
-		$helper = new \MW_View_Helper_Number_Default( $view, $sepDec, $sep1000 );
+		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $sepDec, $sep1000 );
 		$view->addHelper( 'number', $helper );
 
-		$helper = new \MW_View_Helper_FormParam_Default( $view, array() );
+		$helper = new \Aimeos\MW\View\Helper\FormParam\Standard( $view, array() );
 		$view->addHelper( 'formparam', $helper );
 
-		$helper = new \MW_View_Helper_Encoder_Default( $view );
+		$helper = new \Aimeos\MW\View\Helper\Encoder\Standard( $view );
 		$view->addHelper( 'encoder', $helper );
 
 		if( $request !== null )
 		{
-			$helper = new \MW_View_Helper_Request_Flow( $view, $request->getHttpRequest() );
+			$helper = new \Aimeos\MW\View\Helper\Request\Flow( $view, $request->getHttpRequest() );
 			$view->addHelper( 'request', $helper );
 		}
 

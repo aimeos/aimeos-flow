@@ -28,7 +28,7 @@ class I18n
 	private $settings;
 
 	/**
-	 * @var array List of \MW_Translation_Interface objects
+	 * @var array List of \Aimeos\MW\Translation\Iface objects
 	 */
 	private $i18n = array();
 
@@ -43,7 +43,7 @@ class I18n
 	 * Creates new translation objects.
 	 *
 	 * @param array $languageIds List of two letter ISO language IDs
-	 * @return \MW_Translation_Interface[] List of translation objects
+	 * @return \Aimeos\MW\Translation\Iface[] List of translation objects
 	 */
 	public function get( array $languageIds )
 	{
@@ -53,17 +53,17 @@ class I18n
 		{
 			if( !isset( $this->i18n[$langid] ) )
 			{
-				$i18n = new \MW_Translation_Zend2( $i18nPaths, 'gettext', $langid, array( 'disableNotices' => true ) );
+				$i18n = new \Aimeos\MW\Translation\Zend2( $i18nPaths, 'gettext', $langid, array( 'disableNotices' => true ) );
 
 				$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 				$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
 
 				if( function_exists( 'apc_store' ) === true && $apc == true ) {
-					$i18n = new \MW_Translation_Decorator_APC( $i18n, $prefix );
+					$i18n = new \Aimeos\MW\Translation\Decorator\APC( $i18n, $prefix );
 				}
 
 				if( isset( $this->settings['i18n'][$langid] ) ) {
-					$i18n = new \MW_Translation_Decorator_Memory( $i18n, $this->settings['i18n'][$langid] );
+					$i18n = new \Aimeos\MW\Translation\Decorator\Memory( $i18n, $this->settings['i18n'][$langid] );
 				}
 
 				$this->i18n[$langid] = $i18n;
