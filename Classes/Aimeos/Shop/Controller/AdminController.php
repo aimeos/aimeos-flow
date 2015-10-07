@@ -139,7 +139,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * Creates a list of all available translations.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @return array List of language IDs with labels
+	 * @return string JSON encoded list of language IDs with labels
 	 */
 	protected function getJsonLanguages( \Aimeos\MShop\Context\Item\Iface $context )
 	{
