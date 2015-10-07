@@ -105,7 +105,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the JS file content
 	 *
-	 * @return Response Response object
+	 * @return \TYPO3\Flow\Http\Response Response object
 	 */
 	public function fileAction()
 	{
