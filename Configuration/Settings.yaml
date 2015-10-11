@@ -160,3 +160,8 @@ Aimeos:
     madmin:
 
     mshop:
+        index:
+            manager:
+                name: MySQL
+                text:
+                    name: MySQL
