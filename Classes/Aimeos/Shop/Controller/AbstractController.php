@@ -58,7 +58,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 		$client->setView( $view );
 		$client->process();
 
-		// $this->response->addAdditionalHeaderData( (string) $client->getHeader() );
+		$this->view->assign( 'aimeos_component_header', (string) $client->getHeader() );
 
 		return $client->getBody();
 	}
