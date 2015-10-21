@@ -22,9 +22,8 @@
         "aimeos/ai-flow": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "Aimeos\\Shop": "Classes",
-            "Aimeos\\Flow": "Classes"
+        "psr-4": {
+            "Aimeos\\": "Classes"
         }
     },
     "extra": {
