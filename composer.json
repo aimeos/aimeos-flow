@@ -16,6 +16,7 @@
     "require": {
         "typo3/flow": "~2.0||~3.0",
         "typo3/swiftmailer": "~5.0",
+        "composer/installers": "~1.0",
         "aimeos/aimeos-core": "2015.10.*",
         "aimeos/ai-swiftmailer": "2015.10.*",
         "aimeos/ai-zend2-i18n": "2015.10.*",
