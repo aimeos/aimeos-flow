@@ -23,7 +23,6 @@
     },
     "autoload": {
         "psr-4": {
-            "Aimeos\\Shop\\Tests\\": "Tests",
             "Aimeos\\Shop\\": "Classes/Aimeos/Shop",
             "Aimeos\\Flow\\": "Classes/Aimeos/Flow"
         }
