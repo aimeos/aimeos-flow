@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Aimeos\Shop\Tests\Unit\Base;
+namespace Aimeos\Tests\Unit\Base;
 
 
 class AimeosTest extends \TYPO3\Flow\Tests\UnitTestCase

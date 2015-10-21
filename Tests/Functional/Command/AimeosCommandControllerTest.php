@@ -1,6 +1,6 @@
 <?php
 
-namespace Aimeos\Shop\Tests\Functional\Command;
+namespace Aimeos\Tests\Functional\Command;
 
 
 class AimeosCommandControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
