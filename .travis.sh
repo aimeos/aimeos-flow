@@ -2,7 +2,7 @@
 
 set -ev
 
-composer create-project typo3/flow-base-distribution ../flow-dist
+composer create-project typo3/flow-base-distribution ../flow-dist ~2.3
 cd ../flow-dist
 
 cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
