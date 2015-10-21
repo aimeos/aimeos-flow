@@ -173,7 +173,7 @@ class Context
 		$this->settings['resource']['db']['username'] = $this->resource['user'];
 		$this->settings['resource']['db']['password'] = $this->resource['password'];
 
-		$configPaths = $this->aimeos->get()->getConfigPaths( 'mysql' );
+		$configPaths = $this->aimeos->get()->getConfigPaths();
 		$config = new \Aimeos\MW\Config\PHPArray( $this->settings, $configPaths );
 
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
