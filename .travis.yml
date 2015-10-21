@@ -10,7 +10,7 @@ php:
   - 5.3
 
 before_script:
-  - bash -c .travis.sh
+  - bash .travis.sh
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/
