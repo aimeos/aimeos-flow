@@ -23,8 +23,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Aimeos\\Flow\\": "Classes/Aimeos/Flow",
             "Aimeos\\Shop\\": "Classes/Aimeos/Shop",
+            "Aimeos\\Flow\\": "Classes/Aimeos/Flow",
             "Aimeos\\Tests\\": "Tests"
         }
     },
