@@ -1,0 +1,129 @@
+<?php
+
+
+namespace Aimeos\Shop\Tests\Unit\Controller;
+
+
+class AbstractControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
+{
+	private $object;
+	private $view;
+
+
+	public function setUp()
+	{
+		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\AbstractController' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->view = $this->getMockBuilder( '\TYPO3\Flow\Mvc\View\JsonView' )
+			->setMethods( array( 'assign' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->inject( $this->object, 'view', $this->view );
+
+		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->inject( $this->object, 'request', $request );
+	}
+
+
+	/**
+	 * @test
+	 */
+	public function getOutput()
+	{
+		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$this->inject( $this->object, 'aimeos', $aimeos );
+
+
+		$context = $this->getMockBuilder( '\Aimeos\Shop\Base\Context' )
+			->setMethods( array( 'get' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$ctx = new \MShop_Context_Item_Default();
+		$ctx->setConfig( new \MW_Config_Array() );
+		$ctx->setLocale( new \MShop_Locale_Item_Default( array( 'langid' => 'de' ) ) );
+
+		$context->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $ctx ) );
+
+		$this->inject( $this->object, 'context', $context );
+
+
+		$viewContainer = $this->getMockBuilder( '\Aimeos\Shop\Base\View' )
+			->setMethods( array( 'create' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$mwView = new \MW_View_Default();
+
+		$viewContainer->expects( $this->once() )->method( 'create' )
+			->will( $this->returnValue( $mwView ) );
+
+		$this->inject( $this->object, 'viewContainer', $viewContainer );
+
+
+		$uriBuilder = $this->getMockBuilder( '\TYPO3\Flow\Mvc\Routing\UriBuilder' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
+
+
+		$client = $this->getMockBuilder( 'Client_Html_Catalog_List_Default' )
+			->setMethods( array( 'getBody', 'getHeader', 'process') )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$client->expects( $this->once() )->method( 'getBody' )
+			->will( $this->returnValue( 'body' ) );
+
+		$client->expects( $this->once() )->method( 'process' );
+
+		\Client_Html_Catalog_List_Factory::injectClient( 'Client_Html_Catalog_List_Default', $client );
+
+
+		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\AbstractController' );
+		$method = $class->getMethod( 'getOutput' );
+		$method->setAccessible( true );
+
+
+		$result = $method->invokeArgs( $this->object, array( 'catalog/list' ) );
+
+		$this->assertEquals( 'body', $result );
+	}
+
+
+	/**
+	 * @test
+	 */
+	public function getSections()
+	{
+		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
+
+		$page = $this->getMockBuilder( '\Aimeos\Shop\Base\Page' )
+			->setMethods( array( 'getSections' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->inject( $this->object, 'page', $page );
+
+		$page->expects( $this->once() )->method( 'getSections' )
+			->will( $this->returnValue( $expected ) );
+
+
+		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\AbstractController' );
+		$method = $class->getMethod( 'getSections' );
+		$method->setAccessible( true );
+
+
+		$result = $method->invokeArgs( $this->object, array( 'test' ) );
+
+		$this->assertEquals( $expected, $result );
+	}
+}
