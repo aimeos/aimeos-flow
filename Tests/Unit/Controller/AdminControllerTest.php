@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Aimeos\Tests\Unit\Controller;
+namespace Aimeos\Shop\Tests\Unit\Controller;
 
 
 class AdminControllerTest extends \TYPO3\Flow\Tests\UnitTestCase

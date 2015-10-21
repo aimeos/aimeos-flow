@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Aimeos\Tests\Unit\Flow;
+namespace Aimeos\Shop\Tests\Unit\Flow;
 
 
 class AimeosTypeConverterTest extends \TYPO3\Flow\Tests\UnitTestCase
