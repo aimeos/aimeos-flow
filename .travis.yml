@@ -1,0 +1,35 @@
+sudo: false
+language: php
+
+php:
+  - hhvm
+  - 7.0
+  - 5.6
+  - 5.5
+  - 5.4
+  - 5.3
+
+before_script:
+  - composer create-project typo3/flow-base-distribution ../flow-dist
+  - cd ../flow-dist
+  - cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
+  - mv composer.json.new composer.json
+  - composer require aimeos/aimeos-flow dev-master
+  - rm -rf Packages/Application/Aimeos.Shop
+  - mv ../aimeos-flow Packages/Application/Aimeos.Shop
+  - composer dump-autoload
+  - mysql -e 'create database aimeos;'
+  - echo "TYPO3:
+  Flow:
+    persistence:
+      backendOptions:
+        dbname: 'flow'
+        user: 'root'
+" > Configuration/Testing/Settings.yaml
+
+script:
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml Packages/Application/Aimeos.Shop/Tests/Functional/
+
+after_success:
+#  - php vendor/bin/coveralls
