@@ -41,8 +41,6 @@ Aimeos:
         limit: 2
         opt-persistent: 0
 
-    classes:
-
     client:
       html:
         account:
