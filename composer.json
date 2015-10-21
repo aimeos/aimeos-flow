@@ -16,11 +16,10 @@
     "require": {
         "typo3/flow": "~2.0||~3.0",
         "typo3/swiftmailer": "~5.0",
-        "aimeos/aimeos-core": "dev-master",
-        "aimeos/ai-swiftmailer": "dev-master",
-        "aimeos/ai-zend2-i18n": "dev-master",
-        "aimeos/ai-flow": "dev-master",
-        "composer/installers": "~1.0"
+        "aimeos/aimeos-core": "2015.10.*",
+        "aimeos/ai-swiftmailer": "2015.10.*",
+        "aimeos/ai-zend2-i18n": "2015.10.*",
+        "aimeos/ai-flow": "2015.10.*"
     },
     "autoload": {
         "psr-0": {
