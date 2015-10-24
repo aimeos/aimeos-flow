@@ -7,7 +7,7 @@ cat composer.json | sed 's/^\}$/,\
     "prefer-stable": true,\
     "extra": {\
         "installer-paths": {\
-            "Resources\/Extensions\/{$name}\/": ["type:aimeos-extension"]\
+            "Packages\/Extensions\/{$name}\/": ["type:aimeos-extension"]\
         }\
     }\
 }/' > composer.json.new
