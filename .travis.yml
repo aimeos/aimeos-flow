@@ -1,0 +1,17 @@
+sudo: false
+language: php
+
+php:
+  - hhvm
+  - 7.0
+  - 5.6
+  - 5.5
+
+before_script:
+  - git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
+  - cd ../flow
+  - bash ../aimeos-flow/.travis.sh
+
+script:
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml Packages/Application/Aimeos.Shop/Tests/Functional/
