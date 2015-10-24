@@ -2,8 +2,8 @@
 
 set -ev
 
-composer create-project typo3/flow-base-distribution ../flow-dist ~2.3
-cd ../flow-dist
+git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
+cd ../flow
 
 cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
 mv composer.json.new composer.json
