@@ -10,7 +10,9 @@ php:
 before_script:
   - git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
   - bash .travis.sh
-  - cd ../flow
+  - pwd
+  - ls -la
+  - ls -la bin/
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/
