@@ -11,9 +11,6 @@ before_script:
   - git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
   - cd ../flow
   - bash ../aimeos-flow/.travis.sh
-  - pwd
-  - ls -la
-  - ls -la bin/
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/

@@ -2,7 +2,15 @@
 
 set -ev
 
-cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
+cat composer.json | sed 's/^\}$/,\
+    "minimum-stability": "dev",\
+    "prefer-stable": true,\
+    "extra": {\
+        "installer-paths": {\
+            "Resources\/Extensions\/{$name}\/": ["type:aimeos-extension"]\
+        }\
+    }\
+}/' > composer.json.new
 mv composer.json.new composer.json
 
 composer require aimeos/aimeos-flow dev-master
