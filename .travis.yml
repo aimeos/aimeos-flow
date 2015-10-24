@@ -6,11 +6,11 @@ php:
   - 7.0
   - 5.6
   - 5.5
-  - 5.4
-  - 5.3
 
 before_script:
+  - git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
   - bash .travis.sh
+  - cd ../flow
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml Packages/Application/Aimeos.Shop/Tests/Unit/

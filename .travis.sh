@@ -2,7 +2,6 @@
 
 set -ev
 
-git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
 cd ../flow
 
 cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
