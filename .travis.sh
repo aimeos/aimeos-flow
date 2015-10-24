@@ -2,8 +2,6 @@
 
 set -ev
 
-cd ../flow
-
 cat composer.json | sed 's/^\}$/, "minimum-stability": "dev", "prefer-stable": true }/' > composer.json.new
 mv composer.json.new composer.json
 
