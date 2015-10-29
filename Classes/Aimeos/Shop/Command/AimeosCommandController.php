@@ -19,6 +19,11 @@ use TYPO3\Flow\Annotations as Flow;
 class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 {
 	/**
+	 * @var \TYPO3\Flow\Cache\Frontend\StringFrontend
+	 */
+	protected $cache;
+
+	/**
 	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
 	 */
 	protected $objectManager;
@@ -35,6 +40,9 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:cache' );
 
+		$config = $context->getConfig();
+		$name = $config->get( 'flow/cache/name', 'Flow' );
+
 		$localeManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
@@ -44,12 +52,23 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			$lcontext = clone $context;
 			$lcontext->setLocale( $localeItem );
 
-			$cache = new \Aimeos\MAdmin\Cache\Proxy\Standard( $lcontext );
-			$lcontext->setCache( $cache );
+			switch( $name )
+			{
+				case 'None':
+					$config->set( 'client/html/basket/cache/enable', false );
+					$cache = \Aimeos\MW\Cache\Factory::createManager( 'None', array(), null );
+					break;
+				case 'Flow':
+					$cache = new \Aimeos\MAdmin\Cache\Proxy\Flow( $lcontext, $this->cache );
+					break;
+				default:
+					$cache = new \Aimeos\MAdmin\Cache\Proxy\Standard( $lcontext );
+					break;
+			}
 
 			$this->outputFormatted( 'Clearing the Aimeos cache for site <b>%s</b>', array( $siteItem->getCode() ) );
 
-			\Aimeos\MAdmin\Cache\Manager\Factory::createManager( $lcontext )->getCache()->flush();
+			$cache->flush();
 		}
 	}
 
@@ -249,6 +268,16 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		}
 
 		return $manager->searchItems( $search );
+	}
+
+
+	/**
+	 * @param \TYPO3\Flow\Cache\Frontend\StringFrontend $cache
+	 * @return void
+	 */
+	public function injectCache( \TYPO3\Flow\Cache\Frontend\StringFrontend $cache )
+	{
+		$this->cache = $cache;
 	}
 
 
