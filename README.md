@@ -99,19 +99,19 @@ found.
 Now Flow would basically know which controller/action it shall execute. But with
 Neos, one additional step is needed:
 
-Add the following **PrivilegeTarget** to `Configuration/Policy.yml`
+Add the following **PrivilegeTarget** to `Configuration/Policy.yaml`
 
 ```
 privilegeTargets:
   TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
-    'MyShop:ShopAdminActions':
+    'MyShop:AllActions':
       matcher: 'method(Aimeos\Shop\Controller\(.*)Controller->(.*)Action())'
 
 roles:
   'TYPO3.Flow:Everybody':
     privileges:
       -
-        privilegeTarget: 'MyShop:ShopAdminActions'
+        privilegeTarget: 'MyShop:AllActions'
         permission: GRANT
 ```
 
