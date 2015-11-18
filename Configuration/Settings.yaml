@@ -153,19 +153,25 @@ Aimeos:
                 exportdir: %FLOW_PATH_WEB%Uploads
                 downloaddir: /Uploads
 
+      jsonadm:
+        url:
+          config:
+            absoluteUri: true
+
+
     i18n:
 
     madmin:
 
     mshop:
-        index:
-            manager:
-                name: MySQL
-                attribute:
-                    name: MySQL
-                catalog:
-                    name: MySQL
-                price:
-                    name: MySQL
-                text:
-                    name: MySQL
+      index:
+        manager:
+          name: MySQL
+          attribute:
+            name: MySQL
+          catalog:
+            name: MySQL
+          price:
+            name: MySQL
+          text:
+            name: MySQL
