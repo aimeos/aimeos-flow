@@ -96,6 +96,28 @@ It's important to import the routes from the Aimeos web shop package before the
 match first and you will get an error that the requested package/action wasn't
 found.
 
+Now Flow would basically know which controller/action it shall execute. But with
+Neos, one additional step is needed:
+
+Add the following **PrivilegeTarget** to `Configuration/Policy.yaml`
+
+```
+privilegeTargets:
+  TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'MyShop:AllActions':
+      matcher: 'method(Aimeos\Shop\Controller\(.*)Controller->(.*)Action())'
+
+roles:
+  'TYPO3.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'MyShop:AllActions'
+        permission: GRANT
+```
+
+The above will grant access to **all** Aimeos Controller/Actions pairs, for
+**everyone** - probably not what you want. Please refine to your needs!
+
 Then, you should be able to call the catalog list page in your browser using
 
 ```http://<your web root>/shop/list```
