@@ -11,7 +11,7 @@ class AimeosCommandControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 	public function setupCommand()
 	{
 		$controller = new \Aimeos\Shop\Command\AimeosCommandController();
-		$controller->setupCommand( 'unittest' );
+		$controller->setupCommand( 'unittest', 'unittest' );
 	}
 
 
