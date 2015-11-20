@@ -8,7 +8,7 @@
  */
 
 
-namespace Aimeos\ShopBundle\Controller;
+namespace Aimeos\Shop\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
 
@@ -51,18 +51,20 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param integer|null $id Unique resource ID
+	 * @param integer $id Unique resource ID
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function deleteAction()
+	public function deleteAction( $site, $resource, $id = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->delete( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->delete( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -71,18 +73,20 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param integer|null $id Unique resource ID
+	 * @param integer $id Unique resource ID
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function getAction()
+	public function getAction( $site, $resource, $id = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->get( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->get( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -91,18 +95,20 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param integer|null $id Unique resource ID
+	 * @param integer $id Unique resource ID
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function patchAction()
+	public function patchAction( $site, $resource, $id = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->patch( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->patch( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -114,15 +120,17 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param integer $id Unique ID of the resource
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function postAction()
+	public function postAction( $site, $resource, $id = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->post( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->post( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -131,18 +139,20 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param integer|null $id Unique resource ID
+	 * @param integer $id Unique resource ID
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function putAction()
+	public function putAction( $site, $resource, $id = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->put( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->put( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -153,15 +163,17 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
 	 */
-	public function optionsAction()
+	public function optionsAction( $site, $resource = '' )
 	{
+		$request = $this->request->getHttpRequest();
+		$header = $request->getHeaders()->getAll();
 		$status = 500;
-		$header = $this->request->getHttpRequest()->getHeaders();
 
-		$cntl = $this->createController( $site, $resource, $request->get( 'lang', 'en' ) );
-		$result = $cntl->options( $this->request->getContent(), $header, $status );
+		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $cntl->options( $request->getContent(), $header, $status );
 
-		return $this->getResponse( $result, $status, $header );
+		$this->setResponse( $status, $header );
+		return $result;
 	}
 
 
@@ -175,7 +187,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function createController( $sitecode, $resource, $lang )
 	{
-		$templatePaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
+		$lang = ( $lang ? $lang : 'en' );
+		$templatePaths = $this->aimeos->get()->getCustomPaths( 'controller/jsonadm/templates' );
 
 		$context = $this->context->get();
 		$context = $this->setLocale( $context, $sitecode, $lang );
@@ -190,22 +203,17 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a new response object
 	 *
-	 * @param string $content Body of the HTTP response
 	 * @param integer $status HTTP status
 	 * @param array $header List of HTTP headers
 	 * @return \TYPO3\Flow\Http\Response HTTP response object
 	 */
-	protected function getResponse( $content, $status, array $header )
+	protected function setResponse( $status, array $header )
 	{
-		$response = $this->response;
-		$response->setContent( $content );
-		$response->setStatus( $status );
+		$this->response->setStatus( $status );
 
 		foreach( $header as $key => $value ) {
-			$response->setHeader( $key, $value );
+			$this->response->setHeader( $key, $value );
 		}
-
-		return $response;
 	}
 
 

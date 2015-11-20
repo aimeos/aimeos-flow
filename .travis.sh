@@ -21,4 +21,4 @@ composer dump-autoload
 mysql -e 'create database aimeos;'
 printf "TYPO3:\n  Flow:\n    persistence:\n      backendOptions:\n        dbname: 'aimeos'\n        user: 'root'" > Configuration/Testing/Settings.yaml
 
-printf "-\n  name: 'Aimeos'\n  uriPattern: '{site}/<AimeosShopRoutes>'\n  subRoutes:\n    'AimeosShopRoutes':\n      package: 'Aimeos.Shop'" > Configuration/Routes.yaml
+printf "\n-\n  name: 'Aimeos'\n  uriPattern: '{site}/<AimeosShopRoutes>'\n  subRoutes:\n    'AimeosShopRoutes':\n      package: 'Aimeos.Shop'" > Configuration/Routes.yaml
