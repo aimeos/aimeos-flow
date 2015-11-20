@@ -49,12 +49,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Deletes the resource object or a list of resource objects
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @return string Generated output
 	 */
-	public function deleteAction( $site, $resource, $id = '' )
+	public function deleteAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
@@ -71,12 +71,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the requested resource object or list of resource objects
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @return string Generated output
 	 */
-	public function getAction( $site, $resource, $id = '' )
+	public function getAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
@@ -93,12 +93,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Updates a resource object or a list of resource objects
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @return string Generated output
 	 */
-	public function patchAction( $site, $resource, $id = '' )
+	public function patchAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
@@ -115,12 +115,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a new resource object or a list of resource objects
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique ID of the resource
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @return string Generated output
 	 */
-	public function postAction( $site, $resource, $id = '' )
+	public function postAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
@@ -137,12 +137,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates or updates a single resource object
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @return string Generated output
 	 */
-	public function putAction( $site, $resource, $id = '' )
+	public function putAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
@@ -159,11 +159,11 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the available HTTP verbs and the resource URLs
 	 *
-	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @return \TYPO3\Flow\Http\Response Response object containing the generated output
+	 * @param string $sitecode Unique site code
+	 * @return string Generated output
 	 */
-	public function optionsAction( $site, $resource = '' )
+	public function optionsAction( $resource = '', $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 		$header = $request->getHeaders()->getAll();
