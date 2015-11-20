@@ -9,7 +9,6 @@ class JsonadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/product', 'OPTIONS' );
 		$json = json_decode( $response->getContent(), true );
-print_r( $response->getContent() );
 
 		$this->assertNotNull( $json );
 		$this->assertEquals( 200, $response->getStatusCode() );
