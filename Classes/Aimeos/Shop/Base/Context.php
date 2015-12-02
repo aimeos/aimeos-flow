@@ -91,6 +91,9 @@ class Context
 			$dbm = new \Aimeos\MW\DB\Manager\PDO( $config );
 			$context->setDatabaseManager( $dbm );
 
+			$fsm = new \Aimeos\MW\Filesystem\Manager\Standard( $config );
+			$context->setFilesystemManager( $fsm );
+
 			$mail = new \Aimeos\MW\Mail\Swift( $this->mailer );
 			$context->setMail( $mail );
 
