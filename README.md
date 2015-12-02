@@ -59,7 +59,7 @@ Then add these lines to your composer.json of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "dev-master",
+        "aimeos/aimeos-flow": "~1.0",
         ...
     },    
 ```
