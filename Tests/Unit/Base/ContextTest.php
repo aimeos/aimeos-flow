@@ -66,7 +66,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$localeManager->expects( $this->once() )->method( 'bootstrap' )
-			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'langid' => 'de' ) ) ) );
+			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'locale.languageid' => 'de' ) ) ) );
 
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
@@ -102,7 +102,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$localeManager->expects( $this->once() )->method( 'bootstrap' )
-			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'langid' => 'de' ) ) ) );
+			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'locale.languageid' => 'de' ) ) ) );
 
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
@@ -134,7 +134,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$localeManager->expects( $this->once() )->method( 'bootstrap' )
-			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'langid' => 'de' ) ) ) );
+			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard( array( 'locale.languageid' => 'de' ) ) ) );
 
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
