@@ -56,7 +56,7 @@ class CatalogController extends AbstractController
 	 */
 	public function listComponentAction()
 	{
-		$this->view->assign( 'output',  $this->getOutput( 'catalog/list' ) );
+		$this->view->assign( 'output',  $this->getOutput( 'catalog/lists' ) );
 	}
 
 
