@@ -62,7 +62,7 @@ class View
 		}
 
 
-		$view = new \Aimeos\MW\View\Standard();
+		$view = new \Aimeos\MW\View\Standard( $templatePaths );
 
 		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $translation );
 		$view->addHelper( 'translate', $helper );
@@ -70,7 +70,7 @@ class View
 		$helper = new \Aimeos\MW\View\Helper\Url\Flow( $view, $uriBuilder, $fixed );
 		$view->addHelper( 'url', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Partial\Standard( $view, $config, $templatePaths );
+		$helper = new \Aimeos\MW\View\Helper\Partial\Standard( $view );
 		$view->addHelper( 'partial', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Parameter\Standard( $view, $params );
