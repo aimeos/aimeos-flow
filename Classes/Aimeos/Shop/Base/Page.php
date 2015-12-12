@@ -63,7 +63,7 @@ class Page
 	{
 		$this->uriBuilder->setRequest( $request );
 
-		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
+		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html/templates' );
 		$pagesConfig = $this->settings['page'];
 		$result = array( 'aibody' => array(), 'aiheader' => array() );
 

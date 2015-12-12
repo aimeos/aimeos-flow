@@ -50,9 +50,6 @@ class View
 			$params = $request->getArguments();
 			$fixed = $this->getFixedParams( $request );
 
-			// required for reloading to the current page
-			// $params['target'] = $request->getArgument( '_route' );
-
 			$i18n = $this->i18n->get( array( $langid ) );
 			$translation = $i18n[$langid];
 		}
@@ -70,10 +67,7 @@ class View
 		$helper = new \Aimeos\MW\View\Helper\Url\Flow( $view, $uriBuilder, $fixed );
 		$view->addHelper( 'url', $helper );
 
-		$helper = new \Aimeos\MW\View\Helper\Partial\Standard( $view );
-		$view->addHelper( 'partial', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Parameter\Standard( $view, $params );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
@@ -83,12 +77,6 @@ class View
 		$sep1000 = $config->get( 'client/html/common/format/seperator1000', ' ' );
 		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $sepDec, $sep1000 );
 		$view->addHelper( 'number', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\FormParam\Standard( $view, array() );
-		$view->addHelper( 'formparam', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Encoder\Standard( $view );
-		$view->addHelper( 'encoder', $helper );
 
 		if( $request !== null )
 		{
