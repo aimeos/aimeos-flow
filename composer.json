@@ -34,13 +34,13 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cp -r vendor/aimeos/aimeos-core/client/extjs/resources/* Resources/Public/client/extjs/resources/",
-            "cp -r vendor/aimeos/aimeos-core/client/extjs/lib/* Resources/Public/client/extjs/lib/",
+            "cp -r vendor/aimeos/aimeos-core/admin/extjs/resources/* Resources/Public/admin/extjs/resources/",
+            "cp -r vendor/aimeos/aimeos-core/admin/extjs/lib/* Resources/Public/admin/extjs/lib/",
             "cp -r vendor/aimeos/aimeos-core/client/html/themes/* Resources/Public/themes/"
         ],
         "post-update-cmd": [
-            "cp -r vendor/aimeos/aimeos-core/client/extjs/resources/* Resources/Public/client/extjs/resources/",
-            "cp -r vendor/aimeos/aimeos-core/client/extjs/lib/* Resources/Public/client/extjs/lib/",
+            "cp -r vendor/aimeos/aimeos-core/admin/extjs/resources/* Resources/Public/admin/extjs/resources/",
+            "cp -r vendor/aimeos/aimeos-core/admin/extjs/lib/* Resources/Public/admin/extjs/lib/",
             "cp -r vendor/aimeos/aimeos-core/client/html/themes/* Resources/Public/themes/"
         ]
     }
