@@ -48,7 +48,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );
 		$cssFiles = array();
 
-		foreach( $aimeos->getCustomPaths( 'client/extjs' ) as $base => $paths )
+		foreach( $aimeos->getCustomPaths( 'admin/extjs' ) as $base => $paths )
 		{
 			foreach( $paths as $path )
 			{
@@ -112,7 +112,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$jsFiles = array();
 		$aimeos = $this->aimeos->get();
 
-		foreach( $aimeos->getCustomPaths( 'client/extjs' ) as $base => $paths )
+		foreach( $aimeos->getCustomPaths( 'admin/extjs' ) as $base => $paths )
 		{
 			foreach( $paths as $path )
 			{
@@ -146,11 +146,11 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$paths = $this->aimeos->get()->getI18nPaths();
 		$langs = array();
 
-		if( !isset( $paths['client/extjs'] ) ) {
+		if( !isset( $paths['admin'] ) ) {
 			return json_encode( array() );
 		}
 
-		foreach( $paths['client/extjs'] as $path )
+		foreach( $paths['admin'] as $path )
 		{
 			$iter = new \DirectoryIterator( $path );
 
@@ -176,8 +176,8 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getJsonClientConfig( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		$config = $context->getConfig()->get( 'client/extjs', array() );
-		return json_encode( array( 'client' => array( 'extjs' => $config ) ), JSON_FORCE_OBJECT );
+		$config = $context->getConfig()->get( 'admin/extjs', array() );
+		return json_encode( array( 'admin' => array( 'extjs' => $config ) ), JSON_FORCE_OBJECT );
 	}
 
 
@@ -193,8 +193,8 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$i18n = new \Aimeos\MW\Translation\Zend2( $i18nPaths, 'gettext', $lang, array( 'disableNotices' => true ) );
 
 		$content = array(
-			'client/extjs' => $i18n->getAll( 'client/extjs' ),
-			'client/extjs/ext' => $i18n->getAll( 'client/extjs/ext' ),
+			'admin' => $i18n->getAll( 'admin' ),
+			'admin/ext' => $i18n->getAll( 'admin/ext' ),
 		);
 
 		return json_encode( $content, JSON_FORCE_OBJECT );
