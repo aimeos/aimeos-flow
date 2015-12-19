@@ -207,7 +207,7 @@ class AdminControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$result = json_decode( $method->invoke( $this->object, $ctx ), true );
 
 		$this->assertInternalType( 'array', $result );
-		$this->assertArrayHasKey( 'client', $result );
+		$this->assertArrayHasKey( 'admin', $result );
 	}
 
 
@@ -228,8 +228,8 @@ class AdminControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$result = json_decode( $method->invoke( $this->object, $i18nPaths, 'de' ), true );
 
 		$this->assertInternalType( 'array', $result );
-		$this->assertArrayHasKey( 'client/extjs', $result );
-		$this->assertArrayHasKey( 'client/extjs/ext', $result );
+		$this->assertArrayHasKey( 'admin', $result );
+		$this->assertArrayHasKey( 'admin/ext', $result );
 	}
 
 
