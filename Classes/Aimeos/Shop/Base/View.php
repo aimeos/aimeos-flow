@@ -80,7 +80,8 @@ class View
 
 		if( $request !== null )
 		{
-			$helper = new \Aimeos\MW\View\Helper\Request\Flow( $view, $request->getHttpRequest() );
+			$files = ( is_array( $_FILES ) ? $_FILES : array() );
+			$helper = new \Aimeos\MW\View\Helper\Request\Flow( $view, $request->getHttpRequest(), $files );
 			$view->addHelper( 'request', $helper );
 		}
 
