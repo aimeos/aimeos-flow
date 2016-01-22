@@ -9,8 +9,8 @@ Aimeos:
   Shop:
     flow:
       apc:
-#        enable: true
-#        prefix: 'flow:'
+        enable: false
+        prefix: 'flow:'
 #      cache:
 #        name: None
 #        prefix: myshop
@@ -48,6 +48,12 @@ Aimeos:
         adapter: Standard
         basedir: %FLOW_PATH_WEB%Uploads
         tempdir: %FLOW_PATH_DATA%Temporary
+
+    admin:
+      extjs:
+        url:
+          controller: Extadm
+          action: index
 
     client:
       html:

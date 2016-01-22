@@ -1,27 +1,9 @@
 -
-  name: 'Admin JSON RPC request'
-  uriPattern: 'admin/do'
+  name: 'ExtJS admin index page'
+  uriPattern: '{site}/extadm(/{lang}/{tab})'
   defaults:
     '@package':    'Aimeos.Shop'
-    '@controller': 'Admin'
-    '@action': 'do'
-    '@format': 'html'
-
--
-  name: 'Admin JS file request'
-  uriPattern: 'admin/file'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Admin'
-    '@action': 'file'
-    '@format': 'html'
-
--
-  name: 'Admin index page'
-  uriPattern: 'admin(/{site}/{lang}/{tab})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Admin'
+    '@controller': 'Extadm'
     '@action': 'index'
     '@format': 'html'
     'site': 'default'
@@ -29,10 +11,96 @@
     'tab': '0'
   appendExceedingArguments: true
 
+-
+  name: 'ExtJS admin JS file request'
+  uriPattern: '{site}/extadm/file'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Extadm'
+    '@action': 'file'
+    '@format': 'html'
+
+-
+  name: 'ExtJS admin JSON RPC request'
+  uriPattern: '{site}/extadm/do'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Extadm'
+    '@action': 'do'
+    '@format': 'html'
+
+
+-
+  name: 'JQAdm copy'
+  uriPattern: '{site}/jqadm/copy/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'copy'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm create'
+  uriPattern: '{site}/jqadm/create/{resource}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'create'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm delete'
+  uriPattern: '{site}/jqadm/delete/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'delete'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm get'
+  uriPattern: '{site}/jqadm/get/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'get'
+    '@format': 'html'
+  httpMethods: ['GET']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm save'
+  uriPattern: '{site}/jqadm/save/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'save'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm search'
+  uriPattern: '{site}/jqadm/search/{resource}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'search'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
 
 -
   name: 'REST JSON Admin GET'
-  uriPattern: 'jsonadm/{resource}(/{id})'
+  uriPattern: '{site}/jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -44,7 +112,7 @@
 
 -
   name: 'REST JSON Admin DELETE'
-  uriPattern: 'jsonadm/{resource}(/{id})'
+  uriPattern: '{site}/jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -56,7 +124,7 @@
 
 -
   name: 'REST JSON Admin PATCH'
-  uriPattern: 'jsonadm/{resource}(/{id})'
+  uriPattern: '{site}/jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -68,7 +136,7 @@
 
 -
   name: 'REST JSON Admin POST'
-  uriPattern: 'jsonadm/{resource}(/{id})'
+  uriPattern: '{site}/jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -80,7 +148,7 @@
 
 -
   name: 'REST JSON Admin PUT'
-  uriPattern: 'jsonadm/{resource}(/{id})'
+  uriPattern: '{site}/jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -92,7 +160,7 @@
 
 -
   name: 'REST JSON Admin OPTIONS'
-  uriPattern: 'jsonadm(/{resource})'
+  uriPattern: '{site}/jsonadm(/{resource})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -101,6 +169,7 @@
     'resource': ''
   httpMethods: ['OPTIONS']
   appendExceedingArguments: true
+
 
 
 -
