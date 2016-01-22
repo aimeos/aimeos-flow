@@ -7,8 +7,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 {
 	public function testCopyAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product', 'id' => '0'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product/0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<div class="product-item', $response->getContent() );
@@ -17,8 +16,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testCreateAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/create/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<div class="product-item', $response->getContent() );
@@ -27,8 +25,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testDeleteAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product', 'id' => '0'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product/0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<table class="list-items', $response->getContent() );
@@ -37,8 +34,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testGetAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product', 'id' => '0'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product/0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<div class="product-item', $response->getContent() );
@@ -47,8 +43,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testSaveAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product', 'id' => '0'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'POST', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/save/product/0', 'POST' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<div class="product-item', $response->getContent() );
@@ -57,8 +52,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testSearchAction()
 	{
-		$params = ['site' => 'unittest', 'resource' => 'product'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/search/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<table class="list-items', $response->getContent() );
@@ -67,8 +61,7 @@ class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 
 	public function testSearchActionSite()
 	{
-		$params = ['site' => 'invalid', 'resource' => 'product'];
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/product', 'GET', $params );
+		$response = $this->browser->request( 'http://localhost/invalid/jqadm/search/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<table class="list-items', $response->getContent() );
