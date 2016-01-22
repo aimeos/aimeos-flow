@@ -14,7 +14,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Controller for JQuery based adminisration interface.
  */
-class JqadmController extends AdminBase
+class JqadmController extends AdminController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -32,7 +32,7 @@ class JqadmController extends AdminBase
 	 * @var \Aimeos\Shop\Base\View
 	 * @Flow\Inject
 	 */
-	protected $view;
+	protected $viewbase;
 
 
 	/**
@@ -46,7 +46,7 @@ class JqadmController extends AdminBase
 	public function copyAction( $site = 'default', $resource, $id )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, $cntl->copy( $id ) );
+		return $this->getHtml( $cntl->copy( $id ) );
 	}
 
 
@@ -60,7 +60,7 @@ class JqadmController extends AdminBase
 	public function createAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, $cntl->create() );
+		return $this->getHtml( $cntl->create() );
 	}
 
 
@@ -75,7 +75,7 @@ class JqadmController extends AdminBase
 	public function deleteAction( $site = 'default', $resource, $id )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, $cntl->delete( $id ) . $cntl->search() );
+		return $this->getHtml( $cntl->delete( $id ) . $cntl->search() );
 	}
 
 
@@ -90,7 +90,7 @@ class JqadmController extends AdminBase
 	public function getAction( $site = 'default', $resource, $id )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, $cntl->get( $id ) );
+		return $this->getHtml( $cntl->get( $id ) );
 	}
 
 
@@ -104,7 +104,7 @@ class JqadmController extends AdminBase
 	public function saveAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, ( $cntl->save() ? : $cntl->search() ) );
+		return $this->getHtml( ( $cntl->save() ? : $cntl->search() ) );
 	}
 
 
@@ -118,7 +118,7 @@ class JqadmController extends AdminBase
 	public function searchAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $site, $cntl->search() );
+		return $this->getHtml( $cntl->search() );
 	}
 
 
@@ -131,12 +131,13 @@ class JqadmController extends AdminBase
 	protected function createClient( $sitecode, $resource )
 	{
 		$lang = ( $this->request->hasArgument( 'lang' ) ? $this->request->getArgument( 'lang' ) : 'en' );
-		$templatePaths = $this->aimeos->getCustomPaths( 'admin/jqadm/templates' );
+		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jqadm/templates' );
 
 		$context = $this->context->get( $this->request );
 		$context = $this->setLocale( $context, $sitecode, $lang );
 
-		$view = $this->view->create( $context->getConfig(), $this->uriBuilder, $templatePaths, $this->request, $lang );
+		$config = $context->getConfig();
+		$view = $this->viewbase->create( $config, $this->uriBuilder, $templatePaths, $this->request, $lang );
 		$context->setView( $view );
 
 		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $templatePaths, $resource );

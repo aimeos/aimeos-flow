@@ -14,7 +14,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Controller for ExtJS adminisration interface.
  */
-class ExtadmController extends AdminBase
+class ExtadmController extends AdminController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos

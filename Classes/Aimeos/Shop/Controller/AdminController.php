@@ -64,10 +64,10 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param string $sitecode Unique site code
-	 * @param string $locale ISO language code, e.g. "en" or "en_GB"
+	 * @param string $lang ISO language code, e.g. "en" or "en_GB"
 	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
 	 */
-	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode = 'default', $locale = null )
+	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode = 'default', $lang = null )
 	{
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
 
