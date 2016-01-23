@@ -40,11 +40,11 @@ Aimeos:
         password:
         limit: 2
         opt-persistent: 0
-    fs:
+      fs:
         adapter: Standard
         basedir: %FLOW_PATH_WEB%
         tempdir: %FLOW_PATH_DATA%Temporary
-    fs-admin:
+      fs-admin:
         adapter: Standard
         basedir: %FLOW_PATH_WEB%Uploads
         tempdir: %FLOW_PATH_DATA%Temporary
