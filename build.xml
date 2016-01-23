@@ -2,18 +2,9 @@
 
 <project name="Aimeos Flow package" default="update">
 
-	<property name="coredir" value="${project.basedir}/vendor/arcavias/arcavias-core" />
-
-
 	<target name="update" description="Updates the package">
 		<exec command="git pull https://github.com/aimeos/aimeos-flow.git" checkreturn="true" logoutput="true" />
 		<exec command="composer update --working-dir ${project.basedir}" checkreturn="true" logoutput="true" />
-		<copy todir="Resources/Public/client/extjs/">
-			<fileset dir="${coredir}/client/extjs/" expandsymboliclinks="true" />
-		</copy>
-		<copy todir="Resources/Public/themes/">
-			<fileset dir="${coredir}/client/html/themes/" expandsymboliclinks="true" />
-		</copy>
 	</target>
 
 
