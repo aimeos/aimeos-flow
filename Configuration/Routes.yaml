@@ -1,6 +1,6 @@
 -
   name: 'ExtJS admin index page'
-  uriPattern: '{site}/extadm(/{lang}/{tab})'
+  uriPattern: 'extadm(/{lang}/{tab})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -13,7 +13,7 @@
 
 -
   name: 'ExtJS admin JS file request'
-  uriPattern: '{site}/extadm/file'
+  uriPattern: 'extadm/file'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -22,7 +22,7 @@
 
 -
   name: 'ExtJS admin JSON RPC request'
-  uriPattern: '{site}/extadm/do'
+  uriPattern: 'extadm/do'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -32,7 +32,7 @@
 
 -
   name: 'JQAdm copy'
-  uriPattern: '{site}/jqadm/copy/{resource}/{id}'
+  uriPattern: 'jqadm/copy/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -43,7 +43,7 @@
 
 -
   name: 'JQAdm create'
-  uriPattern: '{site}/jqadm/create/{resource}'
+  uriPattern: 'jqadm/create/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -54,7 +54,7 @@
 
 -
   name: 'JQAdm delete'
-  uriPattern: '{site}/jqadm/delete/{resource}/{id}'
+  uriPattern: 'jqadm/delete/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -65,7 +65,7 @@
 
 -
   name: 'JQAdm get'
-  uriPattern: '{site}/jqadm/get/{resource}/{id}'
+  uriPattern: 'jqadm/get/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -76,7 +76,7 @@
 
 -
   name: 'JQAdm save'
-  uriPattern: '{site}/jqadm/save/{resource}/{id}'
+  uriPattern: 'jqadm/save/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -88,7 +88,7 @@
 
 -
   name: 'JQAdm search'
-  uriPattern: '{site}/jqadm/search/{resource}'
+  uriPattern: 'jqadm/search/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -100,7 +100,7 @@
 
 -
   name: 'REST JSON Admin GET'
-  uriPattern: '{site}/jsonadm/{resource}(/{id})'
+  uriPattern: 'jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -112,7 +112,7 @@
 
 -
   name: 'REST JSON Admin DELETE'
-  uriPattern: '{site}/jsonadm/{resource}(/{id})'
+  uriPattern: 'jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -124,7 +124,7 @@
 
 -
   name: 'REST JSON Admin PATCH'
-  uriPattern: '{site}/jsonadm/{resource}(/{id})'
+  uriPattern: 'jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -136,7 +136,7 @@
 
 -
   name: 'REST JSON Admin POST'
-  uriPattern: '{site}/jsonadm/{resource}(/{id})'
+  uriPattern: 'jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -148,7 +148,7 @@
 
 -
   name: 'REST JSON Admin PUT'
-  uriPattern: '{site}/jsonadm/{resource}(/{id})'
+  uriPattern: 'jsonadm/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -160,7 +160,7 @@
 
 -
   name: 'REST JSON Admin OPTIONS'
-  uriPattern: '{site}/jsonadm(/{resource})'
+  uriPattern: 'jsonadm(/{resource})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
