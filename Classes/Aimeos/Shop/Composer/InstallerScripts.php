@@ -3,6 +3,7 @@
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
  * @copyright Aimeos (aimeos.org), 2014
+ * @package flow
  */
 
 
@@ -13,6 +14,7 @@ use Composer\Script\CommandEvent;
 
 /**
  * Class for Composer install scripts
+ * @package flow
  */
 class InstallerScripts
 {

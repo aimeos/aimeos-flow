@@ -2,7 +2,9 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
- * @copyright Aimeos (aimeos.org), 2015
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ * @package flow
+ * @subpackage Flow
  */
 
 
@@ -19,6 +21,8 @@ use TYPO3\Flow\Property\PropertyMappingConfigurationInterface;
  * This TypeConverter is used by the Aimeos shop package to decode only the required content
  * of a HTTP request which excludes json and xml based media types.
  *
+ * @package flow
+ * @subpackage Flow
  * @api
  * @Flow\Scope("singleton")
  */

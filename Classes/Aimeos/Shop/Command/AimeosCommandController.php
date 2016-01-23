@@ -2,7 +2,9 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
- * @copyright Aimeos (aimeos.org), 2015
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ * @package flow
+ * @subpackage Command
  */
 
 
@@ -14,6 +16,8 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Aimeos CLI controller for cronjobs
  *
+ * @package flow
+ * @subpackage Command
  * @Flow\Scope("singleton")
  */
 class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController

@@ -2,7 +2,9 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
- * @copyright Aimeos (aimeos.org), 2014
+ * @copyright Aimeos (aimeos.org), 2014-2016
+ * @package flow
+ * @subpackage Controller
  */
 
 
@@ -13,6 +15,8 @@ use TYPO3\Flow\Annotations as Flow;
 
 /**
  * Abstract class with common functionality for all controllers.
+ * @package flow
+ * @subpackage Controller
  */
 abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {

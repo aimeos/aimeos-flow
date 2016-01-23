@@ -2,8 +2,8 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
- * @copyright Aimeos (aimeos.org), 2015
- * @package aimeos-flow
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ * @package flow
  * @subpackage Base
  */
 
@@ -16,7 +16,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Class providing the internationalization objects
  *
- * @package aimeos-flow
+ * @package flow
  * @subpackage Base
  * @Flow\Scope("singleton")
  */

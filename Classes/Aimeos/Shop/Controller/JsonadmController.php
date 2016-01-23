@@ -2,8 +2,8 @@
 
 /**
  * @license LGPLv3, http://www.gnu.org/copyleft/lgpl.html
- * @copyright Aimeos (aimeos.org), 2015
- * @package flow-package
+ * @copyright Aimeos (aimeos.org), 2015-2016
+ * @package flow
  * @subpackage Controller
  */
 
@@ -16,7 +16,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Aimeos controller for the JSON REST API
  *
- * @package symfony2-bundle
+ * @package flow
  * @subpackage Controller
  */
 class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
