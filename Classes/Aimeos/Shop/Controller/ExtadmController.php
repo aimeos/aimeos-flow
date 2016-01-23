@@ -68,7 +68,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$vars = array(
 			'lang' => $lang,
 			'cssFiles' => $cssFiles,
-			'languages' => $this->getJsonLanguages( $context),
+			'languages' => $this->getJsonLanguages(),
 			'config' => $this->getJsonClientConfig( $context ),
 			'site' => $this->getJsonSiteItem( $context, $site ),
 			'i18nContent' => $this->getJsonClientI18n( $aimeos->getI18nPaths(), $lang ),
@@ -77,7 +77,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			'smd' => $controller->getJsonSmd( $jsonUrl ),
 			'urlTemplate' => urldecode( $adminUrl ),
 			'uploaddir' => $context->getConfig()->get( 'flow/uploaddir', '/.' ),
-			'version' => $aimeos->getVersion(),
+			'version' => $this->aimeos->getVersion(),
 			'activeTab' => $tab,
 		);
 
@@ -136,13 +136,17 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a list of all available translations.
 	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @return string JSON encoded list of language IDs with labels
 	 */
-	protected function getJsonLanguages( \Aimeos\MShop\Context\Item\Iface $context )
+	protected function getJsonLanguages()
 	{
-		$langs = $this->aimeos->get()->getI18nList();
-		return json_encode( $this->getLanguages( $context, $langs ) );
+		$result = array();
+
+		foreach( $this->aimeos->get()->getI18nList( 'admin' ) as $id ) {
+			$result[] = array( 'id' => $id, 'label' => $id );
+		}
+
+		return json_encode( $result );
 	}
 
 
@@ -200,31 +204,6 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		}
 
 		return json_encode( $item->toArray() );
-	}
-
-
-	/**
-	 * Returns a list of arrays with "id" and "label"
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param array $langIds List of language IDs
-	 * @return array List of associative lists with "id" and "label" as keys
-	 */
-	protected function getLanguages( \Aimeos\MShop\Context\Item\Iface $context, array $langIds )
-	{
-		$languageManager = \Aimeos\MShop\Factory::createManager( $context, 'locale/language' );
-		$result = array();
-
-		$search = $languageManager->createSearch();
-		$search->setConditions( $search->compare('==', 'locale.language.id', $langIds ) );
-		$search->setSortations( array( $search->sort( '-', 'locale.language.status' ), $search->sort( '+', 'locale.language.label' ) ) );
-		$langItems = $languageManager->searchItems( $search );
-
-		foreach( $langItems as $id => $item ) {
-			$result[] = array( 'id' => $id, 'label' => $item->getLabel() );
-		}
-
-		return $result;
 	}
 
 

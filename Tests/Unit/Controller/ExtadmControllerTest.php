@@ -162,28 +162,17 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function getJsonLanguages()
 	{
-		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\ExtadmController' )
-			->setMethods( array( 'getLanguages' ) )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$this->object->expects( $this->once() )->method( 'getLanguages' )
-			->will( $this->returnValue( array( 'id' => 'en', 'label' => 'English' ) ) );
-
-		$ctx = $this->getMock( '\Aimeos\MShop\Context\Item\Standard' );
-
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->inject( $this->object, 'aimeos', $aimeos );
-
 
 		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
 		$method = $class->getMethod( 'getJsonLanguages' );
 		$method->setAccessible( true );
 
 
-		$result = json_decode( $method->invoke( $this->object, $ctx ), true );
+		$result = json_decode( $method->invoke( $this->object ), true );
 
-		$this->assertEquals( array( 'id' => 'en', 'label' => 'English' ), $result );
+		$this->assertGreaterThan( 0, count( $result ) );
 	}
 
 
@@ -270,41 +259,6 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
-	public function getLanguages()
-	{
-		$ctx = $this->getMock( '\Aimeos\MShop\Context\Item\Standard' );
-
-		$manager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Language\Standard' )
-			->setMethods( array( 'searchItems' ) )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$items = array(
-			'de' => new \Aimeos\MShop\Locale\Item\Language\Standard( array( 'id' => 'de', 'label' => 'German' ) ),
-			'en' => new \Aimeos\MShop\Locale\Item\Language\Standard( array( 'id' => 'en', 'label' => 'English' ) ),
-		);
-
-		$manager->expects( $this->once() )->method( 'searchItems' )
-			->will( $this->returnValue( $items ) );
-
-		\Aimeos\MShop\Factory::injectManager( $ctx, 'locale/language', $manager );
-
-
-		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
-		$method = $class->getMethod( 'getLanguages' );
-		$method->setAccessible( true );
-
-
-		$result = $method->invoke( $this->object, $ctx, array( 'de', 'en' ) );
-
-		$this->assertInternalType( 'array', $result );
-		$this->assertEquals( 2, count( $result ) );
-	}
-
-
-	/**
-	 * @test
-	 */
 	public function setLocale()
 	{
 		$ctx = $this->getMockBuilder( '\Aimeos\MShop\Context\Item\Standard' )
@@ -327,7 +281,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\AdminController' );
+		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
 		$method = $class->getMethod( 'setLocale' );
 		$method->setAccessible( true );
 
@@ -365,7 +319,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
 
-		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\AdminController' );
+		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
 		$method = $class->getMethod( 'setLocale' );
 		$method->setAccessible( true );
 
