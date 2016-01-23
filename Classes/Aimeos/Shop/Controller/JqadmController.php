@@ -14,7 +14,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Controller for JQuery based adminisration interface.
  */
-class JqadmController extends AdminController
+class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -27,6 +27,12 @@ class JqadmController extends AdminController
 	 * @Flow\Inject
 	 */
 	protected $context;
+
+	/**
+	 * @var \Aimeos\Shop\Base\I18n
+	 * @Flow\Inject
+	 */
+	protected $i18n;
 
 	/**
 	 * @var \Aimeos\Shop\Base\View
@@ -151,9 +157,40 @@ class JqadmController extends AdminController
 	 */
 	protected function getHtml( $content )
 	{
-		$content = str_replace( ['{type}', '{version}'], ['Flow', $this->getVersion()], $content );
+		$version = $this->aimeos->get()->getVersion();
+		$content = str_replace( ['{type}', '{version}'], ['Flow', $version], $content );
 
 		$this->view->assign( 'content', $content );
 		return $this->view->render( 'index' );
+	}
+
+
+	/**
+	 * Sets the locale item in the given context
+	 *
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param string $sitecode Unique site code
+	 * @param string $lang ISO language code, e.g. "en" or "en_GB"
+	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
+	 */
+	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode = 'default', $lang = null )
+	{
+		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+
+		try
+		{
+			$localeItem = $localeManager->bootstrap( $sitecode, '', '', false );
+			$localeItem->setLanguageId( null );
+			$localeItem->setCurrencyId( null );
+		}
+		catch( \Aimeos\MShop\Locale\Exception $e )
+		{
+			$localeItem = $localeManager->createItem();
+		}
+
+		$context->setLocale( $localeItem );
+		$context->setI18n( $this->i18n->get( array( $lang ) ) );
+
+		return $context;
 	}
 }

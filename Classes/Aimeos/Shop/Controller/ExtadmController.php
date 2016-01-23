@@ -14,7 +14,7 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Controller for ExtJS adminisration interface.
  */
-class ExtadmController extends AdminController
+class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -77,7 +77,7 @@ class ExtadmController extends AdminController
 			'smd' => $controller->getJsonSmd( $jsonUrl ),
 			'urlTemplate' => urldecode( $adminUrl ),
 			'uploaddir' => $context->getConfig()->get( 'flow/uploaddir', '/.' ),
-			'version' => $this->getVersion(),
+			'version' => $aimeos->getVersion(),
 			'activeTab' => $tab,
 		);
 
@@ -141,28 +141,8 @@ class ExtadmController extends AdminController
 	 */
 	protected function getJsonLanguages( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		$paths = $this->aimeos->get()->getI18nPaths();
-		$langs = array();
-
-		if( !isset( $paths['admin'] ) ) {
-			return json_encode( array() );
-		}
-
-		foreach( $paths['admin'] as $path )
-		{
-			$iter = new \DirectoryIterator( $path );
-
-			foreach( $iter as $file )
-			{
-				$name = $file->getFilename();
-
-				if( preg_match('/^[a-z]{2,3}(_[A-Z]{2})?$/', $name ) ) {
-					$langs[$name] = null;
-				}
-			}
-		}
-
-		return json_encode( $this->getLanguages( $context, array_keys( $langs ) ) );
+		$langs = $this->aimeos->get()->getI18nList();
+		return json_encode( $this->getLanguages( $context, $langs ) );
 	}
 
 

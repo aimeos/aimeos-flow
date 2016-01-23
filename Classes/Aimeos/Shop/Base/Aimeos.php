@@ -51,6 +51,27 @@ class Aimeos
 
 
 	/**
+	 * Returns the version of the Aimeos package
+	 *
+	 * @return string Version string
+	 */
+	protected function getVersion()
+	{
+		if( ( $content = @file_get_contents( FLOW_PATH_ROOT . 'composer.lock' ) ) !== false
+				&& ( $content = json_decode( $content, true ) ) !== null && isset( $content['packages'] )
+		) {
+			foreach( (array) $content['packages'] as $item )
+			{
+				if( $item['name'] === 'aimeos/aimeos-flow' ) {
+					return $item['version'];
+				}
+			}
+		}
+		return '';
+	}
+
+
+	/**
 	 * Inject the settings
 	 *
 	 * @param array $settings
