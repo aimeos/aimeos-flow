@@ -1,4 +1,15 @@
 -
+  name: 'Admin index page'
+  uriPattern: 'admin'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Admin'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+
+-
   name: 'ExtJS admin index page'
   uriPattern: 'extadm(/{lang}/{tab})'
   defaults:
