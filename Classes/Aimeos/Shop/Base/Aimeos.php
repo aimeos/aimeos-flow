@@ -55,7 +55,7 @@ class Aimeos
 	 *
 	 * @return string Version string
 	 */
-	protected function getVersion()
+	public function getVersion()
 	{
 		if( ( $content = @file_get_contents( FLOW_PATH_ROOT . 'composer.lock' ) ) !== false
 				&& ( $content = json_decode( $content, true ) ) !== null && isset( $content['packages'] )

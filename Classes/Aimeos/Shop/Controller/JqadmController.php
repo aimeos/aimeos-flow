@@ -157,7 +157,7 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getHtml( $content )
 	{
-		$version = $this->aimeos->get()->getVersion();
+		$version = $this->aimeos->getVersion();
 		$content = str_replace( ['{type}', '{version}'], ['Flow', $version], $content );
 
 		$this->view->assign( 'content', $content );

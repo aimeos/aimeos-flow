@@ -27,6 +27,15 @@ class AimeosTest extends \TYPO3\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
+	public function getVersion()
+	{
+		$this->assertInternalType( 'string', $this->object->getVersion() );
+	}
+
+
+	/**
+	 * @test
+	 */
 	public function injectSettings()
 	{
 		$this->object->injectSettings( array( 'test' ) );
