@@ -120,7 +120,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			{
 				$jsbAbsPath = $base . '/' . $path;
 				$jsb2 = new \Aimeos\MW\Jsb2\Standard( $jsbAbsPath, dirname( $jsbAbsPath ) );
-				$jsFiles = array_merge( $jsFiles, $jsb2->getUrls( 'js', '' ) );
+				$jsFiles = array_merge( $jsFiles, $jsb2->getFiles( 'js' ) );
 			}
 		}
 

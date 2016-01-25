@@ -141,6 +141,9 @@ Aimeos:
         url:
           config:
             absoluteUri: true
+          options:
+            config:
+              absoluteUri: true
 
 
     i18n:
