@@ -67,7 +67,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		$params = array( 'site' => '{site}', 'lang' => '{lang}', 'tab' => '{tab}' );
 		$adminUrl = $this->uriBuilder->uriFor( 'index', $params, 'admin' );
-		$jsonUrl = $this->uriBuilder->uriFor( 'do' );
+		$jsonUrl = $this->uriBuilder->uriFor( 'do', array( 'site' => 'default' ) );
 
 		$vars = array(
 			'lang' => $lang,
