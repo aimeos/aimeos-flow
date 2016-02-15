@@ -48,9 +48,7 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$httpRequest = $this->getMockBuilder( '\TYPO3\Flow\Http\Request' )
-			->disableOriginalConstructor()
-			->getMock();
+		$httpRequest = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
 
 		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
