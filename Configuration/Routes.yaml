@@ -194,6 +194,16 @@
   appendExceedingArguments: true
 
 -
+  name: 'Account download page'
+  uriPattern: 'myaccount/download/{dl_id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'download'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
   name: 'Account favorite products'
   uriPattern: 'myaccount/favorite(/{fav_action}/{fav_id}/{d_name})'
   defaults:
