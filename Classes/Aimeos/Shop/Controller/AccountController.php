@@ -100,21 +100,21 @@ class AccountController extends AbstractController
 	/**
 	 * Context object injector
 	 *
-	 * @param \Aimeos\Shop\Base\Context $context
+	 * @param \Aimeos\Shop\Base\Context $contextBase
 	 */
-	public function injectContext( \Aimeos\Shop\Base\Context $context )
+	public function injectContextBase( \Aimeos\Shop\Base\Context $contextBase )
 	{
-		$this->contextBase = $context;
+		$this->contextBase = $contextBase;
 	}
 
 
 	/**
 	 * View object injector
 	 *
-	 * @param \Aimeos\Shop\Base\View $view
+	 * @param \Aimeos\Shop\Base\View $viewBase
 	 */
-	public function injectView( \Aimeos\Shop\Base\View $view )
+	public function injectViewBase( \Aimeos\Shop\Base\View $viewBase )
 	{
-		$this->viewBase = $view;
+		$this->viewBase = $viewBase;
 	}
 }
