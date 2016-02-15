@@ -71,10 +71,10 @@ class AccountController extends AbstractController
 	 */
 	public function downloadAction()
 	{
-		$context = $this->context->get();
+		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
 
-		$view = $this->viewContainer->create( $context->getConfig(), array(), $langid );
+		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, array(), $this->request, $langid );
 		$context->setView( $view );
 
 		$client = \Aimeos\Client\Html\Factory::createClient( $context, array(), 'account/download' );
