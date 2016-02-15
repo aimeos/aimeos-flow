@@ -20,16 +20,7 @@ use TYPO3\Flow\Annotations as Flow;
  */
 class AccountController extends AbstractController
 {
-	/**
-	 * @var \Aimeos\Shop\Base\Context
-	 * @Flow\Inject
-	 */
 	protected $contextBase;
-
-	/**
-	 * @var \Aimeos\Shop\Base\View
-	 * @Flow\Inject
-	 */
 	protected $viewBase;
 
 
@@ -87,7 +78,7 @@ class AccountController extends AbstractController
 		$context = $this->contextBase->get();
 		$langid = $context->getLocale()->getLanguageId();
 
-		$view = $this->viewContainer->create( $context->getConfig(), array(), $langid );
+		$view = $this->viewBase->create( $context->getConfig(), array(), $langid );
 		$context->setView( $view );
 
 		$client = \Aimeos\Client\Html\Factory::createClient( $context, array(), 'account/download' );
@@ -103,5 +94,27 @@ class AccountController extends AbstractController
 		}
 
 		return $flowResponse;
+	}
+
+
+	/**
+	 * Context object injector
+	 *
+	 * @param \Aimeos\Shop\Base\Context $context
+	 */
+	public function injectContext( \Aimeos\Shop\Base\Context $context )
+	{
+		$this->contextBase = $context;
+	}
+
+
+	/**
+	 * View object injector
+	 *
+	 * @param \Aimeos\Shop\Base\View $view
+	 */
+	public function injectView( \Aimeos\Shop\Base\View $view )
+	{
+		$this->viewBase = $view;
 	}
 }
