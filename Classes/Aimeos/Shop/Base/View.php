@@ -80,10 +80,20 @@ class View
 
 		if( $request !== null )
 		{
+			$req = $request->getHttpRequest();
+
 			$files = ( is_array( $_FILES ) ? $_FILES : array() );
-			$helper = new \Aimeos\MW\View\Helper\Request\Flow( $view, $request->getHttpRequest(), $files );
+			$query = ( is_array( $_GET ) ? $_GET : array() );
+			$post = ( is_array( $_POST ) ? $_POST : array() );
+			$cookie = ( is_array( $_COOKIE ) ? $_COOKIE : array() );
+			$server = ( is_array( $_SERVER ) ? $_SERVER : array() );
+
+			$helper = new \Aimeos\MW\View\Helper\Request\Flow( $view, $req, $files, $query, $post, $cookie, $server );
 			$view->addHelper( 'request', $helper );
 		}
+
+		$helper = new \Aimeos\MW\View\Helper\Response\Flow( $view );
+		$view->addHelper( 'response', $helper );
 
 		return $view;
 	}

@@ -62,4 +62,33 @@ class AccountController extends AbstractController
 	{
 		$this->view->assignMultiple( $this->getSections( 'account-index' ) );
 	}
+
+
+	/**
+	 * Content for MyAccount download page
+	 *
+	 * @Flow\Session(autoStart = TRUE)
+	 */
+	public function downloadAction()
+	{
+		$context = app( '\Aimeos\Shop\Base\Context' )->get();
+		$langid = $context->getLocale()->getLanguageId();
+
+		$view = app( '\Aimeos\Shop\Base\View' )->create( $context->getConfig(), array(), $langid );
+		$context->setView( $view );
+
+		$client = \Aimeos\Client\Html\Factory::createClient( $context, array(), 'account/download' );
+		$client->setView( $view );
+		$client->process();
+
+		$response = $view->response();
+		$flowResponse = \TYPO3\Flow\Http\Response::createFromRaw( (string) $response->getBody() );
+		$flowResponse->setStatus( $response->getStatusCode() );
+
+		foreach( $response->getHeaders() as $key => $value ) {
+			$flowResponse->setHeader( $key, $value );
+		}
+
+		return $flowResponse;
+	}
 }

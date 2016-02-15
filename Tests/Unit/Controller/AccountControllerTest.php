@@ -45,6 +45,17 @@ class AccountControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
+	public function downloadAction()
+	{
+		$response = $this->object->downloadAction();
+
+		$this->assertEquals( 401, $response->getStatus() );
+	}
+
+
+	/**
+	 * @test
+	 */
 	public function favoriteComponentAction()
 	{
 		$this->object->expects( $this->once() )->method( 'getOutput' )
