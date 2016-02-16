@@ -82,13 +82,12 @@ class AccountController extends AbstractController
 		$client->process();
 
 		$response = $view->response();
-		$flowResponse = \TYPO3\Flow\Http\Response::createFromRaw( (string) $response->getBody() );
-		$flowResponse->setStatus( $response->getStatusCode() );
+		$this->response->setStatus( $response->getStatusCode() );
 
 		foreach( $response->getHeaders() as $key => $value ) {
-			$flowResponse->setHeader( $key, $value );
+			$this->response->setHeader( $key, $value );
 		}
 
-		return $flowResponse;
+		return $this->response;
 	}
 }
