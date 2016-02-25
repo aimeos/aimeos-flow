@@ -217,7 +217,6 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 
 		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/templates' );
-		$tmplPaths = array_merge( $tmplPaths, $aimeos->getCustomPaths( 'client/html/templates' ) );
 
 		$langManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context )->getSubManager( 'language' );
 		$langids = array_keys( $langManager->searchItems( $langManager->createSearch( true ) ) );
