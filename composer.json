@@ -18,7 +18,7 @@
         "typo3/swiftmailer": "~5.0",
         "aimeos/aimeos-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
-        "aimeos/ai-zend2-i18n": "dev-master",
+        "aimeos/ai-gettext": "dev-master",
         "aimeos/ai-flow": "dev-master"
     },
     "autoload": {
