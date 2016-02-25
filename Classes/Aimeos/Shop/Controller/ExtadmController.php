@@ -57,7 +57,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 				$jsbAbsPath = $base . '/' . $path;
 
 				if( !is_file( $jsbAbsPath ) ) {
-					throw new Exception( sprintf( 'JSB2 file "%1$s" not found', $jsbAbsPath ) );
+					throw new \Exception( sprintf( 'JSB2 file "%1$s" not found', $jsbAbsPath ) );
 				}
 
 				$jsb2 = new \Aimeos\MW\Jsb2\Standard( $jsbAbsPath, dirname( $path ) );
@@ -100,7 +100,11 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );
 
-		return $controller->process( $this->request->getArguments(), 'php://input' );
+		if( ( $content = file_get_contents( 'php://input' ) ) === false ) {
+			throw new \Exception( 'Unable to get request content' );
+		}
+
+		return $controller->process( $this->request->getArguments(), $content );
 	}
 
 
@@ -176,7 +180,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getJsonClientI18n( array $i18nPaths, $lang )
 	{
-		$i18n = new \Aimeos\MW\Translation\Zend2( $i18nPaths, 'gettext', $lang, array( 'disableNotices' => true ) );
+		$i18n = new \Aimeos\MW\Translation\Gettext( $i18nPaths, $lang );
 
 		$content = array(
 			'admin' => $i18n->getAll( 'admin' ),
