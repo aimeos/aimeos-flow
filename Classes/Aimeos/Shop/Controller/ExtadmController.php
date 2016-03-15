@@ -32,6 +32,12 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected $context;
 
+	/**
+	 * @var \Aimeos\Shop\Base\View
+	 * @Flow\Inject
+	 */
+	protected $viewcontainer;
+
 
 	/**
 	 * Creates the initial HTML view for the admin interface.
@@ -96,6 +102,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	{
 		$context = $this->context->get( $this->request );
 		$context = $this->setLocale( $context );
+		$context->setView( $this->viewcontainer->create( $context->getConfig(), $this->uriBuilder, array() ) );
 		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
 
 		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );
