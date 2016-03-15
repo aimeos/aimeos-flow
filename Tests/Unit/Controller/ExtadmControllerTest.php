@@ -119,17 +119,18 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$context->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ctx ) );
-
 		$this->inject( $this->object, 'context', $context );
 
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
+		$view = new \Aimeos\Shop\Base\View();
+		$this->inject( $this->object, 'viewcontainer', $view );
+
 
 		$this->request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array()  ) );
-
 		$this->inject( $this->object, 'request', $this->request );
 
 
