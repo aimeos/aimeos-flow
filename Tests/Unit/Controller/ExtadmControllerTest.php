@@ -26,7 +26,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'view', $this->view );
 
 		$this->request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments' ) )
+			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -137,6 +137,10 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array()  ) );
 		$this->inject( $this->object, 'request', $this->request );
+
+		$request = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
+		$this->request->expects( $this->once() )->method( 'getHttpRequest' )
+			->will( $this->returnValue( $request ) );
 
 
 		$this->assertStringStartsWith( '{', $this->object->doAction() );
