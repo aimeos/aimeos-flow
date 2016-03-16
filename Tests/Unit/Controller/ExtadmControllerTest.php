@@ -128,6 +128,11 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$view = new \Aimeos\Shop\Base\View();
 		$this->inject( $this->object, 'viewcontainer', $view );
 
+		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
+			->setMethods( array( 'uriFor' ) )
+			->disableOriginalConstructor()
+			->getMock();
+		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
 		$this->request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array()  ) );
