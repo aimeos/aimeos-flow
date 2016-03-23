@@ -183,7 +183,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $sitecode Unique site code
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $lang Language code
-	 * @return \Aimeos\MShop\Context\Item\Iface Context item
+	 * @return \Aimeos\Admin\JsonAdm\Iface JsonAdm client
 	 */
 	protected function createClient( $sitecode, $resource, $lang )
 	{
