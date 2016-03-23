@@ -60,8 +60,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->delete( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->delete( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -82,8 +82,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->get( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->get( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -104,8 +104,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->patch( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->patch( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -126,8 +126,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->post( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->post( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -148,8 +148,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->put( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->put( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -169,8 +169,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$header = $request->getHeaders()->getAll();
 		$status = 500;
 
-		$cntl = $this->createController( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $cntl->options( $request->getContent(), $header, $status );
+		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$result = $client->options( $request->getContent(), $header, $status );
 
 		$this->setResponse( $status, $header );
 		return $result;
@@ -185,10 +185,10 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $lang Language code
 	 * @return \Aimeos\MShop\Context\Item\Iface Context item
 	 */
-	protected function createController( $sitecode, $resource, $lang )
+	protected function createClient( $sitecode, $resource, $lang )
 	{
 		$lang = ( $lang ? $lang : 'en' );
-		$templatePaths = $this->aimeos->get()->getCustomPaths( 'controller/jsonadm/templates' );
+		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jsonadm/templates' );
 
 		$context = $this->context->get();
 		$context = $this->setLocale( $context, $sitecode, $lang );
@@ -196,7 +196,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, $templatePaths, $this->request, $lang );
 		$context->setView( $view );
 
-		return \Aimeos\Controller\JsonAdm\Factory::createController( $context, $templatePaths, $resource );
+		return \Aimeos\Admin\JsonAdm\Factory::createClient( $context, $templatePaths, $resource );
 	}
 
 

@@ -58,6 +58,13 @@ Aimeos:
         url:
           controller: Extadm
           action: index
+      jsonadm:
+        url:
+          config:
+            absoluteUri: true
+          options:
+            config:
+              absoluteUri: true
 
     client:
       html:
@@ -140,15 +147,6 @@ Aimeos:
             text:
               default:
                 downloaddir: /Uploads
-
-      jsonadm:
-        url:
-          config:
-            absoluteUri: true
-          options:
-            config:
-              absoluteUri: true
-
 
     i18n:
 
