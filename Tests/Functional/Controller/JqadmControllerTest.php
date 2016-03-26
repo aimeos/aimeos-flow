@@ -5,6 +5,24 @@ namespace Aimeos\Shop\Tests\Functional\Controller;
 
 class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
 {
+	public function testFileActionCss()
+	{
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/file/css', 'GET' );
+
+		$this->assertEquals( 200, $response->getStatusCode() );
+		$this->assertContains( '.aimeos', $response->getContent() );
+	}
+
+
+	public function testFileActionJs()
+	{
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/file/js', 'GET' );
+
+		$this->assertEquals( 200, $response->getStatusCode() );
+		$this->assertContains( 'Aimeos = {', $response->getContent() );
+	}
+
+
 	public function testCopyAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product/0', 'GET' );

@@ -42,6 +42,14 @@
 
 
 -
+  name: 'JQAdm file request'
+  uriPattern: 'jqadm/file/{type}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'file'
+
+-
   name: 'JQAdm copy'
   uriPattern: 'jqadm/copy/{resource}/{id}'
   defaults:
