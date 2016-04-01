@@ -94,6 +94,9 @@ class Context
 			$fsm = new \Aimeos\MW\Filesystem\Manager\Standard( $config );
 			$context->setFilesystemManager( $fsm );
 
+			$mq = new \Aimeos\MW\MQueue\Manager\Standard( $config );
+			$context->setMessageQueueManager( $mq );
+
 			$mail = new \Aimeos\MW\Mail\Swift( $this->mailer );
 			$context->setMail( $mail );
 
