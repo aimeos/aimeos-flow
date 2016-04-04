@@ -210,7 +210,7 @@ class Context
 			$lang = ( isset( $params['locale'] ) ? $params['locale'] : '' );
 			$currency = ( isset( $params['currency'] ) ? $params['currency'] : '' );
 
-			$disableSites = (bool) ( isset( $this->settings['flow']['disableSites'] ) ? $this->settings['flow']['disableSites'] : false );
+			$disableSites = (bool) ( isset( $this->settings['flow']['disableSites'] ) ? $this->settings['flow']['disableSites'] : true );
 
 			$localeManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context );
 			$this->locale = $localeManager->bootstrap( $site, $lang, $currency, $disableSites );

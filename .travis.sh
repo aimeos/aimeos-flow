@@ -19,6 +19,8 @@ mv ../aimeos-flow Packages/Application/Aimeos.Shop
 composer dump-autoload
 
 mysql -e 'create database aimeos;'
-printf "TYPO3:\n  Flow:\n    persistence:\n      backendOptions:\n        dbname: 'aimeos'\n        user: 'root'" > Configuration/Testing/Settings.yaml
+
+printf "TYPO3:\n  Flow:\n    persistence:\n      backendOptions:\n        dbname: 'aimeos'\n        user: 'root'\n" > Configuration/Testing/Settings.yaml
+printf "Aimeos:\n  Shop:\n    flow:\n      disableSites: 0\n" >> Configuration/Testing/Settings.yaml
 
 printf "\n-\n  name: 'Aimeos'\n  uriPattern: '{site}/<AimeosShopRoutes>'\n  subRoutes:\n    'AimeosShopRoutes':\n      package: 'Aimeos.Shop'" > Configuration/Routes.yaml
