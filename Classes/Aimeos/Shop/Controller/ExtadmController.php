@@ -74,6 +74,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$params = array( 'site' => '{site}', 'lang' => '{lang}', 'tab' => '{tab}' );
 		$adminUrl = $this->uriBuilder->uriFor( 'index', $params, 'admin' );
 		$jsonUrl = $this->uriBuilder->uriFor( 'do', array( 'site' => 'default' ) );
+		$jqadmUrl = $this->uriBuilder->uriFor( 'search', array( 'site' => $site, 'resource' => 'product' ), 'Jqadm' );
 
 		$vars = array(
 			'lang' => $lang,
@@ -85,9 +86,10 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			'searchSchemas' => $controller->getJsonSearchSchemas(),
 			'itemSchemas' => $controller->getJsonItemSchemas(),
 			'smd' => $controller->getJsonSmd( $jsonUrl ),
-			'urlTemplate' => urldecode( $adminUrl ),
 			'uploaddir' => $context->getConfig()->get( 'flow/uploaddir', '/.' ),
 			'version' => $this->aimeos->getVersion(),
+			'urlTemplate' => urldecode( $adminUrl ),
+			'jqadmurl' => $jqadmUrl,
 			'activeTab' => $tab,
 		);
 
@@ -143,8 +145,6 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		}
 
 		$this->response->setHeader( 'Content-Type', 'application/javascript' );
-
-		return $this->response;
 	}
 
 
