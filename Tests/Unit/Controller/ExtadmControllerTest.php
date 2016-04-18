@@ -78,7 +78,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
 
-		$uriBuilder->expects( $this->exactly( 2 ) )->method( 'uriFor' )
+		$uriBuilder->expects( $this->exactly( 3 ) )->method( 'uriFor' )
 			->will( $this->returnValue( '/test/uri' ) );
 
 		$context->expects( $this->once() )->method( 'get' )
@@ -163,7 +163,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'response', $response );
 
 
-		$this->assertInstanceOf( '\TYPO3\Flow\Mvc\ResponseInterface', $this->object->fileAction() );
+		$this->object->fileAction();
 	}
 
 
