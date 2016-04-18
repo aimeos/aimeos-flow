@@ -16,10 +16,10 @@
     "require": {
         "typo3/flow": "~2.0||~3.0",
         "typo3/swiftmailer": "~5.0",
-        "aimeos/aimeos-core": "dev-master",
-        "aimeos/ai-swiftmailer": "dev-master",
-        "aimeos/ai-gettext": "dev-master",
-        "aimeos/ai-flow": "dev-master"
+        "aimeos/aimeos-core": "~2016.04",
+        "aimeos/ai-swiftmailer": "~2016.04",
+        "aimeos/ai-gettext": "~2016.04",
+        "aimeos/ai-flow": "~2016.04"
     },
     "autoload": {
         "psr-4": {
