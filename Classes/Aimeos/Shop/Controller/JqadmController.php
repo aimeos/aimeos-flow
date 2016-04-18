@@ -181,7 +181,7 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$lang = ( $this->request->hasArgument( 'lang' ) ? $this->request->getArgument( 'lang' ) : 'en' );
 		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jqadm/templates' );
 
-		$context = $this->context->get( $this->request );
+		$context = $this->context->get();
 		$context = $this->setLocale( $context, $sitecode, $lang );
 
 		$config = $context->getConfig();
