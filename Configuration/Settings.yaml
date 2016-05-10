@@ -92,17 +92,9 @@ Aimeos:
                       action: privacy
 
     controller:
-      extjs:
-        attribute:
-          export:
-            text:
-              default:
-                downloaddir: /Uploads
-        catalog:
-          export:
-                downloaddir: /Uploads
+      common:
         media:
-          default:
+          standard:
             # Mime icon related settings
             mimeicon:
               # Directory where icons for the mime types stored. Must be relative to the path in "basedir"
@@ -145,6 +137,15 @@ Aimeos:
               # doesn't restrict the size of the image if it's scaled due to a value
               # in the "maxwidth" parameter
               # maxheight: 280
+      extjs:
+        attribute:
+          export:
+            text:
+              default:
+                downloaddir: /Uploads
+        catalog:
+          export:
+                downloaddir: /Uploads
         product:
           export:
             text:
