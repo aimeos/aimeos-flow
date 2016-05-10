@@ -33,7 +33,7 @@ a nice setup page for this when opening the `/setup` URL of your installation.
 For TYPO3 Flow, this is done in your `Configuration/Settings.yaml` file and must
 at least include these settings:
 
-```
+```yaml
 TYPO3:
   Flow:
     persistence:
@@ -82,7 +82,7 @@ For **TYPO3 Flow only** you need to import the routes from the Aimeos web shop
 package into your `Configuration/Routes.yaml` nice looking URLs. Insert the lines
 below to the **beginning** of the Routes.yaml file:
 
-```
+```yaml
 -
   name: 'Aimeos'
   uriPattern: 'shop/<AimeosShopRoutes>'
@@ -101,7 +101,7 @@ Neos, one additional step is needed:
 
 Add the following **PrivilegeTarget** to `Configuration/Policy.yaml`
 
-```
+```yaml
 privilegeTargets:
   TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
     'MyShop:AllActions':
