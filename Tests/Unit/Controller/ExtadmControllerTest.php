@@ -173,6 +173,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	public function getJsonLanguages()
 	{
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$aimeos->injectSettings( array( 'flow' => array( 'extdir' => FLOW_PATH_PACKAGES . 'Extensions' ) ) );
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
 		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
@@ -216,8 +217,8 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	public function getJsonClientI18n()
 	{
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$aimeos->injectSettings( array( 'flow' => array( 'extdir' => FLOW_PATH_PACKAGES . 'Extensions' ) ) );
 		$i18nPaths = $aimeos->get()->getI18nPaths();
-
 
 		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
 		$method = $class->getMethod( 'getJsonClientI18n' );
