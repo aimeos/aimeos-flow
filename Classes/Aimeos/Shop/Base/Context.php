@@ -88,7 +88,7 @@ class Context
 			$config = $this->getConfig();
 			$context->setConfig( $config );
 
-			$dbm = new \Aimeos\MW\DB\Manager\PDO( $config );
+			$dbm = new \Aimeos\MW\DB\Manager\DBAL( $config );
 			$context->setDatabaseManager( $dbm );
 
 			$fsm = new \Aimeos\MW\Filesystem\Manager\Standard( $config );
