@@ -242,11 +242,14 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 
 		$siteManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Site\Standard' )
-			->setMethods( array( 'searchItems' ) )
+			->setMethods( array( 'createSearch', 'searchItems' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$items = array( new \Aimeos\MShop\Locale\Item\Site\Standard( array( 'id' => '1', 'label' => 'default' ) ) );
+
+		$siteManager->expects( $this->once() )->method( 'createSearch' )
+			->will( $this->returnValue( new \Aimeos\MW\Criteria\PHP() ) );
 
 		$siteManager->expects( $this->once() )->method( 'searchItems' )
 			->will( $this->returnValue( $items ) );
