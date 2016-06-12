@@ -147,9 +147,11 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 * @param string $site Site for updating database entries
 	 * @param string $tplsite Template site for creating or updating database entries
 	 * @param array $option Optional setup configuration, name and value are separated by ":" like "setup/default/demo:1".
+	 * @param string|null $task Setup task name to execute
+	 * @param string $action Setup task action, e.g. "migrate", "rollback" or "clean"
 	 * @return void
 	 */
-	public function setupCommand( $site = 'default', $tplsite = 'default', array $option = array() )
+	public function setupCommand( $site = 'default', $tplsite = 'default', array $option = array(), $task = null, $action = 'migrate' )
 	{
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
 		$context->setEditor( 'aimeos:setup' );
@@ -174,7 +176,20 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
 
-		$manager->run( 'mysql' );
+		switch( $action )
+		{
+			case 'migrate':
+				$manager->migrate( $task );
+				break;
+			case 'rollback':
+				$manager->rollback( $task );
+				break;
+			case 'clean':
+				$manager->clean( $task );
+				break;
+			default:
+				throw new \Exception( sprintf( 'Invalid setup action "%1$s"', $action ) );
+		}
 	}
 
 
