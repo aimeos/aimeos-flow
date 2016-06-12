@@ -96,6 +96,9 @@ class View
 		$helper = new \Aimeos\MW\View\Helper\Response\Flow( $view );
 		$view->addHelper( 'response', $helper );
 
+		$helper = new \Aimeos\MW\View\Helper\Access\All( $view );
+		$view->addHelper( 'access', $helper );
+
 		return $view;
 	}
 
