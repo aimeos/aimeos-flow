@@ -8,7 +8,7 @@ php:
   - 5.5
 
 before_script:
-  - git clone https://github.com/neos/flow-development-distribution.git -b 3.0 ../flow
+  - git clone https://github.com/neos/flow-development-distribution.git -b 3.2 ../flow
   - cd ../flow
   - composer self-update
   - bash ../aimeos-flow/.travis.sh
