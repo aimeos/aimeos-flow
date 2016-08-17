@@ -19,7 +19,7 @@
 
 /**
  * Aimeos related Javascript code
- * 
+ *
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Metaways Infosystems GmbH, 2012
  * @copyright Aimeos (aimeos.org), 2014
@@ -485,7 +485,6 @@ AimeosCatalog = {
 			var prodDeps = $(event.delegateTarget).data("proddeps") || {}; // {"<prodid>":["attrid",...],...}
 			var attrMap = {}, attrList = [];
 
-
 			if( typeof index === "undefined" ) {
 				throw new Error( "HTML select node has no attribute data-index" );
 			}
@@ -509,13 +508,13 @@ AimeosCatalog = {
 			}
 
 
-			$(".select-list", event.delegateTarget).each(function(i, select) {
+			$(".select-list", event.delegateTarget).each(function(idx, select) {
 
 				if( event.currentTarget == select ) {
 					return;
 				}
 
-				$(this).find(".select-option").each(function(i, option) {
+				$(".select-option", this).each(function(i, option) {
 
 					var opt = $(option);
 					var val = opt.val();
@@ -535,8 +534,10 @@ AimeosCatalog = {
 						delete by[index];
 					}
 
-					if( disabled > 0 ) {
+					if( idx !== 0 && disabled > 0 ) {
 						opt.attr("disabled", "disabled");
+						opt.prop("selected", false);
+						opt.prop("checked", false);
 					} else {
 						opt.removeAttr("disabled");
 					}
@@ -641,6 +642,28 @@ AimeosCatalog = {
 
 
 	/**
+	 * Shows the images associated to the variant attributes
+	 */
+	setupVariantImages: function() {
+
+		$(".catalog-detail-basket-selection, .catalog-list-items .items-selection").on("change", ".select-list", function(event) {
+
+			var elem = $(this);
+			var type = elem.data("type");
+			var value = elem.find(".select-option:checked").val();
+
+			elem.parents(".product").find(".image-single .item").each( function(ev) {
+
+				if( $(this).data("variant-" + type) == value ) {
+					window.location.hash = $(this).attr("id");
+					return false;
+				}
+			});
+		});
+	},
+
+
+	/**
 	 * Adds products to the basket without page reload
 	 */
 	setupBasketAdd: function(data) {
@@ -664,6 +687,7 @@ AimeosCatalog = {
 
 		this.setupSelectionDependencies();
 		this.setupSelectionContent();
+		this.setupVariantImages();
 		this.setupVariantCheck();
 		this.setupBasketAdd();
 	}
@@ -685,25 +709,21 @@ AimeosCatalogFilter = {
 		aimeosInputComplete.autocomplete({
 			minLength : 3,
 			delay : 200,
-			source : function(req, add) {
+			source : function(req, resp) {
 				var nameTerm = {};
 				nameTerm[aimeosInputComplete.attr("name")] = req.term;
 
 				$.getJSON(aimeosInputComplete.data("url"), nameTerm, function(data) {
-					var suggestions = [];
-
-					$.each(data, function(idx, val) {
-						suggestions.push(val.name);
-					});
-
-					add(suggestions);
+					resp(data);
 				});
 			},
 			select : function(ev, ui) {
-				aimeosInputComplete.val(ui.item.value);
-				$(ev.target).parents(".catalog-filter form").submit();
+				aimeosInputComplete.val(ui.item.label);
+				return false;
 			}
-		});
+		}).autocomplete("instance")._renderItem = function(ul, item) {
+			return $(item.html).appendTo(ul);
+		};
 	},
 
 
@@ -806,6 +826,26 @@ AimeosCatalogFilter = {
 
 
 	/**
+	 * Registers events for the catalog filter search input reset
+	 */
+	setupSearchTextReset: function() {
+
+		$(".catalog-filter-search").on("keyup", ".value", function(ev) {
+			if ($(this).val() !== "") {
+				$(".reset .symbol", ev.delegateTarget).css("visibility", "visible");
+			} else {
+				$(".reset .symbol", ev.delegateTarget).css("visibility", "hidden");
+			}
+		});
+
+		$(".catalog-filter-search").on("click", ".reset", function(ev) {
+			$(".symbol", this).css("visibility", "hidden");
+			$(".value", ev.delegateTarget).focus();
+		});
+	},
+
+
+	/**
 	 * Initialize the catalog filter actions
 	 */
 	init: function() {
@@ -818,6 +858,7 @@ AimeosCatalogFilter = {
 		this.setupAttributeItemSubmit();
 
 		this.setupFormChecks();
+		this.setupSearchTextReset();
 		this.setupSearchAutocompletion();
 	}
 };
@@ -978,6 +1019,21 @@ AimeosCheckoutStandard = {
 
 
 	/**
+	 * Shows date picker for birthday field
+	 */
+	setupBirthdayPicker: function() {
+
+		$( ".checkout-standard-address .form-list input.birthday" ).datepicker({
+			minDate: '-100Y', maxDate: '0Y',
+			yearRange: 'c-100:c-0',
+			dateFormat: 'yy-mm-dd',
+			changeMonth: true,
+			changeYear: true
+		});
+	},
+
+
+	/**
 	 * Shows only form fields of selected service option
 	 */
 	setupServiceForms: function() {
@@ -1072,6 +1128,7 @@ AimeosCheckoutStandard = {
 
 		this.setupSalutationCompany();
 		this.setupCountryState();
+		this.setupBirthdayPicker();
 
 		this.setupMandatoryCheck();
 		this.setupPaymentRedirect();

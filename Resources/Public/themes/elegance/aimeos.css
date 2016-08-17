@@ -1,6 +1,6 @@
 /*
  * Aimeos elegance template CSS
- * 
+ *
  * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
  * @copyright Aimeos (aimeos.org), 2014-2016
  */
@@ -33,6 +33,10 @@
 
 .aimeos h2 {
 	font-size: 110%;
+}
+
+.aimeos input {
+	border: solid 1px #D0D0D0;
 }
 
 .aimeos .standardbutton {
@@ -77,7 +81,7 @@
 .aimeos .standardbutton::-moz-focus-inner,
 .aimeos .minibutton::-moz-focus-inner {
 	padding: 0;
-	border: 0; 
+	border: 0;
 }
 
 .aimeos .btn-action {
@@ -94,7 +98,7 @@
 	background-color: #AAA;
 	box-shadow: none;
 	cursor: not-allowed;
-	
+
 }
 
 .aimeos .btn-disabled:hover {
@@ -390,14 +394,46 @@
 	padding: 0 1em;
 	height: 1.525em;
 	min-width: 5em;
-	width: 80%;
+	width: 70%;
+}
+
+.catalog-filter-search .value:focus,
+.catalog-filter-search .reset:focus {
+	outline-style: none;
+}
+
+.catalog-filter-search .reset {
+	height: 1.525em;
+	vertical-align: top;
+	background-color: #FFFFFF;
+	border-style: none;
+	border: none;
+	width: 10%;
+}
+
+.catalog-filter-search .reset .symbol {
+	vertical-align: top;
+	font-weight: bold;
+	font-size: 105%;
+	color: #AAAAAA;
+}
+
+.catalog-filter-search .value[value=''] + .reset .symbol {
+	visibility: hidden;
+}
+
+.catalog-filter-search .reset .symbol:before {
+	content: "⨯";
 }
 
 .catalog-filter-search button.standardbutton {
+	line-height: 1.525em;
+	vertical-align: top;
 	background: none;
 	box-shadow: none;
 	border-radius: 0;
 	border: 0 none;
+	height: 1.525em;
 	min-width: 2em;
 	padding: 0;
 	margin: 0;
@@ -463,6 +499,27 @@ html.no-js .catalog-filter-tree:hover > ul {
 .catalog-filter-tree a.cat-item:hover {
 	text-decoration: underline;
 	color: #555;
+}
+
+.catalog-filter-tree .category-selected {
+	display: none;
+	text-align: left;
+	clear: both;
+}
+
+.catalog-filter-tree .category-selected .selected-intro:after {
+	content: ":";
+}
+
+.catalog-filter-tree .category-selected .selected-category {
+	border: solid 1px #D0D0D0;
+	display: inline-block;
+	margin: 0.5em;
+	padding: 0 0.25em;
+}
+
+.catalog-filter-tree .category-selected .selected-category:after {
+	content: " ×";
 }
 
 /* Catalog filter, attribute section */
@@ -653,7 +710,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-stage-breadcrumb li {
 	display: inline;
 	white-space: nowrap;
-}	
+}
 
 .catalog-stage-breadcrumb li:after {
 	content: ' / ';
@@ -719,7 +776,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .catalog-list .product a {
-	display: inline-block; 
+	display: inline-block;
 	text-decoration: none;
 }
 
@@ -870,7 +927,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	text-align: center;
 	margin: 2em 0;
 }
-	
+
 .catalog-list-promo .header {
 	text-align: left;
 	border: 0 none;
@@ -899,6 +956,25 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-list-items .selection,
 .catalog-list-items .attribute {
 	clear: both;
+}
+
+/* Product list type switcher */
+.catalog-list-type {
+	text-align: right;
+}
+
+.catalog-list-type .type-item {
+	padding: 0.5em;
+}
+
+.catalog-list-type .type-grid:after {
+	font: normal normal normal 20px/1 FontAwesome;
+	content: "\f00a";
+}
+
+.catalog-list-type .type-list:after {
+	font: normal normal normal 20px/1 FontAwesome;
+	content: "\f00b";
 }
 
 
@@ -1009,7 +1085,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .catalog-detail-image .next-thumbs {
-	background: url(media/arrow_small_bottom.png) no-repeat; 
+	background: url(media/arrow_small_bottom.png) no-repeat;
 }
 
 .catalog-detail-image .prev-thumbs.disabled,
@@ -1123,14 +1199,16 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 }
 
 .catalog-detail-basket .price-item:first-of-type:after {
-	content: "+";
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f107";
 }
 
 .catalog-detail-basket .price-item.toggle-js:first-of-type:after {
-	content: "-";
+	font: normal normal normal 14px/1 FontAwesome;
+	content: "\f106";
 }
 
-.catalog-detail-basket .price-item:last-child:after {
+.catalog-detail-basket .price-item:last-of-type:after {
 	content: "";
 }
 
@@ -1190,10 +1268,49 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-list-items .addbasket input,
 .catalog-detail-basket .group input {
-	vertical-align: middle;
 	text-align: center;
-	height: 1.6em;
-	width: 5em;
+	vertical-align: middle;
+	border: 1px solid #B0A060;
+	line-height: normal;
+	font-size: 125%;
+	padding: 0.2em;
+	width: 4em;
+}
+
+/* services */
+.catalog-detail-basket .service-intro {
+	cursor: pointer;
+	color: #B0A060;
+}
+
+.catalog-detail-basket-service .service-list {
+	list-style: none;
+	color: #999;
+	padding: 0;
+}
+
+.catalog-detail-basket-service .service-name {
+	display: inline-block;
+	min-width: 8em;
+}
+
+.catalog-detail-basket-service .service-item .price-item {
+	display: inline-block;
+	text-align: right;
+	min-width: 4em;
+}
+
+.catalog-detail-basket-service .service-item .price-item .costs {
+	display: block;
+}
+
+.catalog-detail-basket-service .service-item .price-item .value,
+.catalog-detail-basket-service .service-item .price-item .taxrate {
+	display: none;
+}
+
+.catalog-detail-basket-service .service-item .service-short {
+	display: none;
 }
 
 /* product attributes */
@@ -1376,7 +1493,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 .catalog-detail-additional .properties td {
 	padding: 1%;
 	width: 48%;
-}	
+}
 
 .catalog-detail-additional .attributes .media-list {
 	display: inline-block;
@@ -1388,7 +1505,7 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .catalog-detail-additional .attributes img {
 	height: 1em;
-}	
+}
 
 /* Product detail, additional download section */
 .catalog-detail-additional .downloads .media-image {
@@ -1994,8 +2111,8 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	clear: both;
 }
 
-.checkout-standard-address .form-list .form-item { 
-	display: none; 
+.checkout-standard-address .form-list .form-item {
+	display: none;
 }
 
 .checkout-standard-address .form-list .mandatory,
@@ -2069,11 +2186,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
     margin: 1em;
 }
 
-.checkout-standard-delivery .button-group a.standardbutton,
-.checkout-standard-payment .button-group a.standardbutton {
-	margin: 0 1em 0 0;
-}
-
 /* Checkout summary */
 .checkout-standard-summary h3 {
 	display: inline-block;
@@ -2087,10 +2199,6 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 
 .checkout-standard-summary .note {
 	padding: 0 0 1em 0;
-}
-
-.checkout-standard-summary .button-group a.standardbutton {
-	margin: 0 1em 0 0;
 }
 
 .checkout-standard-summary .modify {
@@ -2121,8 +2229,9 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	padding: 0.5em 0;
 }
 
+.checkout-standard-summary-option label,
 .checkout-standard-summary-option input {
-	display: inline-block;
+	display: inline;
 }
 
 .checkout-standard-summary-option input[type="checkbox"] {
@@ -2278,6 +2387,184 @@ html.no-js .catalog-filter-attribute:hover .attribute-lists {
 	border: 1px solid #aaaaaa;
 	background: #ffffff url(media/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;
 	color: #222222;
+}
+
+
+/* Datepicker */
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	display: none;
+}
+.ui-datepicker .ui-datepicker-header {
+	position: relative;
+	padding: .2em 0;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	height: 1.8em;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+	top: 1px;
+}
+.ui-datepicker .ui-datepicker-prev {
+	left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+	right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+	left: 1px;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+	right: 1px;
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+}
+.ui-datepicker .ui-datepicker-title select {
+	font-size: 1em;
+	margin: 1px 0;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+	width: 45%;
+}
+.ui-datepicker table {
+	width: 100%;
+	font-size: .9em;
+	border-collapse: collapse;
+	margin: 0 0 .4em;
+}
+.ui-datepicker th {
+	padding: .7em .3em;
+	text-align: center;
+	font-weight: bold;
+	border: 0;
+}
+.ui-datepicker td {
+	border: 0;
+	padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-buttonpane {
+	background-image: none;
+	margin: .7em 0 0 0;
+	padding: 0 .2em;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+	float: right;
+	margin: .5em .2em .4em;
+	cursor: pointer;
+	padding: .2em .6em .3em .6em;
+	width: auto;
+	overflow: visible;
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+	width: auto;
+}
+.ui-datepicker-multi .ui-datepicker-group {
+	float: left;
+}
+.ui-datepicker-multi .ui-datepicker-group table {
+	width: 95%;
+	margin: 0 auto .4em;
+}
+.ui-datepicker-multi-2 .ui-datepicker-group {
+	width: 50%;
+}
+.ui-datepicker-multi-3 .ui-datepicker-group {
+	width: 33.3%;
+}
+.ui-datepicker-multi-4 .ui-datepicker-group {
+	width: 25%;
+}
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+	border-left-width: 0;
+}
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+	clear: left;
+}
+.ui-datepicker-row-break {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+	direction: rtl;
+}
+.ui-datepicker-rtl .ui-datepicker-prev {
+	right: 2px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next {
+	left: 2px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+	right: 1px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+	left: 1px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+	clear: right;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+	float: left;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+	float: right;
+}
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+	border-right-width: 0;
+	border-left-width: 1px;
+}
+
+/* Icons */
+.ui-datepicker .ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	left: .5em;
+	top: .3em;
 }
 
 
