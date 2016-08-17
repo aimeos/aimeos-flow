@@ -39,9 +39,9 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "cp -r ext/ai-admin-extadm/admin/extjs/resources/* Resources/Public/admin/extjs/resources/",
-            "cp -r ext/ai-admin-extadm/admin/extjs/lib/* Resources/Public/admin/extjs/lib/",
-            "cp -r ext/ai-client-html/client/html/themes/* Resources/Public/themes/"
+            "cp -r Resources/Extensions/ai-admin-extadm/admin/extjs/resources/* Resources/Public/admin/extjs/resources/",
+            "cp -r Resources/Extensions/ai-admin-extadm/admin/extjs/lib/* Resources/Public/admin/extjs/lib/",
+            "cp -r Resources/Extensions/ai-client-html/client/html/themes/* Resources/Public/themes/"
         ]
     }
 }
