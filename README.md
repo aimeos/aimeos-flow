@@ -136,7 +136,7 @@ and is available for free.
 
 * [Web site](https://aimeos.org/Flow)
 * [Documentation](https://aimeos.org/docs/Flow)
-* [Help](https://aimeos.org/help)
+* [Forum](https://aimeos.org/help)
 * [Issue tracker](https://github.com/aimeos/aimeos-flow/issues)
 * [Composer packages](https://packagist.org/packages/aimeos/aimeos-flow)
 * [Source code](https://github.com/aimeos/aimeos-flow)
