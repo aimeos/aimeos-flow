@@ -95,7 +95,7 @@
 
 -
   name: 'JQAdm save'
-  uriPattern: 'jqadm/save/{resource}/{id}'
+  uriPattern: 'jqadm/save/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
