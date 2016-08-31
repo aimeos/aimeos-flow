@@ -78,8 +78,6 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		} elseif( $type === 'css' ) {
 			$this->response->setHeader( 'Content-Type', 'text/css' );
 		}
-
-		return $this->response;
 	}
 
 
