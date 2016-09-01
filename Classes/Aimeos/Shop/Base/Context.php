@@ -180,7 +180,7 @@ class Context
 		$this->settings['resource']['db']['password'] = $this->resource['password'];
 
 		$configPaths = $this->aimeos->get()->getConfigPaths();
-		$config = new \Aimeos\MW\Config\PHPArray( $this->settings, $configPaths );
+		$config = new \Aimeos\MW\Config\PHPArray( array(), $configPaths );
 
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 		$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
@@ -189,7 +189,7 @@ class Context
 			$config = new \Aimeos\MW\Config\Decorator\APC( $config, $prefix );
 		}
 
-		return $config;
+		return new \Aimeos\MW\Config\Decorator\Memory( $config, $this->settings );
 	}
 
 
