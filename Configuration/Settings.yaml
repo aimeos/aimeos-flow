@@ -15,7 +15,7 @@ Aimeos:
 #        name: None
 #        prefix: myshop
       extdir: %FLOW_PATH_PACKAGES%Extensions
-      uploaddir: /.
+      uploaddir: /
 
     page:
       account-index: ['account/history','account/favorite','account/watch','basket/mini','catalog/session']
