@@ -75,6 +75,21 @@ class AccountControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
+	public function profileComponentAction()
+	{
+		$this->object->expects( $this->once() )->method( 'getOutput' )
+			->will( $this->returnValue( 'body' ) );
+
+		$this->view->expects( $this->once() )->method( 'assign' )
+			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->object->profileComponentAction();
+	}
+
+
+	/**
+	 * @test
+	 */
 	public function watchComponentAction()
 	{
 		$this->object->expects( $this->once() )->method( 'getOutput' )

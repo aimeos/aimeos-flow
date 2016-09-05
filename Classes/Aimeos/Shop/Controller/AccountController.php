@@ -43,6 +43,17 @@ class AccountController extends AbstractController
 
 
 	/**
+	 * Returns the output of the account profile component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function profileComponentAction()
+	{
+		$this->view->assign( 'output', $this->getOutput( 'account/profile' ) );
+	}
+
+
+	/**
 	 * Returns the output of the account watch component
 	 *
 	 * @return string Rendered HTML for the body
