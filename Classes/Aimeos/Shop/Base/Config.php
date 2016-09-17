@@ -30,6 +30,12 @@ class Config
 
 	/**
 	 * @var array
+	 * @Flow\Inject(setting="persistence.backendOptions", package="TYPO3.Flow")
+	 */
+	protected $resource;
+
+	/**
+	 * @var array
 	 */
 	private $settings;
 
