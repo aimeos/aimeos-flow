@@ -55,6 +55,12 @@ class Context
 	protected $aimeos;
 
 	/**
+	 * @var \Aimeos\Shop\Base\Config
+	 * @Flow\Inject
+	 */
+	protected $config;
+
+	/**
 	 * @var \Aimeos\Shop\Base\I18n
 	 * @Flow\Inject
 	 */
@@ -79,13 +85,14 @@ class Context
 	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
 	 * @return \Aimeos\MShop\Context\Item\Iface
 	 */
-	public function get( \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	public function get( \TYPO3\Flow\Mvc\RequestInterface $request = null, $type = 'frontend' )
 	{
+		$config = $this->config->get( $type );
+
 		if( self::$context === null )
 		{
 			$context = new \Aimeos\MShop\Context\Item\Standard();
 
-			$config = $this->getConfig();
 			$context->setConfig( $config );
 
 			$dbm = new \Aimeos\MW\DB\Manager\DBAL( $config );
@@ -110,6 +117,7 @@ class Context
 		}
 
 		$context = self::$context;
+		$context->setConfig( $config );
 
 		if( $request !== null )
 		{
@@ -164,32 +172,6 @@ class Context
 			default:
 				return new \Aimeos\MAdmin\Cache\Proxy\Standard( $context );
 		}
-	}
-
-
-	/**
-	 * Creates a new configuration object.
-	 *
-	 * @return \Aimeos\MW\Config\Iface Configuration object
-	 */
-	protected function getConfig()
-	{
-		$this->settings['resource']['db']['host'] = $this->resource['host'];
-		$this->settings['resource']['db']['database'] = $this->resource['dbname'];
-		$this->settings['resource']['db']['username'] = $this->resource['user'];
-		$this->settings['resource']['db']['password'] = $this->resource['password'];
-
-		$configPaths = $this->aimeos->get()->getConfigPaths();
-		$config = new \Aimeos\MW\Config\PHPArray( array(), $configPaths );
-
-		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
-		$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
-
-		if( function_exists( 'apc_store' ) === true && $apc === true ) {
-			$config = new \Aimeos\MW\Config\Decorator\APC( $config, $prefix );
-		}
-
-		return new \Aimeos\MW\Config\Decorator\Memory( $config, $this->settings );
 	}
 
 

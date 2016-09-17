@@ -41,7 +41,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function cacheCommand( $sites = '' )
 	{
-		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get( null, 'backend' );
 		$context->setEditor( 'aimeos:cache' );
 
 		$config = $context->getConfig();
@@ -112,7 +112,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function jobsCommand( $jobs, $sites = 'default' )
 	{
-		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
+		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get( null, 'backend' );
 		$context = $this->getContext();
 
 		$jobs = explode( ' ', $jobs );
@@ -153,7 +153,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function setupCommand( $site = 'default', $tplsite = 'default', array $option = array(), $task = null, $action = 'migrate' )
 	{
-		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get( null, 'backend' );
 		$context->setEditor( 'aimeos:setup' );
 
 		$config = $context->getConfig();
@@ -228,7 +228,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	protected function getContext()
 	{
 		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
-		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get();
+		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get( null, 'backend' );
 		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
 
 		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/templates' );

@@ -48,7 +48,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	public function indexAction( $site = 'default', $lang = 'en', $tab = 0 )
 	{
-		$context = $this->context->get();
+		$context = $this->context->get( null, 'backend' );
 		$context = $this->setLocale( $context, $site, $lang );
 
 		$aimeos = $this->aimeos->get();
@@ -102,7 +102,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	public function doAction()
 	{
-		$context = $this->context->get();
+		$context = $this->context->get( null, 'backend' );
 		$context = $this->setLocale( $context );
 		$context->setView( $this->viewcontainer->create( $context->getConfig(), $this->uriBuilder, array(), $this->request ) );
 		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
