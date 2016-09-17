@@ -35,6 +35,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $i18n, 'aimeos', $aimeos );
 		$this->inject( $this->object, 'i18n', $i18n );
 		$this->inject( $this->object, 'aimeos', $aimeos );
+		$this->inject( $this->object, 'config', $config );
 		$this->inject( $this->object, 'mailer', $mailer );
 		$this->inject( $this->object, 'session', $session );
 		$this->inject( $this->object, 'settings', $settings );
