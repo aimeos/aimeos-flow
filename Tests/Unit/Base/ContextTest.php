@@ -14,6 +14,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->object = new \Aimeos\Shop\Base\Context();
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$config = new \Aimeos\Shop\Base\Config();
 		$i18n = new \Aimeos\Shop\Base\I18n();
 
 		$mailer = function() {};
