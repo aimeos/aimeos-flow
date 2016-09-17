@@ -238,7 +238,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function getJsonSiteItem()
 	{
-		$ctx = $this->getMockBuilder( '\Aimeos\MShop\Context\Item\Standard' )getMock();
+		$ctx = $this->getMockBuilder( '\Aimeos\MShop\Context\Item\Standard' )->getMock();
 
 
 		$siteManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Site\Standard' )
