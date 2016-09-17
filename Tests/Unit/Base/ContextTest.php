@@ -32,7 +32,9 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$settings = array( 'flow' => array( 'apc' => array ( 'enable' => true ) ) );
 
+		$this->inject( $config, 'aimeos', $aimeos );
 		$this->inject( $i18n, 'aimeos', $aimeos );
+
 		$this->inject( $this->object, 'i18n', $i18n );
 		$this->inject( $this->object, 'aimeos', $aimeos );
 		$this->inject( $this->object, 'config', $config );
