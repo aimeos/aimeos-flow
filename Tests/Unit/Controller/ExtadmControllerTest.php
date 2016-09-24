@@ -50,6 +50,9 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
+
+		$this->view->expects( $this->once() )->method( 'assignMultiple' );
+
 		$this->inject( $this->object, 'view', $this->view );
 		$this->inject( $this->object, 'request', $this->request );
 
@@ -68,9 +71,24 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$ctx = new \Aimeos\MShop\Context\Item\Standard();
 		$ctx->setConfig( new \Aimeos\MW\Config\PHPArray() );
-		$ctx->setLocale( new \Aimeos\MShop\Locale\Item\Standard( array( 'langid' => 'de' ) ) );
+
+		$context->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $ctx ) );
 
 		$this->inject( $this->object, 'context', $context );
+
+
+		$locale = $this->getMockBuilder( '\Aimeos\Shop\Base\Locale' )
+			->setMethods( array( 'getBackend' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$loc = new \Aimeos\MShop\Locale\Item\Standard();
+
+		$locale->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $loc ) );
+
+		$this->inject( $this->object, 'locale', $locale );
 
 
 		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
@@ -78,16 +96,10 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
-
-
 		$uriBuilder->expects( $this->exactly( 3 ) )->method( 'uriFor' )
 			->will( $this->returnValue( '/test/uri' ) );
 
-		$context->expects( $this->once() )->method( 'get' )
-			->will( $this->returnValue( $ctx ) );
-
-		$this->view->expects( $this->once() )->method( 'assignMultiple' );
+		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
 
 		$this->object->indexAction();
@@ -106,39 +118,54 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 
 		$context = $this->getMockBuilder( '\Aimeos\Shop\Base\Context' )
-			->setMethods( array( 'get' ) )
 			->disableOriginalConstructor()
+			->setMethods( array( 'get' ) )
 			->getMock();
 
 		$ctx = new \Aimeos\MShop\Context\Item\Standard();
 		$ctx->setConfig( new \Aimeos\MW\Config\PHPArray() );
-		$ctx->setLocale( new \Aimeos\MShop\Locale\Item\Standard( array( 'langid' => 'de' ) ) );
 
 		$context->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ctx ) );
+
 		$this->inject( $this->object, 'context', $context );
+
+
+		$locale = $this->getMockBuilder( '\Aimeos\Shop\Base\Locale' )
+			->setMethods( array( 'getBackend' ) )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$loc = new \Aimeos\MShop\Locale\Item\Standard();
+
+		$locale->expects( $this->once() )->method( 'get' )
+			->will( $this->returnValue( $loc ) );
+
+		$this->inject( $this->object, 'locale', $locale );
 
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
-		$locale = new \Aimeos\Shop\Base\Locale();
-		$this->inject( $this->object, 'locale', $locale );
-
 		$view = new \Aimeos\Shop\Base\View();
 		$this->inject( $this->object, 'viewcontainer', $view );
+
 
 		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
 			->setMethods( array( 'uriFor' ) )
 			->disableOriginalConstructor()
 			->getMock();
+
 		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
 		$this->request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array()  ) );
+
 		$this->inject( $this->object, 'request', $this->request );
 
+
 		$request = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
+
 		$this->request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $request ) );
 
