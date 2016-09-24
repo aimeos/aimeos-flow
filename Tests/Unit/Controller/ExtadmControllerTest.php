@@ -85,7 +85,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$loc = new \Aimeos\MShop\Locale\Item\Standard();
 
-		$locale->expects( $this->once() )->method( 'get' )
+		$locale->expects( $this->once() )->method( 'getBackend' )
 			->will( $this->returnValue( $loc ) );
 
 		$this->inject( $this->object, 'locale', $locale );
@@ -138,7 +138,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$loc = new \Aimeos\MShop\Locale\Item\Standard();
 
-		$locale->expects( $this->once() )->method( 'get' )
+		$locale->expects( $this->once() )->method( 'getBackend' )
 			->will( $this->returnValue( $loc ) );
 
 		$this->inject( $this->object, 'locale', $locale );
