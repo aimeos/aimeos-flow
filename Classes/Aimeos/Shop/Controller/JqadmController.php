@@ -39,6 +39,12 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	protected $i18n;
 
 	/**
+	 * @var \Aimeos\Shop\Base\Locale
+	 * @Flow\Inject
+	 */
+	protected $locale;
+
+	/**
 	 * @var \Aimeos\Shop\Base\View
 	 * @Flow\Inject
 	 */
@@ -180,7 +186,8 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jqadm/templates' );
 
 		$context = $this->context->get( null, 'backend' );
-		$context = $this->setLocale( $context, $sitecode, $lang );
+		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
+		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 
 		$config = $context->getConfig();
 		$view = $this->viewbase->create( $config, $this->uriBuilder, $templatePaths, $this->request, $lang );
@@ -202,35 +209,5 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		$this->view->assign( 'content', $content );
 		return $this->view->render( 'index' );
-	}
-
-
-	/**
-	 * Sets the locale item in the given context
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param string $site Unique site code
-	 * @param string $lang ISO language code, e.g. "en" or "en_GB"
-	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
-	 */
-	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $site, $lang )
-	{
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-
-		try
-		{
-			$localeItem = $localeManager->bootstrap( $site, '', '', false );
-			$localeItem->setLanguageId( null );
-			$localeItem->setCurrencyId( null );
-		}
-		catch( \Aimeos\MShop\Locale\Exception $e )
-		{
-			$localeItem = $localeManager->createItem();
-		}
-
-		$context->setLocale( $localeItem );
-		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
-
-		return $context;
 	}
 }

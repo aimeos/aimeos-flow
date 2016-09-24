@@ -40,6 +40,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	protected $i18n;
 
 	/**
+	 * @var \Aimeos\Shop\Base\Locale
+	 * @Flow\Inject
+	 */
+	protected $locale;
+
+	/**
 	 * @var \Aimeos\Shop\Base\View
 	 * @Flow\Inject
 	 */
@@ -191,7 +197,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jsonadm/templates' );
 
 		$context = $this->context->get( null, 'backend' );
-		$context = $this->setLocale( $context, $sitecode, $lang );
+		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
+		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 
 		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, $templatePaths, $this->request, $lang );
 		$context->setView( $view );
@@ -214,35 +221,5 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		foreach( $header as $key => $value ) {
 			$this->response->setHeader( $key, $value );
 		}
-	}
-
-
-	/**
-	 * Sets the locale item in the given context
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param string $sitecode Unique site code
-	 * @param string $lang ISO language code, e.g. "en" or "en_GB"
-	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
-	 */
-	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode, $lang )
-	{
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-
-		try
-		{
-			$localeItem = $localeManager->bootstrap( $sitecode, '', '', false );
-			$localeItem->setLanguageId( null );
-			$localeItem->setCurrencyId( null );
-		}
-		catch( \Aimeos\MShop\Locale\Exception $e )
-		{
-			$localeItem = $localeManager->createItem();
-		}
-
-		$context->setLocale( $localeItem );
-		$context->setI18n( $this->i18n->get( array( $lang ) ) );
-
-		return $context;
 	}
 }

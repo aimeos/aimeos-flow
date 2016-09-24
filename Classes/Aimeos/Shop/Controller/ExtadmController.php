@@ -33,6 +33,12 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	protected $context;
 
 	/**
+	 * @var \Aimeos\Shop\Base\Locale
+	 * @Flow\Inject
+	 */
+	protected $locale;
+
+	/**
 	 * @var \Aimeos\Shop\Base\View
 	 * @Flow\Inject
 	 */
@@ -49,7 +55,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	public function indexAction( $site = 'default', $lang = 'en', $tab = 0 )
 	{
 		$context = $this->context->get( null, 'backend' );
-		$context = $this->setLocale( $context, $site, $lang );
+		$context->setLocale( $this->locale->getBackend( $context, $site ) );
 
 		$aimeos = $this->aimeos->get();
 		$cntlPaths = $aimeos->getCustomPaths( 'controller/extjs' );
@@ -103,7 +109,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	public function doAction()
 	{
 		$context = $this->context->get( null, 'backend' );
-		$context = $this->setLocale( $context );
+		$context->setLocale( $this->locale->getBackend( $context, 'default' ) );
 		$context->setView( $this->viewcontainer->create( $context->getConfig(), $this->uriBuilder, array(), $this->request ) );
 		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
 
@@ -219,29 +225,5 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		}
 
 		return json_encode( $item->toArray() );
-	}
-
-
-	/**
-	 * Sets the locale item in the given context
-	 *
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param string $sitecode Unique site code
-	 * @param string $locale ISO language code, e.g. "en" or "en_GB"
-	 * @return \Aimeos\MShop\Context\Item\Iface Modified context object
-	 */
-	protected function setLocale( \Aimeos\MShop\Context\Item\Iface $context, $sitecode = 'default', $locale = null )
-	{
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
-
-		try {
-			$localeItem = $localeManager->bootstrap( $sitecode, $locale, '', false );
-		} catch( \Aimeos\MShop\Locale\Exception $e ) {
-			$localeItem = $localeManager->createItem();
-		}
-
-		$context->setLocale( $localeItem );
-
-		return $context;
 	}
 }

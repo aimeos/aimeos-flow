@@ -43,43 +43,113 @@ class View
 		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
 		\TYPO3\Flow\Mvc\RequestInterface $request = null, $langid = null )
 	{
-		$params = $fixed = array();
-
-		if( $request !== null && $langid !== null )
-		{
-			$params = $request->getArguments();
-			$fixed = $this->getFixedParams( $request );
-
-			$i18n = $this->i18n->get( array( $langid ) );
-			$translation = $i18n[$langid];
-		}
-		else
-		{
-			$translation = new \Aimeos\MW\Translation\None( 'en' );
-		}
-
-
 		$view = new \Aimeos\MW\View\Standard( $templatePaths );
 
-		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $translation );
-		$view->addHelper( 'translate', $helper );
+		$this->addConfig( $view, $config );
+		$this->addNumber( $view, $config );
+		$this->addRequest( $view, $request );
+		$this->addResponse( $view );
+		$this->addParam( $view, $request );
+		$this->addUrl( $view, $uriBuilder, $request );
+		$this->addCsrf( $view );
+		$this->addAccess( $view );
+		$this->addTranslate( $view, $config, $locale );
 
-		$helper = new \Aimeos\MW\View\Helper\Url\Flow( $view, $uriBuilder, $fixed );
-		$view->addHelper( 'url', $helper );
+		return $view;
+	}
 
-		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
-		$view->addHelper( 'param', $helper );
 
+	/**
+	 * Adds the "access" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addAccess( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Context\Item\Iface $context )
+	{
+		$helper = new \Aimeos\MW\View\Helper\Access\All( $view );
+		$view->addHelper( 'access', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "config" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MW\Config\Iface $config Configuration object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addConfig( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config )
+	{
 		$config = new \Aimeos\MW\Config\Decorator\Protect( clone $config, array( 'admin', 'client' ) );
 		$helper = new \Aimeos\MW\View\Helper\Config\Standard( $view, $config );
 		$view->addHelper( 'config', $helper );
 
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "access" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addCsrf( \Aimeos\MW\View\Iface $view )
+	{
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "number" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MW\Config\Iface $config Configuration object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addNumber( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config )
+	{
 		$sepDec = $config->get( 'client/html/common/format/seperatorDecimal', '.' );
 		$sep1000 = $config->get( 'client/html/common/format/seperator1000', ' ' );
 		$decimals = $config->get( 'client/html/common/format/decimals', 2 );
+
 		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $sepDec, $sep1000, $decimals );
 		$view->addHelper( 'number', $helper );
 
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "param" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addParam( \Aimeos\MW\View\Iface $view, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	{
+		$params = ( $request !== null ? $request->getArguments() : array() );
+		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
+		$view->addHelper( 'param', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "request" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addRequest( \Aimeos\MW\View\Iface $view, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	{
 		if( $request !== null )
 		{
 			$req = $request->getHttpRequest();
@@ -94,40 +164,86 @@ class View
 			$view->addHelper( 'request', $helper );
 		}
 
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "response" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addResponse( \Aimeos\MW\View\Iface $view )
+	{
 		$helper = new \Aimeos\MW\View\Helper\Response\Flow( $view );
 		$view->addHelper( 'response', $helper );
-
-		$helper = new \Aimeos\MW\View\Helper\Access\All( $view );
-		$view->addHelper( 'access', $helper );
 
 		return $view;
 	}
 
 
 	/**
-	 * Returns the fixed parameters that should be included in every URL
+	 * Adds the "url" helper to the view object
 	 *
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
-	 * @return array Associative list of site, language and currency if available
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function getFixedParams( \TYPO3\Flow\Mvc\RequestInterface $request )
+	protected function addUrl( \Aimeos\MW\View\Iface $view,
+		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder,
+		\TYPO3\Flow\Mvc\RequestInterface $request = null )
 	{
 		$fixed = array();
 
-		$params = $request->getArguments();
+		if( $request !== null )
+		{
+			$params = $request->getArguments();
 
-		if( isset( $params['site'] ) ) {
-			$fixed['site'] = $params['site'];
+			if( isset( $params['site'] ) ) {
+				$fixed['site'] = $params['site'];
+			}
+
+			if( isset( $params['locale'] ) ) {
+				$fixed['locale'] = $params['locale'];
+			}
+
+			if( isset( $params['currency'] ) ) {
+				$fixed['currency'] = $params['currency'];
+			}
 		}
 
-		if( isset( $params['locale'] ) ) {
-			$fixed['locale'] = $params['locale'];
+		$helper = new \Aimeos\MW\View\Helper\Url\Flow( $view, $uriBuilder, $fixed );
+		$view->addHelper( 'url', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "translate" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MW\Config\Iface $config Configuration object
+	 * @param string|null $locale ISO language code, e.g. "de" or "de_CH"
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addTranslate( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config, $locale )
+	{
+		if( $locale !== null )
+		{
+			$i18n = $this->i18n->get( array( $langid ) );
+			$translation = $i18n[$langid];
+		}
+		else
+		{
+			$translation = new \Aimeos\MW\Translation\None( 'en' );
 		}
 
-		if( isset( $params['currency'] ) ) {
-			$fixed['currency'] = $params['currency'];
-		}
+		$helper = new \Aimeos\MW\View\Helper\Translate\Standard( $view, $translation );
+		$view->addHelper( 'translate', $helper );
 
-		return $fixed;
+		return $view;
 	}
 }
