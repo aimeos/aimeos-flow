@@ -28,11 +28,6 @@ class Context
 	private static $context;
 
 	/**
-	 * @var \Aimeos\MShop\Locale\Item\Iface
-	 */
-	private $locale;
-
-	/**
 	 * @var array
 	 */
 	private $settings;
