@@ -46,7 +46,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	public function indexAction()
 	{
 		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\ExtadmController' )
-			->setMethods( array( 'setLocale', 'getJsonLanguages', 'getJsonClientConfig', 'getJsonSiteItem', 'getJsonClientI18n' ) )
+			->setMethods( array( 'getJsonLanguages', 'getJsonClientConfig', 'getJsonSiteItem', 'getJsonClientI18n' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -56,6 +56,9 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->inject( $this->object, 'aimeos', $aimeos );
+
+		$locale = new \Aimeos\Shop\Base\Locale();
+		$this->inject( $this->object, 'locale', $locale );
 
 
 		$context = $this->getMockBuilder( '\Aimeos\Shop\Base\Context' )
@@ -84,9 +87,6 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$context->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ctx ) );
 
-		$this->object->expects( $this->once() )->method( 'setLocale' )
-			->will( $this->returnArgument( 0 ) );
-
 		$this->view->expects( $this->once() )->method( 'assignMultiple' );
 
 
@@ -100,12 +100,9 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	public function doAction()
 	{
 		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\ExtadmController' )
-			->setMethods( array( 'setLocale' ) )
 			->disableOriginalConstructor()
+			->setMethods( array() )
 			->getMock();
-
-		$this->object->expects( $this->once() )->method( 'setLocale' )
-			->will( $this->returnArgument( 0 ) );
 
 
 		$context = $this->getMockBuilder( '\Aimeos\Shop\Base\Context' )
@@ -124,6 +121,9 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->inject( $this->object, 'aimeos', $aimeos );
+
+		$locale = new \Aimeos\Shop\Base\Locale();
+		$this->inject( $this->object, 'locale', $locale );
 
 		$view = new \Aimeos\Shop\Base\View();
 		$this->inject( $this->object, 'viewcontainer', $view );
@@ -267,78 +267,5 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->assertInternalType( 'array', $result );
 		$this->assertArrayHasKey( 'locale.site.id', $result );
 		$this->assertArrayHasKey( 'locale.site.label', $result );
-	}
-
-
-	/**
-	 * @test
-	 */
-	public function setLocale()
-	{
-		$ctx = $this->getMockBuilder( '\Aimeos\MShop\Context\Item\Standard' )
-			->setMethods( array( 'setLocale' ) )
-			->getMock();
-
-		$ctx->expects( $this->once() )->method( 'setLocale' );
-
-		$ctx->setConfig( new \Aimeos\MW\Config\PHPArray() );
-
-
-		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
-			->setMethods( array( 'bootstrap' ) )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$localeManager->expects( $this->once() )->method( 'bootstrap' )
-			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard() ) );
-
-		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
-
-
-		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
-		$method = $class->getMethod( 'setLocale' );
-		$method->setAccessible( true );
-
-		$result = $method->invokeArgs( $this->object, array( $ctx ) );
-
-		$this->assertInstanceOf( '\Aimeos\MShop\Context\Item\Iface', $result );
-	}
-
-
-	/**
-	 * @test
-	 */
-	public function setLocaleException()
-	{
-		$ctx = $this->getMockBuilder( '\Aimeos\MShop\Context\Item\Standard' )
-			->setMethods( array( 'setLocale' ) )
-			->getMock();
-
-		$ctx->expects( $this->once() )->method( 'setLocale' );
-
-		$ctx->setConfig( new \Aimeos\MW\Config\PHPArray() );
-
-
-		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
-			->setMethods( array( 'bootstrap', 'createItem' ) )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$localeManager->expects( $this->once() )->method( 'bootstrap' )
-			->will( $this->throwException( new \Aimeos\MShop\Locale\Exception() ) );
-
-		$localeManager->expects( $this->once() )->method( 'createItem' )
-			->will( $this->returnValue( new \Aimeos\MShop\Locale\Item\Standard() ) );
-
-		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
-
-
-		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\ExtadmController' );
-		$method = $class->getMethod( 'setLocale' );
-		$method->setAccessible( true );
-
-		$result = $method->invokeArgs( $this->object, array( $ctx ) );
-
-		$this->assertInstanceOf( '\Aimeos\MShop\Context\Item\Iface', $result );
 	}
 }
