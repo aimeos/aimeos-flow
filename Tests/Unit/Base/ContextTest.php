@@ -16,6 +16,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$config = new \Aimeos\Shop\Base\Config();
 		$i18n = new \Aimeos\Shop\Base\I18n();
+		$locale = new \Aimeos\Shop\Base\Locale();
 
 		$mailer = function() {};
 
@@ -38,6 +39,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'i18n', $i18n );
 		$this->inject( $this->object, 'aimeos', $aimeos );
 		$this->inject( $this->object, 'config', $config );
+		$this->inject( $this->object, 'locale', $locale );
 		$this->inject( $this->object, 'mailer', $mailer );
 		$this->inject( $this->object, 'session', $session );
 		$this->inject( $this->object, 'settings', $settings );
