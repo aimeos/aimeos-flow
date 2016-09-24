@@ -45,15 +45,15 @@ class View
 	{
 		$view = new \Aimeos\MW\View\Standard( $templatePaths );
 
+		$this->addAccess( $view );
+		$this->addCsrf( $view );
 		$this->addConfig( $view, $config );
 		$this->addNumber( $view, $config );
+		$this->addParam( $view, $request );
 		$this->addRequest( $view, $request );
 		$this->addResponse( $view );
-		$this->addParam( $view, $request );
+		$this->addTranslate( $view, $langid );
 		$this->addUrl( $view, $uriBuilder, $request );
-		$this->addCsrf( $view );
-		$this->addAccess( $view );
-		$this->addTranslate( $view, $config, $locale );
 
 		return $view;
 	}
@@ -63,10 +63,9 @@ class View
 	 * Adds the "access" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addAccess( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Context\Item\Iface $context )
+	protected function addAccess( \Aimeos\MW\View\Iface $view )
 	{
 		$helper = new \Aimeos\MW\View\Helper\Access\All( $view );
 		$view->addHelper( 'access', $helper );
@@ -225,13 +224,12 @@ class View
 	 * Adds the "translate" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param \Aimeos\MW\Config\Iface $config Configuration object
-	 * @param string|null $locale ISO language code, e.g. "de" or "de_CH"
+	 * @param string|null $langid ISO language code, e.g. "de" or "de_CH"
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addTranslate( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config, $locale )
+	protected function addTranslate( \Aimeos\MW\View\Iface $view, $langid )
 	{
-		if( $locale !== null )
+		if( $langid !== null )
 		{
 			$i18n = $this->i18n->get( array( $langid ) );
 			$translation = $i18n[$langid];
