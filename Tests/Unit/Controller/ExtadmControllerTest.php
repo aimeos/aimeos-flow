@@ -112,9 +112,16 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 	public function doAction()
 	{
 		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\ExtadmController' )
+			->setMethods( array( 'getJsonSiteItem' ) )
 			->disableOriginalConstructor()
-			->setMethods( array() )
 			->getMock();
+
+
+		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$this->inject( $this->object, 'aimeos', $aimeos );
+
+		$view = new \Aimeos\Shop\Base\View();
+		$this->inject( $this->object, 'viewcontainer', $view );
 
 
 		$context = $this->getMockBuilder( '\Aimeos\Shop\Base\Context' )
@@ -144,13 +151,6 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'locale', $locale );
 
 
-		$aimeos = new \Aimeos\Shop\Base\Aimeos();
-		$this->inject( $this->object, 'aimeos', $aimeos );
-
-		$view = new \Aimeos\Shop\Base\View();
-		$this->inject( $this->object, 'viewcontainer', $view );
-
-
 		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
 			->setMethods( array( 'uriFor' ) )
 			->disableOriginalConstructor()
@@ -158,16 +158,16 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
-		$this->request->expects( $this->once() )->method( 'getArguments' )
-			->will( $this->returnValue( array()  ) );
-
-		$this->inject( $this->object, 'request', $this->request );
-
 
 		$request = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
 
 		$this->request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $request ) );
+
+		$this->request->expects( $this->any() )->method( 'getArguments' )
+			->will( $this->returnValue( array()  ) );
+
+		$this->inject( $this->object, 'request', $this->request );
 
 
 		$this->assertStringStartsWith( '{', $this->object->doAction() );
