@@ -56,7 +56,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
 		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
-		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, $tmplPaths, $this->request, $langid );
+		$view = $this->viewContainer->create( $context, $this->uriBuilder, $tmplPaths, $this->request, $langid );
 
 		$client = \Aimeos\Client\Html\Factory::createClient( $context, $tmplPaths, $clientName );
 		$client->setView( $view );
