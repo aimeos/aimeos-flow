@@ -110,7 +110,7 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	{
 		$context = $this->context->get( null, 'backend' );
 		$context->setLocale( $this->locale->getBackend( $context, 'default' ) );
-		$context->setView( $this->viewcontainer->create( $context->getConfig(), $this->uriBuilder, array(), $this->request ) );
+		$context->setView( $this->viewcontainer->create( $context, $this->uriBuilder, array(), $this->request ) );
 		$cntlPaths = $this->aimeos->get()->getCustomPaths( 'controller/extjs' );
 
 		$controller = new \Aimeos\Controller\ExtJS\JsonRpc( $context, $cntlPaths );

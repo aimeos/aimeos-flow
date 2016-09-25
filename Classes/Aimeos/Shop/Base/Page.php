@@ -69,7 +69,7 @@ class Page
 
 		$context = $this->context->get( $request );
 		$langid = $context->getLocale()->getLanguageId();
-		$view = $this->view->create( $context->getConfig(), $this->uriBuilder, $tmplPaths, $request, $langid );
+		$view = $this->view->create( $context, $this->uriBuilder, $tmplPaths, $request, $langid );
 		$context->setView( $view );
 
 		if( isset( $pagesConfig[$pageName] ) )

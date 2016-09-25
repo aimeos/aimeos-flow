@@ -199,9 +199,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$context = $this->context->get( null, 'backend' );
 		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
-
-		$view = $this->viewContainer->create( $context->getConfig(), $this->uriBuilder, $templatePaths, $this->request, $lang );
-		$context->setView( $view );
+		$context->setView( $this->viewContainer->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
 		return \Aimeos\Admin\JsonAdm\Factory::createClient( $context, $templatePaths, $resource );
 	}

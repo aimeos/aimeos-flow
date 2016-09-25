@@ -237,7 +237,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$langids = array_keys( $langManager->searchItems( $langManager->createSearch( true ) ) );
 
 		$i18n = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\I18n' )->get( $langids );
-		$view = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\View' )->create( $context->getConfig(), $uriBuilder, $tmplPaths );
+		$view = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\View' )->create( $context, $uriBuilder, $tmplPaths );
 
 		$context->setEditor( 'aimeos:jobs' );
 		$context->setView( $view );

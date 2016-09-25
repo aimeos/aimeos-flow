@@ -25,13 +25,14 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function create()
 	{
-		$config = new \Aimeos\MW\Config\PHPArray();
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setConfig( new \Aimeos\MW\Config\PHPArray() );
 
 		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
 			->disableOriginalConstructor()
 			->getMock();
 
-		$view = $this->object->create( $config, $uriBuilder, array() );
+		$view = $this->object->create( $context, $uriBuilder, array() );
 
 		$this->assertInstanceOf( '\Aimeos\MW\View\Iface', $view );
 	}
@@ -42,7 +43,8 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function createWithRequest()
 	{
-		$config = new \Aimeos\MW\Config\PHPArray();
+		$context = new \Aimeos\MShop\Context\Item\Standard();
+		$context->setConfig( new \Aimeos\MW\Config\PHPArray() );
 
 		$uriBuilder = $this->getMockBuilder( '\TYPO3\Flow\Mvc\Routing\UriBuilder' )
 			->disableOriginalConstructor()
@@ -61,7 +63,7 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $httpRequest ) );
 
-		$view = $this->object->create( $config, $uriBuilder, array(), $request, 'de' );
+		$view = $this->object->create( $context, $uriBuilder, array(), $request, 'de' );
 
 		$this->assertInstanceOf( '\Aimeos\MW\View\Iface', $view );
 	}

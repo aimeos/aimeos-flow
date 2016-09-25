@@ -188,10 +188,7 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$context = $this->context->get( null, 'backend' );
 		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
-
-		$config = $context->getConfig();
-		$view = $this->viewbase->create( $config, $this->uriBuilder, $templatePaths, $this->request, $lang );
-		$context->setView( $view );
+		$context->setView( $this->viewbase->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
 		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $templatePaths, $resource );
 	}

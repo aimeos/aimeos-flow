@@ -32,21 +32,22 @@ class View
 	/**
 	 * Creates the view object for the HTML client.
 	 *
-	 * @param \Aimeos\MW\Config\Iface $config Config object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
 	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
 	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
 	 * @param string|null $langid Language ID
 	 * @return \Aimeos\MW\View\Iface View object
 	 */
-	public function create( \Aimeos\MW\Config\Iface $config,
+	public function create( \Aimeos\MShop\Context\Item\Iface $context,
 		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
 		\TYPO3\Flow\Mvc\RequestInterface $request = null, $langid = null )
 	{
+		$config = $context->getConfig();
 		$view = new \Aimeos\MW\View\Standard( $templatePaths );
 
 		$this->addCsrf( $view );
-		$this->addAccess( $view );
+		$this->addAccess( $view, $context );
 		$this->addConfig( $view, $config );
 		$this->addNumber( $view, $config );
 		$this->addParam( $view, $request );
@@ -63,9 +64,10 @@ class View
 	 * Adds the "access" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addAccess( \Aimeos\MW\View\Iface $view )
+	protected function addAccess( \Aimeos\MW\View\Iface $view, \Aimeos\MShop\Context\Item\Iface $context )
 	{
 		$helper = new \Aimeos\MW\View\Helper\Access\All( $view );
 		$view->addHelper( 'access', $helper );
