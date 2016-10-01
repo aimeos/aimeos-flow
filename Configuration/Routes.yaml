@@ -32,7 +32,7 @@
 
 -
   name: 'ExtJS admin index page'
-  uriPattern: 'extadm'
+  uriPattern: 'extadm(/{lang}/{tab})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
