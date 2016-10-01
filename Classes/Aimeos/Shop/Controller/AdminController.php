@@ -27,7 +27,7 @@ class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	{
 		$param = array(
 			'site' => 'default',
-			'resource' => 'product',
+			'resource' => 'dashboard',
 			'lang' => ( $this->request->hasArgument( 'lang' ) ? $this->request->getArgument( 'lang' ) : 'en' ),
 		);
 
