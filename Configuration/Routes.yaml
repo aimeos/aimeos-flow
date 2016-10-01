@@ -11,7 +11,7 @@
 
 -
   name: 'ExtJS admin index page'
-  uriPattern: 'extadm(/{lang}/{tab})'
+  uriPattern: 'extadm(/{site}/{lang}/{tab})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -30,6 +30,7 @@
     '@controller': 'Extadm'
     '@action': 'file'
     '@format': 'html'
+  appendExceedingArguments: true
 
 -
   name: 'ExtJS admin JSON RPC request'
@@ -39,15 +40,18 @@
     '@controller': 'Extadm'
     '@action': 'do'
     '@format': 'html'
+  appendExceedingArguments: true
 
 
 -
   name: 'JQAdm file request'
-  uriPattern: 'jqadm/file/{type}'
+  uriPattern: 'jqadm/file/{site}/{type}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
     '@action': 'file'
+    'site': 'default'
+  appendExceedingArguments: true
 
 -
   name: 'JQAdm copy'
