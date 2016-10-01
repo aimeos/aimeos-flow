@@ -10,6 +10,19 @@
 
 
 -
+  name: 'ExtJS admin index page'
+  uriPattern: 'extadm/index'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Extadm'
+    '@action': 'index'
+    '@format': 'html'
+    'site': 'default'
+    'lang': 'en'
+    'tab': '0'
+  appendExceedingArguments: true
+
+-
   name: 'ExtJS admin JS file request'
   uriPattern: 'extadm/file'
   defaults:
@@ -28,19 +41,6 @@
     '@controller': 'Extadm'
     '@action': 'do'
     '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'ExtJS admin index page'
-  uriPattern: 'extadm'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Extadm'
-    '@action': 'index'
-    '@format': 'html'
-    'site': 'default'
-    'lang': 'en'
-    'tab': '0'
   appendExceedingArguments: true
 
 
