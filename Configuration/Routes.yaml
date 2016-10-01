@@ -30,6 +30,7 @@
     '@controller': 'Extadm'
     '@action': 'file'
     '@format': 'html'
+    'site': 'default'
   appendExceedingArguments: true
 
 -
@@ -45,7 +46,7 @@
 
 -
   name: 'JQAdm file request'
-  uriPattern: 'jqadm/file/{site}/{type}'
+  uriPattern: 'jqadm/file/{type}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
