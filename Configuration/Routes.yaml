@@ -10,16 +10,13 @@
 
 
 -
-  name: 'ExtJS admin index page'
-  uriPattern: 'extadm/index'
+  name: 'ExtJS admin JSON RPC request'
+  uriPattern: 'extadm/do'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
-    '@action': 'index'
+    '@action': 'do'
     '@format': 'html'
-    'site': 'default'
-    'lang': 'en'
-    'tab': '0'
   appendExceedingArguments: true
 
 -
@@ -34,13 +31,16 @@
   appendExceedingArguments: true
 
 -
-  name: 'ExtJS admin JSON RPC request'
-  uriPattern: 'extadm/do'
+  name: 'ExtJS admin index page'
+  uriPattern: 'extadm'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
-    '@action': 'do'
+    '@action': 'index'
     '@format': 'html'
+    'site': 'default'
+    'lang': 'en'
+    'tab': '0'
   appendExceedingArguments: true
 
 
