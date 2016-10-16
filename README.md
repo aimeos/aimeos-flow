@@ -59,9 +59,9 @@ Then add these lines to your composer.json of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~1.0",
+        "aimeos/aimeos-flow": "~2016.10",
         ...
-    },    
+    },
 ```
 
 Afterwards, install the Aimeos shop package using
