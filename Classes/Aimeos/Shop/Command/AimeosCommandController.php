@@ -320,7 +320,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		foreach( $options as $option )
 		{
 			list( $name, $value ) = explode( ':', $option );
-			$conf->set( $name, $value );
+			$conf->set( str_replace( '\\', '/', $name ), $value );
 		}
 	}
 }
