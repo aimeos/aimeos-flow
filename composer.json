@@ -16,15 +16,15 @@
     "require": {
         "typo3/flow": "~2.0||~3.0",
         "typo3/swiftmailer": "~5.0",
-        "aimeos/aimeos-core": "dev-master",
-        "aimeos/ai-swiftmailer": "dev-master",
-        "aimeos/ai-gettext": "dev-master",
-        "aimeos/ai-flow": "dev-master",
-        "aimeos/ai-admin-extadm": "dev-master",
-        "aimeos/ai-admin-jqadm": "dev-master",
-        "aimeos/ai-admin-jsonadm": "dev-master",
-        "aimeos/ai-client-html": "dev-master",
-        "aimeos/ai-controller-jobs": "dev-master"
+        "aimeos/aimeos-core": "~2016.10",
+        "aimeos/ai-swiftmailer": "~2016.10",
+        "aimeos/ai-gettext": "~2016.10",
+        "aimeos/ai-flow": "~2016.10",
+        "aimeos/ai-admin-extadm": "~2016.10",
+        "aimeos/ai-admin-jqadm": "~2016.10",
+        "aimeos/ai-admin-jsonadm": "~2016.10",
+        "aimeos/ai-client-html": "~2016.10",
+        "aimeos/ai-controller-jobs": "~2016.10"
     },
     "autoload": {
         "psr-4": {
