@@ -112,7 +112,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	 */
 	public function jobsCommand( $jobs, $sites = 'default' )
 	{
-		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get( null, 'command' );
+		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
 		$context = $this->getContext();
 
 		$jobs = explode( ' ', $jobs );
