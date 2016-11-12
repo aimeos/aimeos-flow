@@ -53,7 +53,7 @@ abstract class AbstractController extends \TYPO3\Flow\Mvc\Controller\ActionContr
 	 */
 	protected function getOutput( $clientName )
 	{
-		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html' );
+		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/html/templates' );
 		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
 		$view = $this->viewContainer->create( $context, $this->uriBuilder, $tmplPaths, $this->request, $langid );
