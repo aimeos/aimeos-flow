@@ -2,13 +2,12 @@ sudo: false
 language: php
 
 php:
-  - hhvm
   - 7.0
   - 5.6
   - 5.5
 
 before_script:
-  - git clone https://github.com/neos/flow-development-distribution.git -b 3.2 ../flow
+  - git clone https://github.com/neos/flow-development-distribution.git -b 3.3 ../flow
   - cd ../flow
   - composer self-update
   - bash ../aimeos-flow/.travis.sh
