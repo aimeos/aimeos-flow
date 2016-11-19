@@ -162,16 +162,6 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$this->setOptions( $config, $option );
 
 		$taskPaths = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get()->getSetupPaths( $tplsite );
-
-		$includePaths = $taskPaths;
-		$includePaths[] = get_include_path();
-
-		if( set_include_path( implode( PATH_SEPARATOR, $includePaths ) ) === false ) {
-			throw new Exception( 'Unable to extend include path' );
-		}
-
-		spl_autoload_register( '\Aimeos\Shop\Command\AimeosCommandController::autoload', true );
-
 		$manager = new \Aimeos\MW\Setup\Manager\Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
 
 		$this->outputFormatted( 'Initializing or updating the Aimeos database tables for site <b>%s</b>', array( $site ) );
@@ -190,33 +180,6 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 			default:
 				throw new \Exception( sprintf( 'Invalid setup action "%1$s"', $action ) );
 		}
-	}
-
-
-	/**
-	 * Loads the requested setup task class
-	 *
-	 * @param string $classname Name of the setup task class
-	 * @return boolean True if class is found, false if not
-	 */
-	public static function autoload( $classname )
-	{
-		if( strncmp( $classname, 'Aimeos\\MW\\Setup\\Task\\', 21 ) === 0 )
-		{
-		    $fileName = substr( $classname, 21 ) . '.php';
-			$paths = explode( PATH_SEPARATOR, get_include_path() );
-
-			foreach( $paths as $path )
-			{
-				$file = $path . DIRECTORY_SEPARATOR . $fileName;
-
-				if( file_exists( $file ) === true && ( include_once $file ) !== false ) {
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 
 
