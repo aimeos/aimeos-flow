@@ -259,14 +259,14 @@
 
 -
   name: 'Catalog detail page'
-  uriPattern: 'detail/{d_prodid}(/{d_name}/{l_pos})'
+  uriPattern: 'detail/{d_prodid}(/{d_name}/{d_pos})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
     '@action': 'detail'
     '@format': 'html'
     'd_name': ''
-    'l_pos': '0'
+    'd_pos': '0'
   appendExceedingArguments: true
 
 -
