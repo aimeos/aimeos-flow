@@ -56,8 +56,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Deletes the resource object or a list of resource objects
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 */
 	public function deleteAction( $resource, $site = 'default', $id = '' )
@@ -74,8 +74,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the requested resource object or list of resource objects
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 */
 	public function getAction( $resource, $site = 'default', $id = '' )
@@ -92,8 +92,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Updates a resource object or a list of resource objects
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 */
 	public function patchAction( $resource, $site = 'default', $id = '' )
@@ -110,8 +110,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a new resource object or a list of resource objects
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 * @param integer $id Unique ID of the resource
 	 */
 	public function postAction( $resource, $site = 'default', $id = '' )
@@ -128,8 +128,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates or updates a single resource object
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 */
 	public function putAction( $resource, $site = 'default', $id = '' )
@@ -146,8 +146,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the available HTTP verbs and the resource URLs
 	 *
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
-	 * @param string $sitecode Unique site code
+	 * @param string $resource Resource location, e.g. "product/property/type"
+	 * @param string $site Unique site code
 	 */
 	public function optionsAction( $resource = '', $site = 'default' )
 	{
@@ -164,7 +164,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * Returns the resource controller
 	 *
 	 * @param string $sitecode Unique site code
-	 * @param string Resource location, e.g. "product/stock/wareshouse"
+	 * @param string Resource location, e.g. "product/property/type"
 	 * @param string $lang Language code
 	 * @return \Aimeos\Admin\JsonAdm\Iface JsonAdm client
 	 */
@@ -185,7 +185,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns a PSR-7 request object for the current request
 	 *
-	 * @return \Psr\Http\Message\RequestInterface PSR-7 request object
+	 * @return \Psr\Http\Message\ServerRequestInterface PSR-7 request object
 	 */
 	protected function getPsrRequest()
 	{
@@ -215,12 +215,12 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 */
 	protected function setPsrResponse( \Psr\Http\Message\ResponseInterface $response )
 	{
-		$this->response->setStatus( $status );
+		$this->response->setStatus( $response->getStatusCode() );
 
-		foreach( $header as $key => $value ) {
+		foreach( $response->getHeaders() as $key => $value ) {
 			$this->response->setHeader( $key, $value );
 		}
 
-		$this->response->setConent( (string) $response->getBody() );
+		$this->response->setContent( (string) $response->getBody() );
 	}
 }
