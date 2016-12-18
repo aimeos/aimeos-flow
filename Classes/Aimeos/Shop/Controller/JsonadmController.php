@@ -195,7 +195,8 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		try {
 			$resource = $flowRequest->getContent( true );
 		} catch( \TYPO3\Flow\Http\Exception $exception ) {
-			fwrite( tmpfile(), $flowRequest->getContent() );
+			$resource = fopen( 'php://temp', 'rw' );
+			$result = fwrite( $resource, $flowRequest->getContent() );
 		}
 
 		$psrRequest = $psrRequest->withBody( new \Zend\Diactoros\Stream( $resource ) );
