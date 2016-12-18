@@ -11,6 +11,7 @@
 namespace Aimeos\Shop\Controller;
 
 use TYPO3\Flow\Annotations as Flow;
+use Zend\Diactoros\Response;
 
 
 /**
@@ -58,19 +59,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return string Generated output
 	 */
 	public function deleteAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->delete( $request->getContent(), $header, $status );
+		$psrResponse = $client->delete( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -80,19 +77,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return string Generated output
 	 */
 	public function getAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->get( $request->getContent(), $header, $status );
+		$psrResponse = $client->get( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -102,19 +95,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return string Generated output
 	 */
 	public function patchAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->patch( $request->getContent(), $header, $status );
+		$psrResponse = $client->patch( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -124,19 +113,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique ID of the resource
-	 * @return string Generated output
 	 */
 	public function postAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->post( $request->getContent(), $header, $status );
+		$psrResponse = $client->post( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -146,19 +131,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
 	 * @param integer $id Unique resource ID
-	 * @return string Generated output
 	 */
 	public function putAction( $resource, $site = 'default', $id = '' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->put( $request->getContent(), $header, $status );
+		$psrResponse = $client->put( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -167,19 +148,15 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "product/stock/wareshouse"
 	 * @param string $sitecode Unique site code
-	 * @return string Generated output
 	 */
 	public function optionsAction( $resource = '', $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
-		$header = $request->getHeaders()->getAll();
-		$status = 500;
 
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
-		$result = $client->options( $request->getContent(), $header, $status );
+		$psrResponse = $client->options( $this->getPsrRequest(), new Response() );
 
-		$this->setResponse( $status, $header );
-		return $result;
+		$this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -206,18 +183,44 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 
 	/**
-	 * Creates a new response object
+	 * Returns a PSR-7 request object for the current request
 	 *
-	 * @param integer $status HTTP status
-	 * @param array $header List of HTTP headers
-	 * @return \TYPO3\Flow\Http\Response HTTP response object
+	 * @return \Psr\Http\Message\RequestInterface PSR-7 request object
 	 */
-	protected function setResponse( $status, array $header )
+	protected function getPsrRequest()
+	{
+		$psrRequest = new \Zend\Diactoros\ServerRequest();
+		$flowRequest = $this->request->getHttpRequest();
+
+		try {
+			$resource = $flowRequest->getContent( true );
+		} catch( \TYPO3\Flow\Http\Exception $exception ) {
+			fwrite( tmpfile(), $flowRequest->getContent() );
+		}
+
+		$psrRequest = $psrRequest->withBody( new \Zend\Diactoros\Stream( $resource ) );
+
+		foreach( $flowRequest->getHeaders()->getAll() as $headerName => $headerValues ) {
+			$psrRequest = $psrRequest->withHeader( $headerName, $headerValues );
+		}
+
+		return $psrRequest;
+	}
+
+
+	/**
+	 * Set the response data from a PSR-7 response object
+	 *
+	 * @param \Psr\Http\Message\ResponseInterface $response PSR-7 response object
+	 */
+	protected function setPsrResponse( \Psr\Http\Message\ResponseInterface $response )
 	{
 		$this->response->setStatus( $status );
 
 		foreach( $header as $key => $value ) {
 			$this->response->setHeader( $key, $value );
 		}
+
+		$this->response->setConent( (string) $response->getBody() );
 	}
 }
