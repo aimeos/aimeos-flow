@@ -59,6 +59,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
+	 * @return string Response message content
 	 */
 	public function deleteAction( $resource, $site = 'default', $id = '' )
 	{
@@ -67,7 +68,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->delete( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -77,6 +78,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
+	 * @return string Response message content
 	 */
 	public function getAction( $resource, $site = 'default', $id = '' )
 	{
@@ -85,7 +87,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->get( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -95,6 +97,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
+	 * @return string Response message content
 	 */
 	public function patchAction( $resource, $site = 'default', $id = '' )
 	{
@@ -103,7 +106,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->patch( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -113,6 +116,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
 	 * @param integer $id Unique ID of the resource
+	 * @return string Response message content
 	 */
 	public function postAction( $resource, $site = 'default', $id = '' )
 	{
@@ -121,7 +125,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->post( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -131,6 +135,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
+	 * @return string Response message content
 	 */
 	public function putAction( $resource, $site = 'default', $id = '' )
 	{
@@ -139,7 +144,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->put( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -148,6 +153,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
+	 * @return string Response message content
 	 */
 	public function optionsAction( $resource = '', $site = 'default' )
 	{
@@ -156,7 +162,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->options( $this->getPsrRequest(), new Response() );
 
-		$this->setPsrResponse( $psrResponse );
+		return $this->setPsrResponse( $psrResponse );
 	}
 
 
@@ -213,6 +219,7 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	 * Set the response data from a PSR-7 response object
 	 *
 	 * @param \Psr\Http\Message\ResponseInterface $response PSR-7 response object
+	 * @return string Response message content
 	 */
 	protected function setPsrResponse( \Psr\Http\Message\ResponseInterface $response )
 	{
@@ -222,6 +229,6 @@ class JsonadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			$this->response->setHeader( $key, $value );
 		}
 
-		$this->response->setContent( (string) $response->getBody() );
+		return (string) $response->getBody();
 	}
 }
