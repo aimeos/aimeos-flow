@@ -13,7 +13,7 @@ cat composer.json | sed 's/^\}$/,\
 }/' > composer.json.new
 mv composer.json.new composer.json
 
-composer require aimeos/aimeos-flow dev-master
+composer require aimeos/aimeos-flow 2016.10.x-dev
 rm -rf Packages/Application/Aimeos.Shop
 mv ../aimeos-flow Packages/Application/Aimeos.Shop
 composer dump-autoload
