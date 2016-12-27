@@ -23,6 +23,12 @@ use TYPO3\Flow\Annotations as Flow;
 class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 {
 	/**
+	 * @var string
+	 * @Flow\Inject(setting="http.baseUri", package="TYPO3.Flow")
+	 */
+	protected $baseUri;
+
+	/**
 	 * @var \TYPO3\Flow\Cache\Frontend\StringFrontend
 	 */
 	protected $cache;
@@ -230,6 +236,10 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get( null, 'backend' );
 		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
+
+		$request = \TYPO3\Flow\Http\Request::createFromEnvironment();
+		$request->setBaseUri( new \TYPO3\Flow\Http\Uri( $this->baseUri ) );
+		$uriBuilder->setRequest( new \TYPO3\Flow\Mvc\ActionRequest( $request ) );
 
 		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/templates' );
 
