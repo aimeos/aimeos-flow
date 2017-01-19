@@ -8,11 +8,11 @@ cat composer.json | sed 's/^\}$/,\
     "repositories": [\
         {\
             "type": "vcs",\
-            "url": "https://github.com/aimeos/php-coveralls.git"\
+            "url": "https:\/\/github.com\/aimeos\/php-coveralls.git"\
         }\
     ],\
     "require-dev": {\
-        "satooshi/php-coveralls": "dev-master"\
+        "satooshi\/php-coveralls": "dev-master"\
     },\
     "extra": {\
         "installer-paths": {\
