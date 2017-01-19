@@ -78,7 +78,7 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 			$this->outputFormatted( 'Clearing the Aimeos cache for site <b>%s</b>', array( $siteItem->getCode() ) );
 
-			$cache->flush();
+			$cache->clear();
 		}
 	}
 
