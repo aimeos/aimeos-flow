@@ -6,7 +6,6 @@
 
 [![Build Status](https://travis-ci.org/aimeos/aimeos-flow.svg?branch=master)](https://travis-ci.org/aimeos/aimeos-flow)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/?branch=master)
-[![HHVM Status](http://hhvm.h4cc.de/badge/aimeos/aimeos-flow.svg)](http://hhvm.h4cc.de/package/aimeos/aimeos-flow)
 
 The repository contains the web shop package for TYPO3 Flow/Neos
 integrating the Aimeos e-commerce library into Flow/Neos. The package provides
