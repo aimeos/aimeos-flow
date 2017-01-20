@@ -82,8 +82,8 @@ Flow console command in the base directory of your Flow application:
 In a production environment or if you don't want that the demo data gets
 installed, leave out the `--option=setup/default/demo:1` option.
 
-**Note:** If you get an error like ```TYPO3\Flow\Core\ApplicationContext not found```,
-execute ```composer update``` again to install the missing ```typo/flow``` package.
+**Note:** If you get an error like `TYPO3\Flow\Core\ApplicationContext not found`,
+execute `composer update` again to install the missing `typo/flow` package.
 
 For **TYPO3 Flow only** you need to import the routes from the Aimeos web shop
 package into your `Configuration/Routes.yaml` nice looking URLs. Insert the lines
