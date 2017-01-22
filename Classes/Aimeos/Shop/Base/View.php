@@ -28,6 +28,12 @@ class View
 	 */
 	protected $i18n;
 
+	/**
+	 * @var \TYPO3\Fluid\View\StandaloneView
+	 * @Flow\Inject
+	 */
+	protected $view;
+
 
 	/**
 	 * Creates the view object for the HTML client.
@@ -43,8 +49,9 @@ class View
 		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
 		\TYPO3\Flow\Mvc\RequestInterface $request = null, $langid = null )
 	{
+		$engines = array( '.html' => new \Aimeos\MW\View\Engine\Flow( $this->view ) );
+		$view = new \Aimeos\MW\View\Standard( $templatePaths, $engines );
 		$config = $context->getConfig();
-		$view = new \Aimeos\MW\View\Standard( $templatePaths );
 
 		$this->addCsrf( $view );
 		$this->addAccess( $view, $context );
