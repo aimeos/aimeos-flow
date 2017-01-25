@@ -11,6 +11,7 @@ namespace Aimeos\Shop\ViewHelper;
 
 
 use TYPO3\Fluid\Core\ViewHelper\Exception;
+use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 
 /**
@@ -19,7 +20,7 @@ use TYPO3\Fluid\Core\ViewHelper\Exception;
  * @package Flow
  * @subpackage ViewHelper
  */
-class BlockViewHelper extends \TYPO3\Fluid\Core\AbstractViewHelper
+class BlockViewHelper extends AbstractViewHelper
 {
 	protected $escapeChildren = false;
 
