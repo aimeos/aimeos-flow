@@ -121,6 +121,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
 		$view = new \Aimeos\Shop\Base\View();
+		$this->inject( $view, 'view', new \TYPO3\Fluid\View\StandaloneView() );
 		$this->inject( $this->object, 'viewcontainer', $view );
 
 

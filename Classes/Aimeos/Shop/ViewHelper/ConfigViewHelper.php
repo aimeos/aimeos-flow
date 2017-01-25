@@ -19,7 +19,7 @@ use TYPO3\Fluid\Core\ViewHelper\Exception;
  * @package Flow
  * @subpackage ViewHelper
  */
-class ConfigViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
+class ConfigViewHelper extends \TYPO3\Fluid\Core\AbstractViewHelper
 {
 	protected $escapeChildren = false;
 
