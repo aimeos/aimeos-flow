@@ -13,11 +13,20 @@ namespace Aimeos\Shop\ViewHelper;
 use TYPO3\Fluid\Core\ViewHelper\Exception;
 
 
+/**
+ * Aimeos translations view helper
+ *
+ * @package Flow
+ * @subpackage ViewHelper
+ */
 class TranslateViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
 {
 	protected $escapeChildren = false;
 
 
+	/**
+	 * Registers the known arguments
+	 */
 	public function initializeArguments()
 	{
 		$this->registerArgument( 'singular', 'string', 'Singular form of the text to translate' );
@@ -29,6 +38,11 @@ class TranslateViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
 	}
 
 
+	/**
+	 * Returns the translated string for the given phrase
+	 *
+	 * @return mixed Translated string
+	 */
 	public function render()
 	{
 		$iface = '\Aimeos\MW\View\Iface';

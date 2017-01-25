@@ -13,17 +13,29 @@ namespace Aimeos\Shop\ViewHelper;
 use TYPO3\Fluid\Core\ViewHelper\Exception;
 
 
+/**
+ * Aimeos block view helper
+ *
+ * @package Flow
+ * @subpackage ViewHelper
+ */
 class BlockViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
 {
 	protected $escapeChildren = false;
 
 
+	/**
+	 * Registers the known arguments
+	 */
 	public function initializeArguments()
 	{
 		$this->registerArgument( 'name', 'string', 'Name of the content block' );
 	}
 
 
+	/**
+	 * Adds the rendered Fluid section to the Aimeos block view helper
+	 */
 	public function render()
 	{
 		$iface = '\Aimeos\MW\View\Iface';

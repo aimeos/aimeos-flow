@@ -13,11 +13,20 @@ namespace Aimeos\Shop\ViewHelper;
 use TYPO3\Fluid\Core\ViewHelper\Exception;
 
 
+/**
+ * Aimeos configuration view helper
+ *
+ * @package Flow
+ * @subpackage ViewHelper
+ */
 class ConfigViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
 {
 	protected $escapeChildren = false;
 
 
+	/**
+	 * Registers the known arguments
+	 */
 	public function initializeArguments()
 	{
 		$this->registerArgument( 'key', 'string', 'Configuration key, e.g. client/html/catalog/lists/basket-add' );
@@ -25,6 +34,11 @@ class ConfigViewHelper extends TYPO3\Fluid\Core\AbstractViewHelper
 	}
 
 
+	/**
+	 * Returns the configuration value for the given key
+	 *
+	 * @return mixed Configuration value
+	 */
 	public function render()
 	{
 		$iface = '\Aimeos\MW\View\Iface';

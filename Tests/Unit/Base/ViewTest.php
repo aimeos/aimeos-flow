@@ -13,10 +13,13 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 	{
 		$i18n = new \Aimeos\Shop\Base\I18n();
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
+		$view = new \TYPO3\Fluid\View\StandaloneView();
+
 		$this->object = new \Aimeos\Shop\Base\View();
 
 		$this->inject( $i18n, 'aimeos', $aimeos );
 		$this->inject( $this->object, 'i18n', $i18n );
+		$this->inject( $this->object, 'view', $view );
 	}
 
 
