@@ -11,9 +11,6 @@ cat composer.json | sed 's/^\}$/,\
             "url": "https:\/\/github.com\/aimeos\/php-coveralls.git"\
         }\
     ],\
-    "require-dev": {\
-        "satooshi\/php-coveralls": "dev-master"\
-    },\
     "extra": {\
         "installer-paths": {\
             "Packages\/Extensions\/{$name}\/": ["type:aimeos-extension"]\
@@ -22,7 +19,7 @@ cat composer.json | sed 's/^\}$/,\
 }/' > composer.json.new
 mv composer.json.new composer.json
 
-composer require --no-update aimeos/aimeos-flow dev-master
+composer require --no-update aimeos/aimeos-flow:dev-master satooshi/php-coveralls:dev-master
 composer update
 rm -rf Packages/Application/Aimeos.Shop
 mv ../aimeos-flow Packages/Application/Aimeos.Shop
