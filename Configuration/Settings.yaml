@@ -14,7 +14,7 @@ Aimeos:
 #      cache:
 #        name: None
 #        prefix: myshop
-      extdir: %FLOW_PATH_PACKAGES%Extensions
+      extdir: "%FLOW_PATH_PACKAGES%Extensions"
       uploaddir: /
 
     page:
@@ -42,16 +42,16 @@ Aimeos:
         opt-persistent: 0
       fs:
         adapter: Standard
-        basedir: %FLOW_PATH_WEB%
-        tempdir: %FLOW_PATH_DATA%Temporary
+        basedir: "%FLOW_PATH_WEB%"
+        tempdir: "%FLOW_PATH_DATA%Temporary"
       fs-admin:
         adapter: Standard
-        basedir: %FLOW_PATH_WEB%Uploads
-        tempdir: %FLOW_PATH_DATA%Temporary
+        basedir: "%FLOW_PATH_WEB%Uploads"
+        tempdir: "%FLOW_PATH_DATA%Temporary"
       fs-secure:
         adapter: Standard
-        basedir: %FLOW_PATH_DATA%Persistent/Secure
-        tempdir: %FLOW_PATH_DATA%Temporary
+        basedir: "%FLOW_PATH_DATA%Persistent/Secure"
+        tempdir: "%FLOW_PATH_DATA%Temporary"
       mq:
         adapter: Standard
         db: db
