@@ -1,5 +1,5 @@
-src_dir: ./
+src_dir: Application/Aimeos.Shop/Classes/
 json_path: coveralls.json
 coverage_clover:
-    - coverage-unit.xml
-    - coverage-functional.xml
+    - Application/Aimeos.Shop/coverage-unit.xml
+    - Application/Aimeos.Shop/coverage-functional.xml
