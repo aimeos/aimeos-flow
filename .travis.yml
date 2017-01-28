@@ -16,4 +16,4 @@ script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-functional.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Functional/
 
 after_success:
-  - php bin/coveralls -c Packages/Application/Aimeos.Shop/.coveralls.yml
+  - php bin/coveralls -c Application/Aimeos.Shop/.coveralls.yml
