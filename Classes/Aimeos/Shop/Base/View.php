@@ -28,6 +28,12 @@ class View
 	 */
 	protected $i18n;
 
+	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Context
+	 */
+	protected $security;
+
 
 	/**
 	 * Creates the view object for the HTML client.
@@ -101,6 +107,13 @@ class View
 	 */
 	protected function addCsrf( \Aimeos\MW\View\Iface $view )
 	{
+		if( $this->security->canBeInitialized() )
+		{
+			$token = $this->security->getCsrfProtectionToken();
+			$helper = new \Aimeos\MW\View\Helper\Csrf\Standard( $view, '__csrfToken', $token );
+			$view->addHelper( 'csrf', $helper );
+		}
+
 		return $view;
 	}
 

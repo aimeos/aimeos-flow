@@ -14,9 +14,11 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$i18n = new \Aimeos\Shop\Base\I18n();
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$this->object = new \Aimeos\Shop\Base\View();
+		$security = new \TYPO3\Flow\Security\DummyContext();
 
 		$this->inject( $i18n, 'aimeos', $aimeos );
 		$this->inject( $this->object, 'i18n', $i18n );
+		$this->inject( $this->object, 'security', $security );
 	}
 
 
