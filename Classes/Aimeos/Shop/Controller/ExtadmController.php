@@ -39,6 +39,12 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	protected $locale;
 
 	/**
+	 * @Flow\Inject
+	 * @var \TYPO3\Flow\Security\Context
+	 */
+	protected $security;
+
+	/**
 	 * @var \Aimeos\Shop\Base\View
 	 * @Flow\Inject
 	 */
@@ -77,10 +83,12 @@ class ExtadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 			}
 		}
 
+		$token = $this->security->getCsrfProtectionToken();
+		$jsonUrl = $this->uriBuilder->uriFor( 'do', array( 'site' => $site, '__csrfToken' => $token ) );
+		$jqadmUrl = $this->uriBuilder->uriFor( 'search', array( 'site' => $site, 'resource' => 'product' ), 'Jqadm' );
+
 		$params = array( 'site' => '{site}', 'lang' => '{lang}', 'tab' => '{tab}' );
 		$adminUrl = $this->uriBuilder->uriFor( 'index', $params );
-		$jsonUrl = $this->uriBuilder->uriFor( 'do', array( 'site' => 'default' ) );
-		$jqadmUrl = $this->uriBuilder->uriFor( 'search', array( 'site' => $site, 'resource' => 'product' ), 'Jqadm' );
 
 		$vars = array(
 			'lang' => $lang,

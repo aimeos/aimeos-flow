@@ -55,6 +55,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$this->inject( $this->object, 'view', $this->view );
 		$this->inject( $this->object, 'request', $this->request );
+		$this->inject( $this->object, 'security', new \TYPO3\Flow\Security\DummyContext() );
 
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
