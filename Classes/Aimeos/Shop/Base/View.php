@@ -114,10 +114,12 @@ class View
 	 */
 	protected function addCsrf( \Aimeos\MW\View\Iface $view )
 	{
-		$token = $this->security->getCsrfProtectionToken();
-
-		$helper = new \Aimeos\MW\View\Helper\Csrf\Standard( $view, '__csrfToken', $token );
-		$view->addHelper( 'csrf', $helper );
+		if( $this->security->canBeInitialized() )
+		{
+			$token = $this->security->getCsrfProtectionToken();
+			$helper = new \Aimeos\MW\View\Helper\Csrf\Standard( $view, '__csrfToken', $token );
+			$view->addHelper( 'csrf', $helper );
+		}
 
 		return $view;
 	}
