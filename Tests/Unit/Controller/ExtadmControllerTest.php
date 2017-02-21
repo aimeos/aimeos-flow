@@ -124,7 +124,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $view, 'view', new \TYPO3\Fluid\View\StandaloneView() );
 		$this->inject( $this->object, 'viewcontainer', $view );
 
-		$security = new \TYPO3\Flow\Security\Contex();
+		$security = new \TYPO3\Flow\Security\Context();
 		$this->inject( $this->object, 'security', $security );
 
 

@@ -14,7 +14,7 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$i18n = new \Aimeos\Shop\Base\I18n();
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 		$view = new \TYPO3\Fluid\View\StandaloneView();
-		$security = new \TYPO3\Flow\Security\Contex();
+		$security = new \TYPO3\Flow\Security\Context();
 
 		$this->object = new \Aimeos\Shop\Base\View();
 

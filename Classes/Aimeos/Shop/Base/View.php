@@ -36,7 +36,7 @@ class View
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Contex
+	 * @var \TYPO3\Flow\Security\Context
 	 */
 	protected $security;
 
