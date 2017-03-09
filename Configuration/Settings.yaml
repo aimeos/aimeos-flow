@@ -90,6 +90,13 @@ Aimeos:
                     url:
                       controller: Page
                       action: privacy
+      jsonapi:
+        url:
+          config:
+            absoluteUri: true
+          options:
+            config:
+              absoluteUri: true
 
     controller:
       common:
