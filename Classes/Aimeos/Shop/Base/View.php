@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Base;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -29,14 +29,14 @@ class View
 	protected $i18n;
 
 	/**
-	 * @var \TYPO3\Fluid\View\StandaloneView
+	 * @var \Neos\FluidAdaptor\View\StandaloneView
 	 * @Flow\Inject
 	 */
 	protected $view;
 
 	/**
 	 * @Flow\Inject
-	 * @var \TYPO3\Flow\Security\Context
+	 * @var \Neos\Flow\Security\Context
 	 */
 	protected $security;
 
@@ -45,15 +45,15 @@ class View
 	 * Creates the view object for the HTML client.
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param \Neos\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
 	 * @param array $templatePaths List of base path names with relative template paths as key/value pairs
-	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 * @param string|null $langid Language ID
 	 * @return \Aimeos\MW\View\Iface View object
 	 */
 	public function create( \Aimeos\MShop\Context\Item\Iface $context,
-		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
-		\TYPO3\Flow\Mvc\RequestInterface $request = null, $langid = null )
+		\Neos\Flow\Mvc\Routing\UriBuilder $uriBuilder, array $templatePaths,
+		\Neos\Flow\Mvc\RequestInterface $request = null, $langid = null )
 	{
 		$engines = array( '.html' => new \Aimeos\MW\View\Engine\Flow( $this->view ) );
 		$view = new \Aimeos\MW\View\Standard( $templatePaths, $engines );
@@ -149,10 +149,10 @@ class View
 	 * Adds the "param" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addParam( \Aimeos\MW\View\Iface $view, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	protected function addParam( \Aimeos\MW\View\Iface $view, \Neos\Flow\Mvc\RequestInterface $request = null )
 	{
 		$params = ( $request !== null ? $request->getArguments() : array() );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
@@ -166,10 +166,10 @@ class View
 	 * Adds the "request" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addRequest( \Aimeos\MW\View\Iface $view, \TYPO3\Flow\Mvc\RequestInterface $request = null )
+	protected function addRequest( \Aimeos\MW\View\Iface $view, \Neos\Flow\Mvc\RequestInterface $request = null )
 	{
 		if( $request !== null )
 		{
@@ -234,13 +234,13 @@ class View
 	 * Adds the "url" helper to the view object
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
-	 * @param \TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
-	 * @param \TYPO3\Flow\Mvc\RequestInterface|null $request Request object
+	 * @param \Neos\Flow\Mvc\Routing\UriBuilder $uriBuilder URL builder object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
 	protected function addUrl( \Aimeos\MW\View\Iface $view,
-		\TYPO3\Flow\Mvc\Routing\UriBuilder $uriBuilder,
-		\TYPO3\Flow\Mvc\RequestInterface $request = null )
+		\Neos\Flow\Mvc\Routing\UriBuilder $uriBuilder,
+		\Neos\Flow\Mvc\RequestInterface $request = null )
 	{
 		$fixed = array();
 

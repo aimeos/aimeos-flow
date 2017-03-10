@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Controller;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -18,7 +18,7 @@ use TYPO3\Flow\Annotations as Flow;
  * @package flow
  * @subpackage Controller
  */
-class AdminController extends \TYPO3\Flow\Mvc\Controller\ActionController
+class AdminController extends \Neos\Flow\Mvc\Controller\ActionController
 {
 	/**
 	 * Creates the initial HTML view for the admin interface.

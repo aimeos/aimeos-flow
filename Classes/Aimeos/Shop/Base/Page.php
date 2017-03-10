@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Base;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -41,7 +41,7 @@ class Page
 	protected $view;
 
 	/**
-	 * @var \TYPO3\Flow\Mvc\Routing\UriBuilder
+	 * @var \Neos\Flow\Mvc\Routing\UriBuilder
 	 * @Flow\Inject
 	 */
 	protected $uriBuilder;
@@ -55,11 +55,11 @@ class Page
 	/**
 	 * Returns the body and header sections created by the clients configured for the given page name.
 	 *
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface $request Request object
 	 * @param string $pageName Name of the configured page
 	 * @return array Associative list with body and header output separated by client name
 	 */
-	public function getSections( \TYPO3\Flow\Mvc\RequestInterface $request, $pageName )
+	public function getSections( \Neos\Flow\Mvc\RequestInterface $request, $pageName )
 	{
 		$this->uriBuilder->setRequest( $request );
 

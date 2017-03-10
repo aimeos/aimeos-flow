@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Base;
 
 
-class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
+class ViewTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 
@@ -13,8 +13,8 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 	{
 		$i18n = new \Aimeos\Shop\Base\I18n();
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
-		$view = new \TYPO3\Fluid\View\StandaloneView();
-		$security = new \TYPO3\Flow\Security\DummyContext();
+		$view = new \Neos\FluidAdaptor\View\StandaloneView();
+		$security = new \Neos\Flow\Security\DummyContext();
 
 		$this->object = new \Aimeos\Shop\Base\View();
 
@@ -33,7 +33,7 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$context = new \Aimeos\MShop\Context\Item\Standard();
 		$context->setConfig( new \Aimeos\MW\Config\PHPArray() );
 
-		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
+		$uriBuilder = $this->getMockBuilder('\Neos\Flow\Mvc\Routing\UriBuilder')
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -51,13 +51,13 @@ class ViewTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$context = new \Aimeos\MShop\Context\Item\Standard();
 		$context->setConfig( new \Aimeos\MW\Config\PHPArray() );
 
-		$uriBuilder = $this->getMockBuilder( '\TYPO3\Flow\Mvc\Routing\UriBuilder' )
+		$uriBuilder = $this->getMockBuilder( '\Neos\Flow\Mvc\Routing\UriBuilder' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$httpRequest = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
+		$httpRequest = new \Neos\Flow\Http\Request( array(), array(), array(), array() );
 
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();

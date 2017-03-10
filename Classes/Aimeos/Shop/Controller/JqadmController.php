@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Controller;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -18,7 +18,7 @@ use TYPO3\Flow\Annotations as Flow;
  * @package flow
  * @subpackage Controller
  */
-class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
+class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -54,7 +54,7 @@ class JqadmController extends \TYPO3\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the JS file content
 	 *
-	 * @return \TYPO3\Flow\Http\Response Response object
+	 * @return \Neos\Flow\Http\Response Response object
 	 */
 	public function fileAction()
 	{

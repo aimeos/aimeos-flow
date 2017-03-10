@@ -3,7 +3,7 @@
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
 
-class AccountControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
+class AccountControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
 	public function testDownloadAction()
 	{

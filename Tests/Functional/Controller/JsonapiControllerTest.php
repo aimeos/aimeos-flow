@@ -3,7 +3,7 @@
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
 
-class JsonapiControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
+class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
 	public function testOptionsAction()
 	{

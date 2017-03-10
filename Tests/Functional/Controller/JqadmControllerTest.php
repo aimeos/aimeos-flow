@@ -3,7 +3,7 @@
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
 
-class JqadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
+class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
 	public function testFileActionCss()
 	{

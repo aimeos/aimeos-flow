@@ -31,7 +31,7 @@ class InstallerScripts
 			$options['options'] = 'setup/default/demo:1';
 		}
 
-		\TYPO3\Flow\Core\Booting\Scripts::executeCommand( 'aimeos.shop:aimeos:setup', array(), true, $options );
-		\TYPO3\Flow\Core\Booting\Scripts::executeCommand( 'aimeos.shop:aimeos:cache', array() );
+		\Neos\Flow\Core\Booting\Scripts::executeCommand( 'aimeos.shop:aimeos:setup', array(), true, $options );
+		\Neos\Flow\Core\Booting\Scripts::executeCommand( 'aimeos.shop:aimeos:cache', array() );
 	}
 }

@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Command;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -20,21 +20,21 @@ use TYPO3\Flow\Annotations as Flow;
  * @subpackage Command
  * @Flow\Scope("singleton")
  */
-class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
+class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 {
 	/**
 	 * @var string
-	 * @Flow\Inject(setting="http.baseUri", package="TYPO3.Flow")
+	 * @Flow\InjectConfiguration(path="http.baseUri", package="Neos.Flow")
 	 */
 	protected $baseUri;
 
 	/**
-	 * @var \TYPO3\Flow\Cache\Frontend\StringFrontend
+	 * @var \Neos\Cache\Frontend\StringFrontend
 	 */
 	protected $cache;
 
 	/**
-	 * @var \TYPO3\Flow\Object\ObjectManagerInterface
+	 * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
 	 */
 	protected $objectManager;
 
@@ -198,11 +198,11 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 	{
 		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
 		$context = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Context' )->get( null, 'command' );
-		$uriBuilder = $this->objectManager->get( '\\TYPO3\\Flow\\Mvc\\Routing\\UriBuilder' );
+		$uriBuilder = $this->objectManager->get( '\\Neos\\Flow\\Mvc\\Routing\\UriBuilder' );
 
-		$request = \TYPO3\Flow\Http\Request::createFromEnvironment();
-		$request->setBaseUri( new \TYPO3\Flow\Http\Uri( $this->baseUri ) );
-		$uriBuilder->setRequest( new \TYPO3\Flow\Mvc\ActionRequest( $request ) );
+		$request = \Neos\Flow\Http\Request::createFromEnvironment();
+		$request->setBaseUri( new \Neos\Flow\Http\Uri( $this->baseUri ) );
+		$uriBuilder->setRequest( new \Neos\Flow\Mvc\ActionRequest( $request ) );
 
 		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/templates' );
 
@@ -262,20 +262,20 @@ class AimeosCommandController extends \TYPO3\Flow\Cli\CommandController
 
 
 	/**
-	 * @param \TYPO3\Flow\Cache\Frontend\StringFrontend $cache
+	 * @param \Neos\Cache\Frontend\StringFrontend $cache
 	 * @return void
 	 */
-	public function injectCache( \TYPO3\Flow\Cache\Frontend\StringFrontend $cache )
+	public function injectCache( \Neos\Cache\Frontend\StringFrontend $cache )
 	{
 		$this->cache = $cache;
 	}
 
 
 	/**
-	 * @param \TYPO3\Flow\Object\ObjectManagerInterface $objectManager
+	 * @param \Neos\Flow\ObjectManagement\ObjectManagerInterface $objectManager
 	 * @return void
 	 */
-	public function injectObjectManager( \TYPO3\Flow\Object\ObjectManagerInterface $objectManager )
+	public function injectObjectManager( \Neos\Flow\ObjectManagement\ObjectManagerInterface $objectManager )
 	{
 		$this->objectManager = $objectManager;
 	}

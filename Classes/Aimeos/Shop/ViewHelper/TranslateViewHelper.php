@@ -10,8 +10,8 @@
 namespace Aimeos\Shop\ViewHelper;
 
 
-use TYPO3\Fluid\Core\ViewHelper\Exception;
-use TYPO3\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Neos\FluidAdaptor\Core\ViewHelper\Exception;
+use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 
 
 /**

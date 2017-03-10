@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Base;
 
 
-class PageTest extends \TYPO3\Flow\Tests\UnitTestCase
+class PageTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 
@@ -15,7 +15,7 @@ class PageTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 
-		$uriBuilder = $this->getMockBuilder( '\TYPO3\Flow\Mvc\Routing\UriBuilder' )
+		$uriBuilder = $this->getMockBuilder( '\Neos\Flow\Mvc\Routing\UriBuilder' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -64,7 +64,7 @@ class PageTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'settings', $settings );
 
 
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments' ) )
 			->disableOriginalConstructor()
 			->getMock();

@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Controller;
 
 
-class AbstractControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
+class AbstractControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 	private $view;
@@ -16,14 +16,14 @@ class AbstractControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->view = $this->getMockBuilder( '\TYPO3\Flow\Mvc\View\JsonView' )
+		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
 			->setMethods( array( 'assign' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$this->inject( $this->object, 'view', $this->view );
 
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -68,7 +68,7 @@ class AbstractControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'viewContainer', $viewContainer );
 
 
-		$uriBuilder = $this->getMockBuilder( '\TYPO3\Flow\Mvc\Routing\UriBuilder' )
+		$uriBuilder = $this->getMockBuilder( '\Neos\Flow\Mvc\Routing\UriBuilder' )
 			->disableOriginalConstructor()
 			->getMock();
 

@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Base;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -33,7 +33,7 @@ class Context
 	private $settings;
 
 	/**
-	 * @var \TYPO3\Flow\Cache\Frontend\StringFrontend
+	 * @var \Neos\Cache\Frontend\StringFrontend
 	 */
 	private $cache;
 
@@ -62,13 +62,13 @@ class Context
 	protected $locale;
 
 	/**
-	 * @var \TYPO3\SwiftMailer\MailerInterface
+	 * @var \Neos\SwiftMailer\MailerInterface
 	 * @Flow\Inject
 	 */
 	protected $mailer;
 
 	/**
-	 * @var \TYPO3\Flow\Session\SessionInterface
+	 * @var \Neos\Flow\Session\SessionInterface
 	 * @Flow\Inject(lazy = FALSE)
 	 */
 	protected $session;
@@ -77,10 +77,10 @@ class Context
 	/**
 	 * Returns the current context.
 	 *
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface $request Request object
 	 * @return \Aimeos\MShop\Context\Item\Iface
 	 */
-	public function get( \TYPO3\Flow\Mvc\RequestInterface $request = null, $type = 'frontend' )
+	public function get( \Neos\Flow\Mvc\RequestInterface $request = null, $type = 'frontend' )
 	{
 		$config = $this->config->get( $type );
 
@@ -258,10 +258,10 @@ class Context
 	/**
 	 * Sets the Aimeos shop cache
 	 *
-	 * @param \TYPO3\Flow\Cache\Frontend\StringFrontend $cache Cache for shop data
+	 * @param \Neos\Cache\Frontend\StringFrontend $cache Cache for shop data
 	 * @return void
 	 */
-	public function setCache( \TYPO3\Flow\Cache\Frontend\StringFrontend $cache )
+	public function setCache( \Neos\Cache\Frontend\StringFrontend $cache )
 	{
 		$this->cache = $cache;
 	}

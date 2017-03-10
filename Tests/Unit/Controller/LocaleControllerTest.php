@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Controller;
 
 
-class LocaleControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
+class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 	private $view;
@@ -17,7 +17,7 @@ class LocaleControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->view = $this->getMockBuilder( '\TYPO3\Flow\Mvc\View\JsonView' )
+		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
 			->disableOriginalConstructor()
 			->getMock();
 

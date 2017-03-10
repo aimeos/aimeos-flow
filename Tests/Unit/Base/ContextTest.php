@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Base;
 
 
-class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
+class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 
@@ -20,7 +20,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$mailer = function() {};
 
-		$session = $this->getMockBuilder( 'TYPO3\Flow\Session\Session' )
+		$session = $this->getMockBuilder( 'Neos\Flow\Session\Session' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -57,7 +57,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function get()
 	{
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -75,7 +75,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		\Aimeos\MShop\Locale\Manager\Factory::injectManager( '\Aimeos\MShop\Locale\Manager\Standard', $localeManager );
 
-		$cache = $this->getMockBuilder( '\TYPO3\Flow\Cache\Frontend\StringFrontend' )
+		$cache = $this->getMockBuilder( '\Neos\Cache\Frontend\StringFrontend' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -93,7 +93,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function getNoCache()
 	{
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -125,7 +125,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function getCustomCache()
 	{
-		$request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -168,7 +168,7 @@ class ContextTest extends \TYPO3\Flow\Tests\UnitTestCase
 	 */
 	public function setCache()
 	{
-		$cache = $this->getMockBuilder( '\TYPO3\Flow\Cache\Frontend\StringFrontend' )
+		$cache = $this->getMockBuilder( '\Neos\Cache\Frontend\StringFrontend' )
 			->disableOriginalConstructor()
 			->getMock();
 

@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Controller;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Zend\Diactoros\Response;
 
 
@@ -20,7 +20,7 @@ use Zend\Diactoros\Response;
  * @package flow
  * @subpackage Controller
  */
-class JsonapiController extends \TYPO3\Flow\Mvc\Controller\ActionController
+class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -163,7 +163,7 @@ class JsonapiController extends \TYPO3\Flow\Mvc\Controller\ActionController
 
 		try {
 			$resource = $flowRequest->getContent( true );
-		} catch( \TYPO3\Flow\Http\Exception $exception ) {
+		} catch( \Neos\Flow\Http\Exception $exception ) {
 			$resource = fopen( 'php://temp', 'rw' );
 			fwrite( $resource, $flowRequest->getContent() );
 		}

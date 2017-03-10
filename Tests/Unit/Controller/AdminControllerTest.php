@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Controller;
 
 
-class AdminControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
+class AdminControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 	private $request;
@@ -18,7 +18,7 @@ class AdminControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$this->request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArgument', 'hasArgument' ) )
 			->disableOriginalConstructor()
 			->getMock();

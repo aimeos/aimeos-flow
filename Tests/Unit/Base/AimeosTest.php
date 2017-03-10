@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Base;
 
 
-class AimeosTest extends \TYPO3\Flow\Tests\UnitTestCase
+class AimeosTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 

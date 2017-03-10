@@ -2,7 +2,7 @@ Aimeos\Shop\Base\Context:
   properties:
     cache:
       object:
-        factoryObjectName: TYPO3\Flow\Cache\CacheManager
+        factoryObjectName: Neos\Flow\Cache\CacheManager
         factoryMethodName: getCache
         arguments:
           1:
@@ -12,11 +12,11 @@ Aimeos\Shop\Command\AimeosCommandController:
   properties:
     cache:
       object:
-        factoryObjectName: TYPO3\Flow\Cache\CacheManager
+        factoryObjectName: Neos\Flow\Cache\CacheManager
         factoryMethodName: getCache
         arguments:
           1:
             value: AimeosShop_Cache
 
-TYPO3\Flow\Property\TypeConverter\MediaTypeConverterInterface:
+Neos\Flow\Property\TypeConverter\MediaTypeConverterInterface:
   className: 'Aimeos\Flow\AimeosTypeConverter'

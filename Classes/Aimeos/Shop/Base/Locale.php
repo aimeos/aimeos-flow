@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Base;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -37,10 +37,10 @@ class Locale
 	 * Returns the locale item for the current request
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
-	 * @param \TYPO3\Flow\Mvc\RequestInterface $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface $request Request object
 	 * @return \Aimeos\MShop\Locale\Item\Iface Locale item object
 	 */
-	public function get( \Aimeos\MShop\Context\Item\Iface $context, \TYPO3\Flow\Mvc\RequestInterface $request )
+	public function get( \Aimeos\MShop\Context\Item\Iface $context, \Neos\Flow\Mvc\RequestInterface $request )
 	{
 		if( $this->locale === null )
 		{

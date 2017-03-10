@@ -7,11 +7,11 @@
 [![Build Status](https://travis-ci.org/aimeos/aimeos-flow.svg?branch=master)](https://travis-ci.org/aimeos/aimeos-flow)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/?branch=master)
 
-The repository contains the web shop package for TYPO3 Flow/Neos
+The repository contains the web shop package for Flow/Neos
 integrating the Aimeos e-commerce library into Flow/Neos. The package provides
 controllers for e.g. faceted filter, product lists and detail views, for
 searching products as well as baskets and the checkout process. A full set of
-pages including routing is also available for a quick start in TYPO3 Flow.
+pages including routing is also available for a quick start in Flow.
 
 [![Aimeos Flow demo](https://aimeos.org/fileadmin/user_upload/flow-demo.jpg)](http://flow.demo.aimeos.org/)
 
@@ -32,13 +32,13 @@ This document is for the latest Aimeos Flow **2016.10 release and later**.
 The Aimeos Flow/Neos web shop package is a composer based library that can be
 installed easiest by using [Composer](https://getcomposer.org).
 
-Make sure that the **database is set up and it is configured**. TYPO3 Neos has
+Make sure that the **database is set up and it is configured**. Neos has
 a nice setup page for this when opening the `/setup` URL of your installation.
-For TYPO3 Flow, this is done in your `Configuration/Settings.yaml` file and must
+For Flow, this is done in your `Configuration/Settings.yaml` file and must
 at least include these settings:
 
 ```yaml
-TYPO3:
+Neos:
   Flow:
     persistence:
       backendOptions:
@@ -82,10 +82,10 @@ Flow console command in the base directory of your Flow application:
 In a production environment or if you don't want that the demo data gets
 installed, leave out the `--option=setup/default/demo:1` option.
 
-**Note:** If you get an error like `TYPO3\Flow\Core\ApplicationContext not found`,
+**Note:** If you get an error like `Neos\Flow\Core\ApplicationContext not found`,
 execute `composer update` again to install the missing `typo/flow` package.
 
-For **TYPO3 Flow only** you need to import the routes from the Aimeos web shop
+For **Flow only** you need to import the routes from the Aimeos web shop
 package into your `Configuration/Routes.yaml` nice looking URLs. Insert the lines
 below to the **beginning** of the Routes.yaml file:
 
@@ -110,12 +110,12 @@ Add the following **PrivilegeTarget** to `Configuration/Policy.yaml`
 
 ```yaml
 privilegeTargets:
-  TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+  Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
     'MyShop:AllActions':
       matcher: 'method(Aimeos\Shop\Controller\(.*)Controller->(.*)Action())'
 
 roles:
-  'TYPO3.Flow:Everybody':
+  'Neos.Flow:Everybody':
     privileges:
       -
         privilegeTarget: 'MyShop:AllActions'

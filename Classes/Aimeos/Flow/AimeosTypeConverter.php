@@ -10,10 +10,10 @@
 
 namespace Aimeos\Flow;
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Property\TypeConverter\MediaTypeConverter;
-use TYPO3\Flow\Property\TypeConverter\MediaTypeConverterInterface;
-use TYPO3\Flow\Property\PropertyMappingConfigurationInterface;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Property\TypeConverter\MediaTypeConverter;
+use Neos\Flow\Property\TypeConverter\MediaTypeConverterInterface;
+use Neos\Flow\Property\PropertyMappingConfigurationInterface;
 
 
 /**

@@ -4,7 +4,7 @@
 namespace Aimeos\Shop\Tests\Unit\Controller;
 
 
-class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
+class ExtadmControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 	private $request;
@@ -18,14 +18,14 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->view = $this->getMockBuilder( '\TYPO3\Flow\Mvc\View\JsonView' )
+		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
 			->setMethods( array( 'assign', 'assignMultiple' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$this->inject( $this->object, 'view', $this->view );
 
-		$this->request = $this->getMockBuilder( '\TYPO3\Flow\Mvc\ActionRequest' )
+		$this->request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
 			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -55,7 +55,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 
 		$this->inject( $this->object, 'view', $this->view );
 		$this->inject( $this->object, 'request', $this->request );
-		$this->inject( $this->object, 'security', new \TYPO3\Flow\Security\DummyContext() );
+		$this->inject( $this->object, 'security', new \Neos\Flow\Security\DummyContext() );
 
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
@@ -92,7 +92,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'locale', $locale );
 
 
-		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
+		$uriBuilder = $this->getMockBuilder('\Neos\Flow\Mvc\Routing\UriBuilder')
 			->setMethods( array( 'uriFor' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -122,8 +122,8 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
 		$view = new \Aimeos\Shop\Base\View();
-		$this->inject( $view, 'view', new \TYPO3\Fluid\View\StandaloneView() );
-		$this->inject( $view, 'security', new \TYPO3\Flow\Security\DummyContext() );
+		$this->inject( $view, 'view', new \Neos\FluidAdaptor\View\StandaloneView() );
+		$this->inject( $view, 'security', new \Neos\Flow\Security\DummyContext() );
 		$this->inject( $this->object, 'viewcontainer', $view );
 
 
@@ -154,7 +154,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'locale', $locale );
 
 
-		$uriBuilder = $this->getMockBuilder('\TYPO3\Flow\Mvc\Routing\UriBuilder')
+		$uriBuilder = $this->getMockBuilder('\Neos\Flow\Mvc\Routing\UriBuilder')
 			->setMethods( array( 'uriFor' ) )
 			->disableOriginalConstructor()
 			->getMock();
@@ -162,7 +162,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'uriBuilder', $uriBuilder );
 
 
-		$request = new \TYPO3\Flow\Http\Request( array(), array(), array(), array() );
+		$request = new \Neos\Flow\Http\Request( array(), array(), array(), array() );
 
 		$this->request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $request ) );
@@ -186,7 +186,7 @@ class ExtadmControllerTest extends \TYPO3\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'aimeos', $aimeos );
 
 
-		$response = $this->getMockBuilder( '\TYPO3\Flow\Http\Response' )
+		$response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 

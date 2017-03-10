@@ -10,7 +10,7 @@
 
 namespace Aimeos\Shop\Base;
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 
 /**
@@ -30,7 +30,7 @@ class Config
 
 	/**
 	 * @var array
-	 * @Flow\Inject(setting="persistence.backendOptions", package="TYPO3.Flow")
+	 * @Flow\InjectConfiguration(path="persistence.backendOptions", package="Neos.Flow")
 	 */
 	protected $resource;
 

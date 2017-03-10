@@ -3,7 +3,7 @@
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
 
-class JsonadmControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
+class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
 	public function testOptionsAction()
 	{

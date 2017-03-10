@@ -3,7 +3,7 @@
 namespace Aimeos\Shop\Tests\Functional\Command;
 
 
-class AimeosCommandControllerTest extends \TYPO3\Flow\Tests\FunctionalTestCase
+class AimeosCommandControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
 	/**
 	 * @test

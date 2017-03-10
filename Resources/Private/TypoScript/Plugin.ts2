@@ -1,4 +1,4 @@
-prototype(Aimeos.Shop:Plugin) < prototype(TYPO3.Neos:Plugin)
+prototype(Aimeos.Shop:Plugin) < prototype(Neos.Neos:Plugin)
 prototype(Aimeos.Shop:Plugin) {
     package = 'Aimeos.Shop'
     controller = 'Catalog'
