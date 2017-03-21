@@ -202,7 +202,8 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	protected function getHtml( $content )
 	{
 		$version = $this->aimeos->getVersion();
-		$content = str_replace( ['{type}', '{version}'], ['Flow', $version], $content );
+		$extnames = implode( ',' $this->aimeos->get()->getExtensions() );
+		$content = str_replace( ['{type}', '{version}', '{extensions}'], ['Flow', $version, $extnames], $content );
 
 		$this->view->assign( 'content', $content );
 		return $this->view->render( 'index' );

@@ -101,6 +101,7 @@ class ExtadmController extends \Neos\Flow\Mvc\Controller\ActionController
 			'itemSchemas' => $controller->getJsonItemSchemas(),
 			'smd' => $controller->getJsonSmd( $jsonUrl ),
 			'uploaddir' => $context->getConfig()->get( 'flow/uploaddir', '/.' ),
+			'extensions' => implode( ',', $aimeos->getExtensions() ),
 			'version' => $this->aimeos->getVersion(),
 			'urlTemplate' => urldecode( $adminUrl ),
 			'jqadmurl' => $jqadmUrl,
