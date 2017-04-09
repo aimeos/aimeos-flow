@@ -193,7 +193,7 @@
 
 -
   name: 'REST JSON frontend GET'
-  uriPattern: 'jsonapi/{resource}(/{id}(/{related}(/{relatedid})))'
+  uriPattern: 'jsonapi/{resource}/{id}(/{related}/{relatedid})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
@@ -207,7 +207,7 @@
 
 -
   name: 'REST JSON frontend DELETE'
-  uriPattern: 'jsonapi/{resource}(/{id}(/{related}(/{relatedid})))'
+  uriPattern: 'jsonapi/{resource}/{id}(/{related}/{relatedid})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
@@ -221,7 +221,7 @@
 
 -
   name: 'REST JSON frontend PATCH'
-  uriPattern: 'jsonapi/{resource}(/{id}(/{related}(/{relatedid})))'
+  uriPattern: 'jsonapi/{resource}/{id}(/{related}/{relatedid})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
@@ -235,7 +235,7 @@
 
 -
   name: 'REST JSON frontend POST'
-  uriPattern: 'jsonapi/{resource}(/{id}(/{related}(/{relatedid})))'
+  uriPattern: 'jsonapi/{resource}/{id}(/{related}/{relatedid})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
@@ -249,7 +249,7 @@
 
 -
   name: 'REST JSON frontend PUT'
-  uriPattern: 'jsonapi/{resource}(/{id}(/{related}(/{relatedid})))'
+  uriPattern: 'jsonapi/{resource}/{id}(/{related}/{relatedid})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
