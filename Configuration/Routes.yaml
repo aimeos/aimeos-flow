@@ -263,6 +263,17 @@
   httpMethods: ['OPTIONS']
   appendExceedingArguments: true
 
+-
+  name: 'REST JSON frontend fallback'
+  uriPattern: 'jsonapi/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonapi'
+    '@action': 'index'
+    '@format': 'html'
+    'id': ''
+  appendExceedingArguments: true
+
 
 -
   name: 'Account index page'

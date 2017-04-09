@@ -42,15 +42,45 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 
 
 	/**
+	 * Fallback action for JSON REST API
+	 *
+	 * @param string Resource location, e.g. "customer"
+	 * @return string Response message content
+	 */
+	public function indexAction( $resource )
+	{
+		$client = $this->createClient( $resource );
+		$method = $this->request->getHttpRequest()->getMethod();
+
+		switch( $method )
+		{
+			case 'GET':
+				$psrResponse = $client->get( $this->getPsrRequest(), new Response() ); break;
+			case 'DELETE':
+				$psrResponse = $client->delete( $this->getPsrRequest(), new Response() ); break;
+			case 'PATCH':
+				$psrResponse = $client->patch( $this->getPsrRequest(), new Response() ); break;
+			case 'POST':
+				$psrResponse = $client->post( $this->getPsrRequest(), new Response() ); break;
+			case 'PUT':
+				$psrResponse = $client->put( $this->getPsrRequest(), new Response() ); break;
+			default:
+				throw new \RuntimeException( sprintf( 'Unsupported HTTP method "%1$s"', $method ) );
+		}
+
+		return $this->setPsrResponse( $psrResponse );
+	}
+
+
+	/**
 	 * Deletes the resource object or a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return string Response message content
 	 */
-	public function deleteAction( $resource, $related = '' )
+	public function deleteAction( $resource )
 	{
-		$client = $this->createClient( $resource, $related );
+		$client = $this->createClient( $resource );
 		$psrResponse = $client->delete( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -61,12 +91,11 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the requested resource object or list of resource objects
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return string Response message content
 	 */
-	public function getAction( $resource, $related = '' )
+	public function getAction( $resource )
 	{
-		$client = $this->createClient( $resource, $related );
+		$client = $this->createClient( $resource );
 		$psrResponse = $client->get( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -77,12 +106,11 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Updates a resource object or a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return string Response message content
 	 */
-	public function patchAction( $resource, $related = '' )
+	public function patchAction( $resource )
 	{
-		$client = $this->createClient( $resource, $related );
+		$client = $this->createClient( $resource );
 		$psrResponse = $client->patch( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -93,12 +121,11 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Creates a new resource object or a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return string Response message content
 	 */
-	public function postAction( $resource, $related = '' )
+	public function postAction( $resource )
 	{
-		$client = $this->createClient( $resource, $related );
+		$client = $this->createClient( $resource );
 		$psrResponse = $client->post( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -109,12 +136,11 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Creates or updates a single resource object
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return string Response message content
 	 */
-	public function putAction( $resource, $related = '' )
+	public function putAction( $resource )
 	{
-		$client = $this->createClient( $resource, $related );
+		$client = $this->createClient( $resource );
 		$psrResponse = $client->put( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -140,12 +166,16 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the resource controller
 	 *
 	 * @param string Resource location, e.g. "customer"
-	 * @param string Related resource location, e.g. "address"
 	 * @return \Aimeos\Client\JsonApi\Iface JsonApi client
 	 */
-	protected function createClient( $resource, $related = null )
+	protected function createClient( $resource )
 	{
+		$related = '';
 		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/jsonapi/templates' );
+
+		if( $this->request->hasArgument( 'related' ) ) {
+			$related = $this->request->getArgument( 'related' );
+		}
 
 		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
