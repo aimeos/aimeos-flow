@@ -58,7 +58,7 @@ class Config
 		$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 		$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
 
-		if( function_exists( 'apc_store' ) === true && $apc === true ) {
+		if( function_exists( 'apcu_store' ) === true && $apc === true ) {
 			$config = new \Aimeos\MW\Config\Decorator\APC( $config, $prefix );
 		}
 
