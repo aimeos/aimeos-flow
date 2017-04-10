@@ -53,19 +53,22 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$this->assertEquals( 'CNC', $json['data'][0]['attributes']['product.code'] );
 
 		// add CNC product to basket
+		$params = ['related' => 'product'];
 		$content = json_encode( ['data' => ['attributes' => ['product.id' => $json['data'][0]['id']]]] );
-		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default/product', 'POST', [], [], [], $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'POST', $params, [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'CNC', $json['included'][0]['attributes']['order.base.product.prodcode'] );
 
 		// change product quantity in basket
+		$params = ['related' => 'product', 'relatedid' => 0];
 		$content = json_encode( ['data' => ['attributes' => ['quantity' => 2]]] );
-		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default/product/0', 'PATCH', [], [], [], $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'PATCH', $params, [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 2, $json['included'][0]['attributes']['order.base.product.quantity'] );
 
 		// delete product from basket
-		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default/product/0', 'DELETE' );
+		$params = ['related' => 'product', 'relatedid' => 0];
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'DELETE', $params );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 0, count( $json['included'] ) );
 	}
