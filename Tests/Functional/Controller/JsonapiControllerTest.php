@@ -8,7 +8,6 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	public function testOptionsAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jsonapi', 'OPTIONS' );
-echo $response->getContent() . PHP_EOL;
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -55,7 +54,7 @@ echo $response->getContent() . PHP_EOL;
 
 		// add CNC product to basket
 		$content = json_encode( ['data' => ['attributes' => ['product.id' => $json['data'][0]['id']]]] );
-		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/product', 'POST', [], [], [], $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default/product', 'POST', [], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'CNC', $json['included'][0]['attributes']['order.base.product.prodcode'] );
 
