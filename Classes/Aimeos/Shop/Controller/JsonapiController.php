@@ -42,37 +42,6 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 
 
 	/**
-	 * Fallback action for JSON REST API
-	 *
-	 * @param string Resource location, e.g. "customer"
-	 * @return string Response message content
-	 */
-	public function indexAction( $resource )
-	{
-		$client = $this->createClient( $resource );
-		$method = $this->request->getHttpRequest()->getMethod();
-
-		switch( $method )
-		{
-			case 'GET':
-				$psrResponse = $client->get( $this->getPsrRequest(), new Response() ); break;
-			case 'DELETE':
-				$psrResponse = $client->delete( $this->getPsrRequest(), new Response() ); break;
-			case 'PATCH':
-				$psrResponse = $client->patch( $this->getPsrRequest(), new Response() ); break;
-			case 'POST':
-				$psrResponse = $client->post( $this->getPsrRequest(), new Response() ); break;
-			case 'PUT':
-				$psrResponse = $client->put( $this->getPsrRequest(), new Response() ); break;
-			default:
-				throw new \RuntimeException( sprintf( 'Unsupported HTTP method "%1$s"', $method ) );
-		}
-
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
 	 * Deletes the resource object or a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "customer"
