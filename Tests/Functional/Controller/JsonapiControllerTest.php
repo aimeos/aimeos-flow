@@ -56,6 +56,7 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$params = ['related' => 'product'];
 		$content = json_encode( ['data' => ['attributes' => ['product.id' => $json['data'][0]['id']]]] );
 		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'POST', $params, [], [], $content );
+print_r( $response->getContent() );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'CNC', $json['included'][0]['attributes']['order.base.product.prodcode'] );
 
@@ -63,6 +64,7 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$params = ['related' => 'product', 'relatedid' => 0];
 		$content = json_encode( ['data' => ['attributes' => ['quantity' => 2]]] );
 		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'PATCH', $params, [], [], $content );
+print_r( $response->getContent() );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 2, $json['included'][0]['attributes']['order.base.product.quantity'] );
 
