@@ -58,7 +58,7 @@ class I18n
 				$apc = (bool) ( isset( $this->settings['flow']['apc']['enable'] ) ? $this->settings['flow']['apc']['enable'] : false );
 				$prefix = (string) ( isset( $this->settings['flow']['apc']['prefix'] ) ? $this->settings['flow']['apc']['prefix'] : 'flow:' );
 
-				if( function_exists( 'apcu_store' ) === true && $apc === true ) {
+				if( $apc === true ) {
 					$i18n = new \Aimeos\MW\Translation\Decorator\APC( $i18n, $prefix );
 				}
 
