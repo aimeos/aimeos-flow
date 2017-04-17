@@ -26,14 +26,18 @@ pages including routing is also available for a quick start in Flow.
 
 This document is for the latest Aimeos Flow **2016.10 release and later**.
 
-- Beta release: 2017.01
+- Stable release: 2017.04
 - LTS release: 2016.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
 installed easiest by using [Composer](https://getcomposer.org).
 
-Make sure that the **database is set up and it is configured**. Neos has
-a nice setup page for this when opening the `/setup` URL of your installation.
+Make sure that the **database is set up and it is configured**.  If you want to
+use a database server other than MySQL, please have a look into the article about
+[supported database servers](https://aimeos.org/docs/Developers/Library/Database_support)
+and their specific configuration.
+
+Neos has a nice setup page for this when opening the `/setup` URL of your installation.
 For Flow, this is done in your `Configuration/Settings.yaml` file and must
 at least include these settings:
 
