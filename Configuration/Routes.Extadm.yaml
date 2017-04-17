@@ -1,6 +1,6 @@
 -
   name: 'ExtJS admin JSON RPC request'
-  uriPattern: 'do'
+  uriPattern: '/do'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -10,7 +10,7 @@
 
 -
   name: 'ExtJS admin JS file request'
-  uriPattern: 'file'
+  uriPattern: '/file'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
@@ -20,12 +20,12 @@
 
 -
   name: 'ExtJS admin index page'
-  uriPattern: '({lang}/{tab})'
+  uriPattern: '(/{lang}/{tab})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Extadm'
     '@action': 'index'
     '@format': 'html'
-    'lang': null
-    'tab': 0
+    'lang': ''
+    'tab': '0'
   appendExceedingArguments: true

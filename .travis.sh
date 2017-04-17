@@ -45,28 +45,28 @@ Aimeos:
 printf "
 -
   name: 'Aimeos Myaccount'
-  uriPattern: '{site}/myaccount/<AccountShopRoutes>'
+  uriPattern: '{site}/myaccount<AccountShopRoutes>'
   subRoutes:
     AccountShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Myaccount'
 -
   name: 'Aimeos Jqadm'
-  uriPattern: '{site}/jqadm/<JqadmShopRoutes>'
+  uriPattern: '{site}/jqadm<JqadmShopRoutes>'
   subRoutes:
     JqadmShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jqadm'
 -
   name: 'Aimeos Jsonadm'
-  uriPattern: '{site}/jsonadm/<JsonadmShopRoutes>'
+  uriPattern: '{site}/jsonadm<JsonadmShopRoutes>'
   subRoutes:
     JsonadmShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jsonadm'
 -
   name: 'Aimeos Jsonapi'
-  uriPattern: '{site}/jsonapi/<JsonapiShopRoutes>'
+  uriPattern: '{site}/jsonapi<JsonapiShopRoutes>'
   subRoutes:
     JsonapiShopRoutes:
       package: 'Aimeos.Shop'

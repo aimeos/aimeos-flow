@@ -1,6 +1,6 @@
 -
   name: 'JQAdm file request'
-  uriPattern: 'file/{type}'
+  uriPattern: '/file/{type}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -9,7 +9,7 @@
 
 -
   name: 'JQAdm copy'
-  uriPattern: 'copy/{resource}/{id}'
+  uriPattern: '/copy/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -20,7 +20,7 @@
 
 -
   name: 'JQAdm create'
-  uriPattern: 'create/{resource}'
+  uriPattern: '/create/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -31,7 +31,7 @@
 
 -
   name: 'JQAdm delete'
-  uriPattern: 'delete/{resource}/{id}'
+  uriPattern: '/delete/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -42,7 +42,7 @@
 
 -
   name: 'JQAdm get'
-  uriPattern: 'get/{resource}/{id}'
+  uriPattern: '/get/{resource}/{id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -53,7 +53,7 @@
 
 -
   name: 'JQAdm save'
-  uriPattern: 'save/{resource}(/{id})'
+  uriPattern: '/save/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -65,7 +65,7 @@
 
 -
   name: 'JQAdm search'
-  uriPattern: 'search/{resource}'
+  uriPattern: '/search/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'

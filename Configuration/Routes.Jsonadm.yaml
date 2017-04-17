@@ -1,6 +1,6 @@
 -
   name: 'REST JSON Admin GET'
-  uriPattern: '{resource}(/{id})'
+  uriPattern: '/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -12,7 +12,7 @@
 
 -
   name: 'REST JSON Admin DELETE'
-  uriPattern: '{resource}(/{id})'
+  uriPattern: '/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -24,7 +24,7 @@
 
 -
   name: 'REST JSON Admin PATCH'
-  uriPattern: '{resource}(/{id})'
+  uriPattern: '/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -36,7 +36,7 @@
 
 -
   name: 'REST JSON Admin POST'
-  uriPattern: '{resource}(/{id})'
+  uriPattern: '/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -48,7 +48,7 @@
 
 -
   name: 'REST JSON Admin PUT'
-  uriPattern: '{resource}(/{id})'
+  uriPattern: '/{resource}(/{id})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'
@@ -60,7 +60,7 @@
 
 -
   name: 'REST JSON Admin OPTIONS'
-  uriPattern: '({resource})'
+  uriPattern: '(/{resource})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonadm'

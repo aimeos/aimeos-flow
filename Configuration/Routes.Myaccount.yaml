@@ -1,6 +1,6 @@
 -
   name: 'Account download page'
-  uriPattern: 'download/{dl_id}'
+  uriPattern: '/download/{dl_id}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Account'
@@ -10,7 +10,7 @@
 
 -
   name: 'Account favorite products'
-  uriPattern: 'favorite(/{fav_action}/{fav_id}/{d_name})'
+  uriPattern: '/favorite(/{fav_action}/{fav_id}/{d_name})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Account'
@@ -23,7 +23,7 @@
 
 -
   name: 'Account watched products'
-  uriPattern: 'watch(/{wat_action}/{wat_id}/{d_name})'
+  uriPattern: '/watch(/{wat_action}/{wat_id}/{d_name})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Account'
@@ -36,7 +36,7 @@
 
 -
   name: 'Account index page'
-  uriPattern: ''
+  uriPattern: '/'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Account'
