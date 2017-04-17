@@ -8,67 +8,49 @@
     '@format': 'html'
   appendExceedingArguments: true
 
-
 -
   name: 'Extadm'
   uriPattern: 'admin/{site}/extadm<ExtadmSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'ExtadmSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Extadm'
 
-
 -
   name: 'Jqadm'
   uriPattern: 'admin/{site}/jqadm<JqadmSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'JqadmSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Jqadm'
 
-
 -
   name: 'Jsonadm'
   uriPattern: 'admin/{site}/jsonadm<JsonadmSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'JsonadmSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Jsonadm'
 
-
 -
   name: 'Jsonapi'
   uriPattern: 'jsonapi<JsonapiSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'JsonapiSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Jsonapi'
 
-
 -
   name: 'Myaccount'
   uriPattern: 'myaccount<MyaccountSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'MyaccountSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Myaccount'
 
-
 -
   name: 'Shop'
   uriPattern: '<ShopSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
   subRoutes:
     'ShopSubroutes':
       package: 'Aimeos.Shop'

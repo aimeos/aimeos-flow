@@ -51,6 +51,13 @@ printf "
       package: 'Aimeos.Shop'
       suffix:  'Myaccount'
 -
+  name: 'Aimeos Extadm'
+  uriPattern: '{site}/extadm<ExtadmShopRoutes>'
+  subRoutes:
+    ExtadmShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Extadm'
+-
   name: 'Aimeos Jqadm'
   uriPattern: '{site}/jqadm<JqadmShopRoutes>'
   subRoutes:
@@ -71,4 +78,11 @@ printf "
     JsonapiShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jsonapi'
+-
+  name: 'Shop'
+  uriPattern: '{site}/<ShopSubroutes>'
+  subRoutes:
+    'ShopSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Shop'
 " > Configuration/Routes.yaml
