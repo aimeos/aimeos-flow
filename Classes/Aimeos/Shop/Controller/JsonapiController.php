@@ -46,7 +46,6 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function deleteAction( $resource )
 	{
@@ -62,7 +61,6 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function getAction( $resource )
 	{
@@ -78,7 +76,6 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function patchAction( $resource )
 	{
