@@ -45,38 +45,30 @@ Aimeos:
 printf "
 -
   name: 'Aimeos Myaccount'
-  uriPattern: '{site}/myaccount<AccountSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
+  uriPattern: '{site}/myaccount<AccountShopRoutes>'
   subRoutes:
-    'AccountSubroutes':
+    AccountShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Myaccount'
 -
   name: 'Aimeos Jqadm'
-  uriPattern: '{site}/jqadm<JqadmSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
+  uriPattern: '{site}/jqadm<JqadmShopRoutes>'
   subRoutes:
-    'JqadmSubroutes':
+    JqadmShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jqadm'
 -
   name: 'Aimeos Jsonadm'
-  uriPattern: '{site}/jsonadm<JsonadmSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
+  uriPattern: '{site}/jsonadm<JsonadmShopRoutes>'
   subRoutes:
-    'JsonadmSubroutes':
+    JsonadmShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jsonadm'
 -
   name: 'Aimeos Jsonapi'
-  uriPattern: '{site}/jsonapi<JsonapiSubroutes>'
-  defaults:
-    '@package':    'Aimeos.Shop'
+  uriPattern: '{site}/jsonapi<JsonapiShopRoutes>'
   subRoutes:
-    'JsonapiSubroutes':
+    JsonapiShopRoutes:
       package: 'Aimeos.Shop'
       suffix:  'Jsonapi'
 " > Configuration/Routes.yaml
