@@ -44,7 +44,7 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Deletes the resource object or a list of resource objects
 	 *
-	 * @param string $resource Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
 	 */
 	public function deleteAction( $resource )
@@ -59,7 +59,7 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the requested resource object or list of resource objects
 	 *
-	 * @param string $resource Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
 	 */
 	public function getAction( $resource )
@@ -74,7 +74,7 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Updates a resource object or a list of resource objects
 	 *
-	 * @param string $resource Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
 	 */
 	public function patchAction( $resource )
@@ -89,8 +89,9 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates a new resource object or a list of resource objects
 	 *
-	 * @param string $resource Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function postAction( $resource )
 	{
@@ -104,8 +105,9 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Creates or updates a single resource object
 	 *
-	 * @param string $resource Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return string Response message content
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function putAction( $resource )
 	{
@@ -134,12 +136,17 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	/**
 	 * Returns the resource controller
 	 *
-	 * @param string Resource location, e.g. "product"
+	 * @param string Resource location, e.g. "customer"
 	 * @return \Aimeos\Client\JsonApi\Iface JsonApi client
 	 */
 	protected function createClient( $resource )
 	{
+		$related = '';
 		$tmplPaths = $this->aimeos->get()->getCustomPaths( 'client/jsonapi/templates' );
+
+		if( $this->request->hasArgument( 'related' ) ) {
+			$related = $this->request->getArgument( 'related' );
+		}
 
 		$context = $this->context->get( $this->request );
 		$langid = $context->getLocale()->getLanguageId();
@@ -147,7 +154,7 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 		$view =$this->viewContainer->create( $context, $this->uriBuilder, $tmplPaths, $this->request, $langid );
 		$context->setView( $view );
 
-		return \Aimeos\Client\JsonApi\Factory::createClient( $context, $tmplPaths, $resource );
+		return \Aimeos\Client\JsonApi\Factory::createClient( $context, $tmplPaths, $resource . '/' . $related );
 	}
 
 

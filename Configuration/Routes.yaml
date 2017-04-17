@@ -264,6 +264,7 @@
   appendExceedingArguments: true
 
 
+
 -
   name: 'Account index page'
   uriPattern: 'myaccount'
