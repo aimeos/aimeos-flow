@@ -26,6 +26,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	public function testCopyAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product/0', 'GET' );
+print_r( $response->getContent() );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( '<div class="product-item', $response->getContent() );
