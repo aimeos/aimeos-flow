@@ -91,7 +91,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the HTML code for a copy of a resource object
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
@@ -106,7 +106,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the HTML code for a new resource object
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
 	public function createAction( $site = 'default', $resource )
@@ -120,7 +120,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Deletes the resource object or a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
@@ -135,7 +135,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the HTML code for the requested resource object
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
@@ -150,7 +150,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Saves a new resource object
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
 	public function saveAction( $site = 'default', $resource )
@@ -164,7 +164,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the HTML code for a list of resource objects
 	 *
 	 * @param string Resource location, e.g. "product"
-	 * @param string $sitecode Unique site code
+	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
 	public function searchAction( $site = 'default', $resource )
