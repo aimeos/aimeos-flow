@@ -85,10 +85,8 @@ class ExtadmController extends \Neos\Flow\Mvc\Controller\ActionController
 
 		$token = $this->security->getCsrfProtectionToken();
 		$jsonUrl = $this->uriBuilder->uriFor( 'do', array( 'site' => $site, '__csrfToken' => $token ) );
-		$jqadmUrl = $this->uriBuilder->uriFor( 'search', array( 'site' => $site, 'resource' => 'product' ), 'Jqadm' );
-
-		$params = array( 'site' => '{site}', 'lang' => '{lang}', 'tab' => '{tab}' );
-		$adminUrl = $this->uriBuilder->uriFor( 'index', $params );
+		$jqadmUrl = $this->uriBuilder->uriFor( 'search', array( 'site' => $site, 'lang' => $lang, 'resource' => 'dashboard' ), 'Jqadm' );
+		$adminUrl = $this->uriBuilder->uriFor( 'index', array( 'site' => '{site}', 'lang' => '{lang}', 'tab' => '{tab}' ) );
 
 		$vars = array(
 			'lang' => $lang,
