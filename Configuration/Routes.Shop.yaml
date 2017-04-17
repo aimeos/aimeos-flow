@@ -1,0 +1,105 @@
+-
+  name: 'Basket page'
+  uriPattern: 'basket'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Basket'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog count XHR'
+  uriPattern: 'count'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'count'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog detail page'
+  uriPattern: 'detail/{d_prodid}(/{d_name}/{d_pos})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'detail'
+    '@format': 'html'
+    'd_name': ''
+    'd_pos': '0'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog list page'
+  uriPattern: 'list(/{f_catid}/{f_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'list'
+    '@format': 'html'
+    'f_catid': ''
+    'f_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog session pinned products'
+  uriPattern: 'detail/pin/{pin_action}/{pin_id}/{d_prodid}(/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'detail'
+    '@format': 'html'
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog stock XHR'
+  uriPattern: 'stock'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'stock'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog suggest XHR'
+  uriPattern: 'suggest'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'suggest'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout page'
+  uriPattern: 'checkout(/{c_step})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'index'
+    '@format': 'html'
+    'c_step': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout confirm page'
+  uriPattern: 'confirm'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'confirm'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Checkout update page'
+  uriPattern: 'update'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Checkout'
+    '@action': 'update'
+    '@format': 'html'
+  appendExceedingArguments: true
