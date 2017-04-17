@@ -27,7 +27,62 @@ composer dump-autoload
 
 mysql -e 'create database aimeos;'
 
-printf "Neos:\n  Flow:\n    persistence:\n      backendOptions:\n        dbname: 'aimeos'\n        user: 'root'\n    http:\n      baseUri: http://aimeos.org/\n" > Configuration/Testing/Settings.yaml
-printf "Aimeos:\n  Shop:\n    flow:\n      disableSites: 0\n" >> Configuration/Testing/Settings.yaml
+printf "
+Neos:
+  Flow:
+    persistence:
+      backendOptions:
+        dbname: 'aimeos'
+        user: 'root'
+    http:
+      baseUri: http://aimeos.org/
+Aimeos:
+  Shop:
+    flow:
+      disableSites: 0
+" > Configuration/Testing/Settings.yaml
 
-printf "\n-\n  name: 'Aimeos'\n  uriPattern: '{site}/<AimeosShopRoutes>'\n  subRoutes:\n    'AimeosShopRoutes':\n      package: 'Aimeos.Shop'" > Configuration/Routes.yaml
+printf "
+-
+  name: 'Aimeos Myaccount'
+  uriPattern: '{site}/myaccount<AccountShopRoutes>'
+  subRoutes:
+    AccountShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Myaccount'
+-
+  name: 'Aimeos Extadm'
+  uriPattern: '{site}/extadm<ExtadmShopRoutes>'
+  subRoutes:
+    ExtadmShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Extadm'
+-
+  name: 'Aimeos Jqadm'
+  uriPattern: '{site}/jqadm<JqadmShopRoutes>'
+  subRoutes:
+    JqadmShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Jqadm'
+-
+  name: 'Aimeos Jsonadm'
+  uriPattern: '{site}/jsonadm<JsonadmShopRoutes>'
+  subRoutes:
+    JsonadmShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Jsonadm'
+-
+  name: 'Aimeos Jsonapi'
+  uriPattern: '{site}/jsonapi<JsonapiShopRoutes>'
+  subRoutes:
+    JsonapiShopRoutes:
+      package: 'Aimeos.Shop'
+      suffix:  'Jsonapi'
+-
+  name: 'Shop'
+  uriPattern: '{site}/<ShopSubroutes>'
+  subRoutes:
+    'ShopSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Shop'
+" > Configuration/Routes.yaml

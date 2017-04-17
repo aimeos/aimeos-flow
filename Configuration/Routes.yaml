@@ -8,414 +8,54 @@
     '@format': 'html'
   appendExceedingArguments: true
 
+-
+  name: 'Extadm'
+  uriPattern: 'admin/{site}/extadm<ExtadmSubroutes>'
+  subRoutes:
+    'ExtadmSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Extadm'
 
 -
-  name: 'ExtJS admin JSON RPC request'
-  uriPattern: 'extadm/do'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Extadm'
-    '@action': 'do'
-    '@format': 'html'
-  appendExceedingArguments: true
+  name: 'Jqadm'
+  uriPattern: 'admin/{site}/jqadm<JqadmSubroutes>'
+  subRoutes:
+    'JqadmSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Jqadm'
 
 -
-  name: 'ExtJS admin JS file request'
-  uriPattern: 'extadm/file'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Extadm'
-    '@action': 'file'
-    '@format': 'html'
-  appendExceedingArguments: true
+  name: 'Jsonadm'
+  uriPattern: 'admin/{site}/jsonadm<JsonadmSubroutes>'
+  subRoutes:
+    'JsonadmSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Jsonadm'
 
 -
-  name: 'ExtJS admin index page'
-  uriPattern: 'extadm'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Extadm'
-    '@action': 'index'
-    '@format': 'html'
-  appendExceedingArguments: true
-
+  name: 'Jsonapi'
+  uriPattern: 'jsonapi<JsonapiSubroutes>'
+  subRoutes:
+    'JsonapiSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Jsonapi'
 
 -
-  name: 'JQAdm file request'
-  uriPattern: 'jqadm/file/{type}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'file'
-  appendExceedingArguments: true
+  name: 'Myaccount'
+  uriPattern: 'myaccount<MyaccountSubroutes>'
+  subRoutes:
+    'MyaccountSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Myaccount'
 
 -
-  name: 'JQAdm copy'
-  uriPattern: 'jqadm/copy/{resource}/{id}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'copy'
-    '@format': 'html'
-  httpMethods: ['GET', 'POST']
-  appendExceedingArguments: true
+  name: 'Shop'
+  uriPattern: '<ShopSubroutes>'
+  subRoutes:
+    'ShopSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Shop'
 
--
-  name: 'JQAdm create'
-  uriPattern: 'jqadm/create/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'create'
-    '@format': 'html'
-  httpMethods: ['GET', 'POST']
-  appendExceedingArguments: true
-
--
-  name: 'JQAdm delete'
-  uriPattern: 'jqadm/delete/{resource}/{id}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'delete'
-    '@format': 'html'
-  httpMethods: ['GET', 'POST']
-  appendExceedingArguments: true
-
--
-  name: 'JQAdm get'
-  uriPattern: 'jqadm/get/{resource}/{id}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'get'
-    '@format': 'html'
-  httpMethods: ['GET']
-  appendExceedingArguments: true
-
--
-  name: 'JQAdm save'
-  uriPattern: 'jqadm/save/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'save'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['POST']
-  appendExceedingArguments: true
-
--
-  name: 'JQAdm search'
-  uriPattern: 'jqadm/search/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jqadm'
-    '@action': 'search'
-    '@format': 'html'
-  httpMethods: ['GET', 'POST']
-  appendExceedingArguments: true
-
-
--
-  name: 'REST JSON Admin GET'
-  uriPattern: 'jsonadm/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'get'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['GET']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON Admin DELETE'
-  uriPattern: 'jsonadm/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'delete'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['DELETE']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON Admin PATCH'
-  uriPattern: 'jsonadm/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'patch'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['PATCH']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON Admin POST'
-  uriPattern: 'jsonadm/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'post'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['POST']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON Admin PUT'
-  uriPattern: 'jsonadm/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'put'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['PUT']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON Admin OPTIONS'
-  uriPattern: 'jsonadm(/{resource})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonadm'
-    '@action': 'options'
-    '@format': 'html'
-    'resource': ''
-  httpMethods: ['OPTIONS']
-  appendExceedingArguments: true
-
-
-
--
-  name: 'REST JSON frontend GET'
-  uriPattern: 'jsonapi/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'get'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['GET']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend DELETE'
-  uriPattern: 'jsonapi/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'delete'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['DELETE']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend PATCH'
-  uriPattern: 'jsonapi/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'patch'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['PATCH']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend POST'
-  uriPattern: 'jsonapi/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'post'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['POST']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend PUT'
-  uriPattern: 'jsonapi/{resource}(/{id})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'put'
-    '@format': 'html'
-    'id': ''
-  httpMethods: ['PUT']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend OPTIONS'
-  uriPattern: 'jsonapi(/{resource})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'options'
-    '@format': 'html'
-    'resource': ''
-  httpMethods: ['OPTIONS']
-  appendExceedingArguments: true
-
-
-
--
-  name: 'Account index page'
-  uriPattern: 'myaccount'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Account'
-    '@action': 'index'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Account download page'
-  uriPattern: 'myaccount/download/{dl_id}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Account'
-    '@action': 'download'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Account favorite products'
-  uriPattern: 'myaccount/favorite(/{fav_action}/{fav_id}/{d_name})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Account'
-    '@action': 'index'
-    '@format': 'html'
-    'fav_action': ''
-    'fav_id': ''
-    'd_name': ''
-  appendExceedingArguments: true
-
--
-  name: 'Account watched products'
-  uriPattern: 'myaccount/watch(/{wat_action}/{wat_id}/{d_name})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Account'
-    '@action': 'index'
-    '@format': 'html'
-    'wat_action': ''
-    'wat_id': ''
-    'd_name': ''
-  appendExceedingArguments: true
-
--
-  name: 'Basket page'
-  uriPattern: 'basket'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Basket'
-    '@action': 'index'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Catalog count XHR'
-  uriPattern: 'count'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'count'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Catalog detail page'
-  uriPattern: 'detail/{d_prodid}(/{d_name}/{d_pos})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'detail'
-    '@format': 'html'
-    'd_name': ''
-    'd_pos': '0'
-  appendExceedingArguments: true
-
--
-  name: 'Catalog list page'
-  uriPattern: 'list(/{f_catid}/{f_name})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'list'
-    '@format': 'html'
-    'f_catid': ''
-    'f_name': ''
-  appendExceedingArguments: true
-
--
-  name: 'Catalog session pinned products'
-  uriPattern: 'detail/pin/{pin_action}/{pin_id}/{d_prodid}(/{d_name})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'detail'
-    '@format': 'html'
-    'd_name': ''
-  appendExceedingArguments: true
-
--
-  name: 'Catalog stock XHR'
-  uriPattern: 'stock'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'stock'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Catalog suggest XHR'
-  uriPattern: 'suggest'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Catalog'
-    '@action': 'suggest'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Checkout page'
-  uriPattern: 'checkout(/{c_step})'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Checkout'
-    '@action': 'index'
-    '@format': 'html'
-    'c_step': ''
-  appendExceedingArguments: true
-
--
-  name: 'Checkout confirm page'
-  uriPattern: 'confirm'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Checkout'
-    '@action': 'confirm'
-    '@format': 'html'
-  appendExceedingArguments: true
-
--
-  name: 'Checkout update page'
-  uriPattern: 'update'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Checkout'
-    '@action': 'update'
-    '@format': 'html'
-  appendExceedingArguments: true
 
 -
   name: 'Example terms and conditions page'

@@ -1,0 +1,71 @@
+-
+  name: 'REST JSON Admin GET'
+  uriPattern: '/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'get'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['GET']
+  appendExceedingArguments: true
+
+-
+  name: 'REST JSON Admin DELETE'
+  uriPattern: '/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'delete'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['DELETE']
+  appendExceedingArguments: true
+
+-
+  name: 'REST JSON Admin PATCH'
+  uriPattern: '/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'patch'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['PATCH']
+  appendExceedingArguments: true
+
+-
+  name: 'REST JSON Admin POST'
+  uriPattern: '/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'post'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['POST']
+  appendExceedingArguments: true
+
+-
+  name: 'REST JSON Admin PUT'
+  uriPattern: '/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'put'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['PUT']
+  appendExceedingArguments: true
+
+-
+  name: 'REST JSON Admin OPTIONS'
+  uriPattern: '(/{resource})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jsonadm'
+    '@action': 'options'
+    '@format': 'html'
+    'resource': ''
+  httpMethods: ['OPTIONS']
+  appendExceedingArguments: true

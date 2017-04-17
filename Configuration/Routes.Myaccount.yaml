@@ -1,0 +1,45 @@
+-
+  name: 'Account download page'
+  uriPattern: '/download/{dl_id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'download'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Account favorite products'
+  uriPattern: '/favorite(/{fav_action}/{fav_id}/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+    'fav_action': ''
+    'fav_id': ''
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Account watched products'
+  uriPattern: '/watch(/{wat_action}/{wat_id}/{d_name})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+    'wat_action': ''
+    'wat_id': ''
+    'd_name': ''
+  appendExceedingArguments: true
+
+-
+  name: 'Account index page'
+  uriPattern: ''
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Account'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: true

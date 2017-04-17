@@ -1,0 +1,75 @@
+-
+  name: 'JQAdm file request'
+  uriPattern: '/file/{type}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'file'
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm copy'
+  uriPattern: '/copy/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'copy'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm create'
+  uriPattern: '/create/{resource}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'create'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm delete'
+  uriPattern: '/delete/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'delete'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm get'
+  uriPattern: '/get/{resource}/{id}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'get'
+    '@format': 'html'
+  httpMethods: ['GET']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm save'
+  uriPattern: '/save/{resource}(/{id})'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'save'
+    '@format': 'html'
+    'id': ''
+  httpMethods: ['POST']
+  appendExceedingArguments: true
+
+-
+  name: 'JQAdm search'
+  uriPattern: '/search/{resource}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'search'
+    '@format': 'html'
+  httpMethods: ['GET', 'POST']
+  appendExceedingArguments: true
