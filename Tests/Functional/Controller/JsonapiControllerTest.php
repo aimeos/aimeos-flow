@@ -60,6 +60,9 @@ print_r( $response->getContent() );
 		$json = json_decode( $response->getContent(), true );
 		$this->assertEquals( 'CNC', $json['included'][0]['attributes']['order.base.product.prodcode'] );
 
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket/default', 'GET' );
+print_r( $response->getContent() );
+
 		// change product quantity in basket
 		$params = ['related' => 'product', 'relatedid' => 0];
 		$content = json_encode( ['data' => ['attributes' => ['quantity' => 2]]] );
