@@ -10,7 +10,6 @@ before_script:
   - cd ../flow
   - composer self-update
   - bash ../aimeos-flow/.travis.sh
-  - ./flow routing:list
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/
