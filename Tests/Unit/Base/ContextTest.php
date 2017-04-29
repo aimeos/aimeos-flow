@@ -70,7 +70,7 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getHttpRequest' )
-			->will( $this->returnValue( $httpRequest );
+			->will( $this->returnValue( $httpRequest ) ) ;
 
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
@@ -114,7 +114,7 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getHttpRequest' )
-			->will( $this->returnValue( $httpRequest );
+			->will( $this->returnValue( $httpRequest ) );
 
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
@@ -154,7 +154,7 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getHttpRequest' )
-			->will( $this->returnValue( $httpRequest );
+			->will( $this->returnValue( $httpRequest ) );
 
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
