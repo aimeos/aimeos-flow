@@ -77,7 +77,7 @@ class Context
 	/**
 	 * Returns the current context.
 	 *
-	 * @param \Neos\Flow\Mvc\RequestInterface $request Request object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 * @return \Aimeos\MShop\Context\Item\Iface
 	 */
 	public function get( \Neos\Flow\Mvc\RequestInterface $request = null, $type = 'frontend' )
@@ -110,7 +110,7 @@ class Context
 		}
 
 		$this->addSession( $context );
-		$this->addUser( $context );
+		$this->addUser( $context, $request );
 
 		return $context;
 	}
@@ -236,10 +236,13 @@ class Context
 	 * Adds the user ID and name if available
 	 *
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
+	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 */
-	protected function addUser( \Aimeos\MShop\Context\Item\Iface $context )
+	protected function addUser( \Aimeos\MShop\Context\Item\Iface $context \Neos\Flow\Mvc\RequestInterface $request = null )
 	{
-		$context->setEditor( '' );
+		if( $request instanceof \Neos\Flow\Mvc\ActionRequest ) {
+			$context->setEditor( $request->getHttpRequest()->getClientIpAddress() );
+		}
 	}
 
 
