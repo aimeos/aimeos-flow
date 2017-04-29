@@ -238,7 +238,7 @@ class Context
 	 * @param \Aimeos\MShop\Context\Item\Iface $context Context object
 	 * @param \Neos\Flow\Mvc\RequestInterface|null $request Request object
 	 */
-	protected function addUser( \Aimeos\MShop\Context\Item\Iface $context \Neos\Flow\Mvc\RequestInterface $request = null )
+	protected function addUser( \Aimeos\MShop\Context\Item\Iface $context, \Neos\Flow\Mvc\RequestInterface $request = null )
 	{
 		if( $request instanceof \Neos\Flow\Mvc\ActionRequest ) {
 			$context->setEditor( $request->getHttpRequest()->getClientIpAddress() );
