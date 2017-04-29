@@ -58,12 +58,20 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 	public function get()
 	{
 		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments' ) )
+			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array( 'site' => 'unittest', 'locale' => 'de', 'currency' => 'EUR' ) ) );
+
+		$httpRequest = $this->getMockBuilder( '\Neos\Flow\Http\Request' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$request->expects( $this->once() )->method( 'getHttpRequest' )
+			->will( $this->returnValue( $httpRequest );
+
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
 			->setMethods( array( 'bootstrap' ) )
@@ -94,12 +102,20 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 	public function getNoCache()
 	{
 		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments' ) )
+			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array() ) );
+
+		$httpRequest = $this->getMockBuilder( '\Neos\Flow\Http\Request' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$request->expects( $this->once() )->method( 'getHttpRequest' )
+			->will( $this->returnValue( $httpRequest );
+
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
 			->setMethods( array( 'bootstrap' ) )
@@ -126,12 +142,20 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 	public function getCustomCache()
 	{
 		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments' ) )
+			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$request->expects( $this->once() )->method( 'getArguments' )
 			->will( $this->returnValue( array() ) );
+
+		$httpRequest = $this->getMockBuilder( '\Neos\Flow\Http\Request' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$request->expects( $this->once() )->method( 'getHttpRequest' )
+			->will( $this->returnValue( $httpRequest );
+
 
 		$localeManager = $this->getMockBuilder( '\Aimeos\MShop\Locale\Manager\Standard' )
 			->setMethods( array( 'bootstrap' ) )
