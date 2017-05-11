@@ -37,7 +37,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/create/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<div class="product-item', $response->getContent() );
+		$this->assertContains( 'item-product', $response->getContent() );
 	}
 
 
@@ -46,7 +46,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product/0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<table class="list-items', $response->getContent() );
+		$this->assertContains( 'list-items', $response->getContent() );
 	}
 
 
@@ -55,7 +55,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product/0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<div class="product-item', $response->getContent() );
+		$this->assertContains( 'item-product', $response->getContent() );
 	}
 
 
@@ -64,7 +64,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/save/product/0', 'POST' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<div class="product-item', $response->getContent() );
+		$this->assertContains( 'item-product', $response->getContent() );
 	}
 
 
@@ -73,7 +73,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/search/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<table class="list-items', $response->getContent() );
+		$this->assertContains( 'list-items', $response->getContent() );
 	}
 
 
@@ -82,6 +82,6 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$response = $this->browser->request( 'http://localhost/invalid/jqadm/search/product', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( '<table class="list-items', $response->getContent() );
+		$this->assertContains( 'list-items', $response->getContent() );
 	}
 }
