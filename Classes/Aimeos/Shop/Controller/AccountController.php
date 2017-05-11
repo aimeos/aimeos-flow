@@ -28,6 +28,7 @@ class AccountController extends AbstractController
 	public function favoriteComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/favorite' ) );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 	}
 
 
@@ -39,6 +40,7 @@ class AccountController extends AbstractController
 	public function historyComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/history' ) );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 	}
 
 
@@ -50,6 +52,7 @@ class AccountController extends AbstractController
 	public function profileComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/profile' ) );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 	}
 
 
@@ -61,6 +64,7 @@ class AccountController extends AbstractController
 	public function watchComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'account/watch' ) );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 	}
 
 
@@ -72,6 +76,7 @@ class AccountController extends AbstractController
 	public function indexAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'account-index' ) );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 	}
 
 
@@ -94,6 +99,7 @@ class AccountController extends AbstractController
 
 		$response = $view->response();
 		$this->response->setStatus( $response->getStatusCode() );
+		$this->response->setHeader( 'Cache-Control', 'private, max-age=300' );
 
 		foreach( $response->getHeaders() as $key => $value ) {
 			$this->response->setHeader( $key, $value );

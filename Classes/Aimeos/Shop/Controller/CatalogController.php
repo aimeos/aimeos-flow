@@ -28,6 +28,8 @@ class CatalogController extends AbstractController
 	public function countComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/count' ) );
+		$this->response->setHeader( 'Content-Type', 'application/javascript' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -39,6 +41,7 @@ class CatalogController extends AbstractController
 	public function detailComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/detail' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -50,6 +53,7 @@ class CatalogController extends AbstractController
 	public function filterComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/filter' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -61,6 +65,7 @@ class CatalogController extends AbstractController
 	public function listComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/lists' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -72,6 +77,7 @@ class CatalogController extends AbstractController
 	public function sessionComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/session' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -83,6 +89,7 @@ class CatalogController extends AbstractController
 	public function stageComponentAction()
 	{
 		$this->view->assign( 'output',  $this->getOutput( 'catalog/stage' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -94,6 +101,8 @@ class CatalogController extends AbstractController
 	public function stockComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/stock' ) );
+		$this->response->setHeader( 'Content-Type', 'application/javascript' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=30' );
 	}
 
 
@@ -105,6 +114,8 @@ class CatalogController extends AbstractController
 	public function suggestComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'catalog/suggest' ) );
+		$this->response->setHeader( 'Content-Type', 'application/json' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -114,6 +125,8 @@ class CatalogController extends AbstractController
 	public function countAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-count' ) );
+		$this->response->setHeader( 'Content-Type', 'application/javascript' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -125,6 +138,7 @@ class CatalogController extends AbstractController
 	public function detailAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-detail' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -136,6 +150,7 @@ class CatalogController extends AbstractController
 	public function listAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-list' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -145,6 +160,8 @@ class CatalogController extends AbstractController
 	public function stockAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-stock' ) );
+		$this->response->setHeader( 'Content-Type', 'application/javascript' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 
 
@@ -154,5 +171,7 @@ class CatalogController extends AbstractController
 	public function suggestAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'catalog-suggest' ) );
+		$this->response->setHeader( 'Content-Type', 'application/json' );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 }

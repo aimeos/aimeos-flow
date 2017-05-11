@@ -28,6 +28,7 @@ class CheckoutController extends AbstractController
 	public function confirmComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/confirm' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -39,6 +40,7 @@ class CheckoutController extends AbstractController
 	public function standardComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/standard' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -50,6 +52,7 @@ class CheckoutController extends AbstractController
 	public function updateComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'checkout/update' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -61,6 +64,7 @@ class CheckoutController extends AbstractController
 	public function indexAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'checkout-index' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -72,6 +76,7 @@ class CheckoutController extends AbstractController
 	public function confirmAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'checkout-confirm' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -83,5 +88,6 @@ class CheckoutController extends AbstractController
 	public function updateAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'checkout-update' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 }

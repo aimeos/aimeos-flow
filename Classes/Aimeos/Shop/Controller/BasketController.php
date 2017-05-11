@@ -28,6 +28,7 @@ class BasketController extends AbstractController
 	public function miniComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'basket/mini' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -39,6 +40,7 @@ class BasketController extends AbstractController
 	public function relatedComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'basket/related' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -50,6 +52,7 @@ class BasketController extends AbstractController
 	public function standardComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'basket/standard' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
 
@@ -61,5 +64,6 @@ class BasketController extends AbstractController
 	public function indexAction()
 	{
 		$this->view->assignMultiple( $this->getSections( 'basket-index' ) );
+		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 }

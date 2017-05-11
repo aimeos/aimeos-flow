@@ -28,5 +28,6 @@ class LocaleController extends AbstractController
 	public function selectComponentAction()
 	{
 		$this->view->assign( 'output', $this->getOutput( 'locale/select' ) );
+		$this->response->setHeader( 'Cache-Control', 'max-age=43200' );
 	}
 }
