@@ -27,6 +27,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->inject( $this->object, 'view', $this->view );
+		$this->inject( $this->object, 'response', $this->response );
 	}
 
 
