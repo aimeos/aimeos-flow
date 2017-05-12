@@ -7,6 +7,7 @@ namespace Aimeos\Shop\Tests\Unit\Controller;
 class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
+	private $response;
 	private $view;
 
 
@@ -18,6 +19,10 @@ class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -38,6 +43,8 @@ class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
 			->with( $this->equalTo( $expected ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->indexAction();
 	}
 
@@ -52,6 +59,8 @@ class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->miniComponentAction();
 	}
@@ -68,6 +77,8 @@ class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->relatedComponentAction();
 	}
 
@@ -82,6 +93,8 @@ class BasketControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->standardComponentAction();
 	}

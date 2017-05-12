@@ -7,6 +7,7 @@ namespace Aimeos\Shop\Tests\Unit\Controller;
 class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
+	private $response;
 	private $view;
 
 
@@ -18,6 +19,10 @@ class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -35,6 +40,8 @@ class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->selectComponentAction();
 	}

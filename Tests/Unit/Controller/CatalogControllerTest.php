@@ -7,6 +7,7 @@ namespace Aimeos\Shop\Tests\Unit\Controller;
 class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
+	private $response;
 	private $view;
 
 
@@ -18,6 +19,10 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -38,6 +43,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
 			->with( $this->equalTo( $expected ) );
 
+		$this->response->expects( exactly( 2 ) )->method( 'setHeader' );
+
 		$this->object->countAction();
 	}
 
@@ -50,10 +57,12 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->detailAction();
 	}
@@ -67,10 +76,12 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->listAction();
 	}
@@ -84,10 +95,12 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( exactly( 2 ) )->method( 'setHeader' );
 
 		$this->object->stockAction();
 	}
@@ -101,10 +114,12 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( exactly( 2 ) )->method( 'setHeader' );
 
 		$this->object->suggestAction();
 	}
@@ -121,6 +136,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( exactly( 2 ) )->method( 'setHeader' );
+
 		$this->object->countComponentAction();
 	}
 
@@ -135,6 +152,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->detailComponentAction();
 	}
@@ -151,6 +170,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->filterComponentAction();
 	}
 
@@ -165,6 +186,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->listComponentAction();
 	}
@@ -181,6 +204,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->sessionComponentAction();
 	}
 
@@ -195,6 +220,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->stageComponentAction();
 	}
@@ -211,6 +238,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->exactly( 2 ) )->method( 'setHeader' );
+
 		$this->object->stockComponentAction();
 	}
 
@@ -225,6 +254,8 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->exactly( 2 ) )->method( 'setHeader' );
 
 		$this->object->suggestComponentAction();
 	}

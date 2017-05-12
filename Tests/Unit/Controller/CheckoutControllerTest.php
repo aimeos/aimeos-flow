@@ -7,6 +7,7 @@ namespace Aimeos\Shop\Tests\Unit\Controller;
 class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
+	private $response;
 	private $view;
 
 
@@ -18,6 +19,10 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -38,6 +43,8 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
 			->with( $this->equalTo( $expected ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->indexAction();
 	}
 
@@ -50,10 +57,12 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->confirmAction();
 	}
@@ -67,10 +76,12 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
 		$this->object->expects( $this->once() )->method( 'getSections' )
-		->will( $this->returnValue( $expected ) );
+			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
-		->with( $this->equalTo( $expected ) );
+			->with( $this->equalTo( $expected ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->updateAction();
 	}
@@ -87,6 +98,8 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->confirmComponentAction();
 	}
 
@@ -102,6 +115,8 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' );
+
 		$this->object->standardComponentAction();
 	}
 
@@ -116,6 +131,8 @@ class CheckoutControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->updateComponentAction();
 	}

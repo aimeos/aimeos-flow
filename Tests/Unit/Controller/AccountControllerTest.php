@@ -7,6 +7,7 @@ namespace Aimeos\Shop\Tests\Unit\Controller;
 class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
+	private $response;
 	private $view;
 
 
@@ -18,6 +19,10 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 		$this->view = $this->getMockBuilder( '\Neos\Flow\Mvc\View\JsonView' )
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -38,6 +43,9 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
 			->with( $this->equalTo( $expected ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' )
+			->with( $this->equalTo( 'Cache-Control' ) );
+
 		$this->object->indexAction();
 	}
 
@@ -52,6 +60,9 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' )
+			->with( $this->equalTo( 'Cache-Control' ) );
 
 		$this->object->favoriteComponentAction();
 	}
@@ -68,6 +79,9 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' )
+			->with( $this->equalTo( 'Cache-Control' ) );
+
 		$this->object->historyComponentAction();
 	}
 
@@ -83,6 +97,9 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
+		$this->response->expects( $this->once() )->method( 'setHeader' )
+			->with( $this->equalTo( 'Cache-Control' ) );
+
 		$this->object->profileComponentAction();
 	}
 
@@ -97,6 +114,9 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
+
+		$this->response->expects( $this->once() )->method( 'setHeader' )
+			->with( $this->equalTo( 'Cache-Control' ) );
 
 		$this->object->watchComponentAction();
 	}
