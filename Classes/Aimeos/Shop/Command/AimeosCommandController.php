@@ -120,7 +120,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	{
 		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
 		$context = $this->getContext();
-		$process = $ctx->getProcess();
+		$process = $context->getProcess();
 
 		$jobs = explode( ' ', $jobs );
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
