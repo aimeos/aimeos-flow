@@ -137,11 +137,11 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 
 			foreach( $jobs as $jobname )
 			{
-				$fcn = function( $ctx, $aimeos, $jobname ) {
-					\Aimeos\Controller\Jobs\Factory::createController( $ctx, $aimeos, $jobname )->run();
+				$fcn = function( $context, $aimeos, $jobname ) {
+					\Aimeos\Controller\Jobs\Factory::createController( $context, $aimeos, $jobname )->run();
 				};
 
-				$process->start( $fcn, [$ctx, $aimeos, $jobname], true );
+				$process->start( $fcn, [$context, $aimeos, $jobname], true );
 			}
 		}
 
