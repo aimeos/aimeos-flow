@@ -120,6 +120,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	{
 		$aimeos = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get();
 		$context = $this->getContext();
+		$process = $ctx->getProcess();
 
 		$jobs = explode( ' ', $jobs );
 		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
@@ -136,10 +137,15 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 
 			foreach( $jobs as $jobname )
 			{
-				$this->outputFormatted( '  <b>%s</b>', array( $jobname ) );
-				\Aimeos\Controller\Jobs\Factory::createController( $context, $aimeos, $jobname )->run();
+				$fcn = function( $ctx, $aimeos, $jobname ) {
+					\Aimeos\Controller\Jobs\Factory::createController( $ctx, $aimeos, $jobname )->run();
+				};
+
+				$process->start( $fcn, [$ctx, $aimeos, $jobname], true );
 			}
 		}
+
+		$process->wait();
 	}
 
 
