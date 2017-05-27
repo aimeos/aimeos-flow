@@ -44,9 +44,6 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
 			->with( $this->equalTo( $expected ) );
 
-		$this->response->expects( $this->once() )->method( 'setHeader' )
-			->with( $this->equalTo( 'Cache-Control' ) );
-
 		$this->object->indexAction();
 	}
 
@@ -61,9 +58,6 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
-
-		$this->response->expects( $this->once() )->method( 'setHeader' )
-			->with( $this->equalTo( 'Cache-Control' ) );
 
 		$this->object->favoriteComponentAction();
 	}
@@ -80,9 +74,6 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
-		$this->response->expects( $this->once() )->method( 'setHeader' )
-			->with( $this->equalTo( 'Cache-Control' ) );
-
 		$this->object->historyComponentAction();
 	}
 
@@ -98,9 +89,6 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
 
-		$this->response->expects( $this->once() )->method( 'setHeader' )
-			->with( $this->equalTo( 'Cache-Control' ) );
-
 		$this->object->profileComponentAction();
 	}
 
@@ -115,9 +103,6 @@ class AccountControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
-
-		$this->response->expects( $this->once() )->method( 'setHeader' )
-			->with( $this->equalTo( 'Cache-Control' ) );
 
 		$this->object->watchComponentAction();
 	}

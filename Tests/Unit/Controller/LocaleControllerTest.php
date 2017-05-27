@@ -22,10 +22,6 @@ class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->response = $this->getMockBuilder( '\Neos\Flow\Http\Response' )
-			->disableOriginalConstructor()
-			->getMock();
-
 		$this->inject( $this->object, 'view', $this->view );
 		$this->inject( $this->object, 'response', $this->response );
 	}
@@ -41,8 +37,6 @@ class LocaleControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->view->expects( $this->once() )->method( 'assign' )
 			->with( $this->equalTo( 'output' ), $this->equalTo( 'body' ) );
-
-		$this->response->expects( $this->once() )->method( 'setHeader' );
 
 		$this->object->selectComponentAction();
 	}
