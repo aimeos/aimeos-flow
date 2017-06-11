@@ -6,7 +6,6 @@
     '@controller': 'Jsonapi'
     '@action': 'get'
     '@format': 'html'
-    'id': ''
   httpMethods: ['GET']
   appendExceedingArguments: true
 
@@ -18,7 +17,6 @@
     '@controller': 'Jsonapi'
     '@action': 'delete'
     '@format': 'html'
-    'id': ''
   httpMethods: ['DELETE']
   appendExceedingArguments: true
 
@@ -30,7 +28,6 @@
     '@controller': 'Jsonapi'
     '@action': 'patch'
     '@format': 'html'
-    'id': ''
   httpMethods: ['PATCH']
   appendExceedingArguments: true
 
@@ -42,7 +39,6 @@
     '@controller': 'Jsonapi'
     '@action': 'post'
     '@format': 'html'
-    'id': ''
   httpMethods: ['POST']
   appendExceedingArguments: true
 
@@ -54,7 +50,6 @@
     '@controller': 'Jsonapi'
     '@action': 'put'
     '@format': 'html'
-    'id': ''
   httpMethods: ['PUT']
   appendExceedingArguments: true
 

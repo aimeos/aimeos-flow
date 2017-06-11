@@ -33,7 +33,7 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$id = $json['data'][0]['id'];
 
 
-		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/product/' . $id, 'GET' );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/product', 'GET', ['id' => $id] );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
