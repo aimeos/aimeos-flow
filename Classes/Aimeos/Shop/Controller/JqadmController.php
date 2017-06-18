@@ -182,15 +182,16 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	protected function createClient( $sitecode, $resource )
 	{
+		$aimeos = $this->aimeos->get();
 		$lang = ( $this->request->hasArgument( 'lang' ) ? $this->request->getArgument( 'lang' ) : 'en' );
-		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jqadm/templates' );
+		$templatePaths = $aimeos->getCustomPaths( 'admin/jqadm/templates' );
 
 		$context = $this->context->get( null, 'backend' );
 		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 		$context->setView( $this->viewbase->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
-		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $templatePaths, $resource );
+		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $templatePaths, $resource )->setAimeos( $aimeos );
 	}
 
 
