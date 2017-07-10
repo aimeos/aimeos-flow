@@ -44,15 +44,15 @@
   name: 'Account'
   uriPattern: 'myaccount<AccountSubroutes>'
   subRoutes:
-    'MyaccountSubroutes':
+    'AccountSubroutes':
       package: 'Aimeos.Shop'
-      suffix:  'Myaccount'
+      suffix:  'Account'
 
 -
   name: 'Default'
   uriPattern: '<DefaultSubroutes>'
   subRoutes:
-    'ShopSubroutes':
+    'DefaultSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Default'
 
@@ -60,7 +60,7 @@
   name: 'Update'
   uriPattern: '<UpdateSubroutes>'
   subRoutes:
-    'ShopSubroutes':
+    'UpdateSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Update'
 
