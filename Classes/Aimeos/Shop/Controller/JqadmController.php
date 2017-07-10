@@ -95,10 +95,10 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function copyAction( $site = 'default', $resource, $id )
+	public function copyAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->copy( $id ) );
+		return $this->getHtml( $cntl->copy() );
 	}
 
 
@@ -124,7 +124,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function deleteAction( $site = 'default', $resource, $id )
+	public function deleteAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
 
@@ -144,10 +144,10 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function getAction( $site = 'default', $resource, $id )
+	public function getAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->get( $id ) );
+		return $this->getHtml( $cntl->get() );
 	}
 
 
