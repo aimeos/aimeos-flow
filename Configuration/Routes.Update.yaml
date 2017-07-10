@@ -1,6 +1,6 @@
 -
   name: 'Checkout update page'
-  uriPattern: 'update'
+  uriPattern: '/update'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Checkout'
