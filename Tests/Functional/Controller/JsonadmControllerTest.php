@@ -29,7 +29,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	public function testActionsSingle()
 	{
 		$content = '{"data":{"type":"stock/type","attributes":{"stock.type.code":"flow","stock.type.label":"flow"}}}';
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'POST', array(), array(), array(), $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'POST', [], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -43,7 +43,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 
 		$content = '{"data":{"type":"stock/type","attributes":{"stock.type.code":"flow2","stock.type.label":"flow2"}}}';
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype/' . $id, 'PATCH', array(), array(), array(), $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'PATCH', ['id' => $id], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -55,7 +55,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$this->assertEquals( 1, $json['meta']['total'] );
 
 
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype/' . $id, 'GET' );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'GET', ['id' => $id] );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -67,7 +67,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$this->assertEquals( 1, $json['meta']['total'] );
 
 
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype/' . $id, 'DELETE' );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'DELETE', ['id' => $id] );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -82,7 +82,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 			{"type":"stock/type","attributes":{"stock.type.code":"flow","stock.type.label":"flow"}},
 			{"type":"stock/type","attributes":{"stock.type.code":"flow2","stock.type.label":"flow"}}
 		]}';
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'POST', array(), array(), array(), $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'POST', [], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -101,7 +101,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 			{"type":"stock/type","id":' . $ids[0] . ',"attributes":{"stock.type.label":"flow2"}},
 			{"type":"stock/type","id":' . $ids[1] . ',"attributes":{"stock.type.label":"flow2"}}
 		]}';
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'PATCH', array(), array(), array(), $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'PATCH', [], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
@@ -141,7 +141,7 @@ class JsonadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 			{"type":"stock/type","id":' . $ids[0] . '},
 			{"type":"stock/type","id":' . $ids[1] . '}
 		]}';
-		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'DELETE', array(), array(), array(), $content );
+		$response = $this->browser->request( 'http://localhost/unittest/jsonadm/stock%2Ftype', 'DELETE', [], [], [], $content );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
