@@ -93,13 +93,3 @@
     '@action': 'confirm'
     '@format': 'html'
   appendExceedingArguments: true
-
--
-  name: 'Checkout update page'
-  uriPattern: 'update'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Checkout'
-    '@action': 'update'
-    '@format': 'html'
-  appendExceedingArguments: true

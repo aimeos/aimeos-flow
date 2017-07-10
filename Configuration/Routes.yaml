@@ -41,20 +41,28 @@
       suffix:  'Jsonapi'
 
 -
-  name: 'Myaccount'
-  uriPattern: 'myaccount<MyaccountSubroutes>'
+  name: 'Account'
+  uriPattern: 'myaccount<AccountSubroutes>'
   subRoutes:
     'MyaccountSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Myaccount'
 
 -
-  name: 'Shop'
-  uriPattern: '<ShopSubroutes>'
+  name: 'Default'
+  uriPattern: '<DefaultSubroutes>'
   subRoutes:
     'ShopSubroutes':
       package: 'Aimeos.Shop'
-      suffix:  'Shop'
+      suffix:  'Default'
+
+-
+  name: 'Update'
+  uriPattern: '<UpdateSubroutes>'
+  subRoutes:
+    'ShopSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Update'
 
 
 -
