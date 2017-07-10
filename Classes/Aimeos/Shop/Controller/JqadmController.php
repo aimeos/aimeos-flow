@@ -127,7 +127,12 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	public function deleteAction( $site = 'default', $resource, $id )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->delete( $id ) . $cntl->search() );
+
+		if( ( $html = $cntl->delete() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 
@@ -156,7 +161,12 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	public function saveAction( $site = 'default', $resource )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( ( $cntl->save() ? : $cntl->search() ) );
+
+		if( ( $html = $cntl->save() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 
@@ -208,5 +218,23 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 
 		$this->view->assign( 'content', $content );
 		return $this->view->render( 'index' );
+	}
+
+
+	/**
+	 * Set the response data from a PSR-7 response object
+	 *
+	 * @param \Psr\Http\Message\ResponseInterface $response PSR-7 response object
+	 * @return string Response message content
+	 */
+	protected function setPsrResponse( \Psr\Http\Message\ResponseInterface $response )
+	{
+		$this->response->setStatus( $response->getStatusCode() );
+
+		foreach( $response->getHeaders() as $key => $value ) {
+			$this->response->setHeader( $key, $value );
+		}
+
+		return (string) $response->getBody();
 	}
 }
