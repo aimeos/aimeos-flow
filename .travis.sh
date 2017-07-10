@@ -44,13 +44,6 @@ Aimeos:
 
 printf "
 -
-  name: 'Aimeos Myaccount'
-  uriPattern: '{site}/myaccount<AccountShopRoutes>'
-  subRoutes:
-    AccountShopRoutes:
-      package: 'Aimeos.Shop'
-      suffix:  'Myaccount'
--
   name: 'Aimeos Extadm'
   uriPattern: '{site}/extadm<ExtadmShopRoutes>'
   subRoutes:
@@ -79,10 +72,24 @@ printf "
       package: 'Aimeos.Shop'
       suffix:  'Jsonapi'
 -
-  name: 'Shop'
-  uriPattern: '{site}/<ShopSubroutes>'
+  name: 'Aimeos Account'
+  uriPattern: '{site}/myaccount<AccountShopRoutes>'
   subRoutes:
-    'ShopSubroutes':
+    AccountShopRoutes:
       package: 'Aimeos.Shop'
-      suffix:  'Shop'
+      suffix:  'Account'
+-
+  name: 'Default'
+  uriPattern: '{site}/<DefaultSubroutes>'
+  subRoutes:
+    'DefaultSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Default'
+-
+  name: 'Update'
+  uriPattern: '{site}/<UpdateSubroutes>'
+  subRoutes:
+    'UpdateSubroutes':
+      package: 'Aimeos.Shop'
+      suffix:  'Update'
 " > Configuration/Routes.yaml
