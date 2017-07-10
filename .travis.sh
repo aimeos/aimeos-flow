@@ -80,14 +80,14 @@ printf "
       suffix:  'Account'
 -
   name: 'Default'
-  uriPattern: '{site}/<DefaultSubroutes>'
+  uriPattern: '{site}<DefaultSubroutes>'
   subRoutes:
     'DefaultSubroutes':
       package: 'Aimeos.Shop'
       suffix:  'Default'
 -
   name: 'Update'
-  uriPattern: '{site}/<UpdateSubroutes>'
+  uriPattern: '{site}<UpdateSubroutes>'
   subRoutes:
     'UpdateSubroutes':
       package: 'Aimeos.Shop'
