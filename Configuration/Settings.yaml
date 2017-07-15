@@ -94,6 +94,9 @@ Aimeos:
         url:
           config:
             absoluteUri: true
+          options:
+            config:
+              absoluteUri: true
 
     controller:
       common:
