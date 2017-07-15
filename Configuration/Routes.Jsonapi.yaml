@@ -1,56 +1,12 @@
 -
-  name: 'REST JSON frontend GET'
+  name: 'REST JSON frontend'
   uriPattern: '/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
-    '@action': 'get'
+    '@action': 'index'
     '@format': 'html'
-  httpMethods: ['GET']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend DELETE'
-  uriPattern: '/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'delete'
-    '@format': 'html'
-  httpMethods: ['DELETE']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend PATCH'
-  uriPattern: '/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'patch'
-    '@format': 'html'
-  httpMethods: ['PATCH']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend POST'
-  uriPattern: '/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'post'
-    '@format': 'html'
-  httpMethods: ['POST']
-  appendExceedingArguments: true
-
--
-  name: 'REST JSON frontend PUT'
-  uriPattern: '/{resource}'
-  defaults:
-    '@package':    'Aimeos.Shop'
-    '@controller': 'Jsonapi'
-    '@action': 'put'
-    '@format': 'html'
-  httpMethods: ['PUT']
+  httpMethods: ['DELETE', 'GET', 'PATCH', 'POST', 'PUT']
   appendExceedingArguments: true
 
 -
@@ -59,7 +15,7 @@
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jsonapi'
-    '@action': 'options'
+    '@action': 'index'
     '@format': 'html'
     'resource': ''
   httpMethods: ['OPTIONS']

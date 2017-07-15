@@ -48,90 +48,25 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @return string Response message content
 	 * @Flow\Session(autoStart = TRUE)
 	 */
-	public function deleteAction( $resource )
+	public function indexAction( $resource = '' )
 	{
 		$client = $this->createClient( $resource );
-		$psrResponse = $client->delete( $this->getPsrRequest(), new Response() );
 
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
-	 * Returns the requested resource object or list of resource objects
-	 *
-	 * @param string Resource location, e.g. "customer"
-	 * @return string Response message content
-	 */
-	public function getAction( $resource )
-	{
-		$client = $this->createClient( $resource );
-		$psrResponse = $client->get( $this->getPsrRequest(), new Response() );
-
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
-	 * Updates a resource object or a list of resource objects
-	 *
-	 * @param string Resource location, e.g. "customer"
-	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
-	 */
-	public function patchAction( $resource )
-	{
-		$client = $this->createClient( $resource );
-		$psrResponse = $client->patch( $this->getPsrRequest(), new Response() );
-
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
-	 * Creates a new resource object or a list of resource objects
-	 *
-	 * @param string Resource location, e.g. "customer"
-	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
-	 */
-	public function postAction( $resource )
-	{
-		$client = $this->createClient( $resource );
-		$psrResponse = $client->post( $this->getPsrRequest(), new Response() );
-
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
-	 * Creates or updates a single resource object
-	 *
-	 * @param string Resource location, e.g. "customer"
-	 * @return string Response message content
-	 * @Flow\Session(autoStart = TRUE)
-	 */
-	public function putAction( $resource )
-	{
-		$client = $this->createClient( $resource );
-		$psrResponse = $client->put( $this->getPsrRequest(), new Response() );
-
-		return $this->setPsrResponse( $psrResponse );
-	}
-
-
-	/**
-	 * Returns the available HTTP verbs and the resource URLs
-	 *
-	 * @param string $resource Resource location, e.g. "product"
-	 * @return string Response message content
-	 */
-	public function optionsAction( $resource = '' )
-	{
-		$client = $this->createClient( $resource );
-		$psrResponse = $client->options( $this->getPsrRequest(), new Response() );
-
-		return $this->setPsrResponse( $psrResponse );
+		switch( $this->request->getHttpRequest()->getMethod() )
+		{
+			case 'DELETE':
+				return $this->setPsrResponse( $client->delete( $this->getPsrRequest(), new Response() ) );
+			case 'GET':
+				return $this->setPsrResponse( $client->get( $this->getPsrRequest(), new Response() ) );
+			case 'PATCH':
+				return $this->setPsrResponse( $client->patch( $this->getPsrRequest(), new Response() ) );
+			case 'POST':
+				return $this->setPsrResponse( $client->post( $this->getPsrRequest(), new Response() ) );
+			case 'PUT':
+				return $this->setPsrResponse( $client->put( $this->getPsrRequest(), new Response() ) );
+			default:
+				return $this->setPsrResponse( $client->options( $this->getPsrRequest(), new Response() ) );
+		}
 	}
 
 
