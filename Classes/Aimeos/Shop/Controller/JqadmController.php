@@ -224,7 +224,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * Returns the resource controller
 	 *
 	 * @param string $sitecode Unique site code
-	 * @return \Aimeos\MShop\Context\Item\Iface Context item
+	 * @return \Aimeos\Admin\JQAdm\Iface JQAdm client object
 	 */
 	protected function createClient( $sitecode, $resource )
 	{

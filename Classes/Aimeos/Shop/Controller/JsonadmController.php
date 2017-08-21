@@ -58,10 +58,9 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Response message content
 	 */
-	public function deleteAction( $resource, $site = 'default', $id = '' )
+	public function deleteAction( $resource, $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 
@@ -77,10 +76,9 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Response message content
 	 */
-	public function getAction( $resource, $site = 'default', $id = '' )
+	public function getAction( $resource, $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 
@@ -96,10 +94,9 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Response message content
 	 */
-	public function patchAction( $resource, $site = 'default', $id = '' )
+	public function patchAction( $resource, $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 
@@ -115,10 +112,9 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique ID of the resource
 	 * @return string Response message content
 	 */
-	public function postAction( $resource, $site = 'default', $id = '' )
+	public function postAction( $resource, $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 
@@ -134,10 +130,9 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string $resource Resource location, e.g. "product/property/type"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Response message content
 	 */
-	public function putAction( $resource, $site = 'default', $id = '' )
+	public function putAction( $resource, $site = 'default' )
 	{
 		$request = $this->request->getHttpRequest();
 
