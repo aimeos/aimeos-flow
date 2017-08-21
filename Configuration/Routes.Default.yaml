@@ -86,10 +86,11 @@
 
 -
   name: 'Checkout confirm page'
-  uriPattern: '/confirm'
+  uriPattern: '/confirm(/{code})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Checkout'
     '@action': 'confirm'
     '@format': 'html'
+    'code': ''
   appendExceedingArguments: true

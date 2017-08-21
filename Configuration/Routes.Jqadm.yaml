@@ -9,7 +9,7 @@
 
 -
   name: 'JQAdm copy'
-  uriPattern: '/copy/{resource}/{id}'
+  uriPattern: '/copy/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -31,7 +31,7 @@
 
 -
   name: 'JQAdm delete'
-  uriPattern: '/delete/{resource}/{id}'
+  uriPattern: '/delete/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -41,8 +41,19 @@
   appendExceedingArguments: true
 
 -
+  name: 'JQAdm export'
+  uriPattern: '/export/{resource}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Jqadm'
+    '@action': 'export'
+    '@format': 'html'
+  httpMethods: ['GET']
+  appendExceedingArguments: true
+
+-
   name: 'JQAdm get'
-  uriPattern: '/get/{resource}/{id}'
+  uriPattern: '/get/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
@@ -53,13 +64,12 @@
 
 -
   name: 'JQAdm save'
-  uriPattern: '/save/{resource}(/{id})'
+  uriPattern: '/save/{resource}'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Jqadm'
     '@action': 'save'
     '@format': 'html'
-    'id': ''
   httpMethods: ['POST']
   appendExceedingArguments: true
 

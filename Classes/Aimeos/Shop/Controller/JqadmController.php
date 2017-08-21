@@ -92,13 +92,17 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function copyAction( $site = 'default', $resource )
+	public function copyAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->copy() );
+
+		if( ( $html = $cntl->copy() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 
@@ -109,10 +113,15 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
-	public function createAction( $site = 'default', $resource )
+	public function createAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->create() );
+
+		if( ( $html = $cntl->create() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 
@@ -121,10 +130,9 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 *
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function deleteAction( $site = 'default', $resource )
+	public function deleteAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
 
@@ -137,17 +145,40 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 
 
 	/**
+	 * Exports the resource object
+	 *
+	 * @param string Resource location, e.g. "order"
+	 * @param string $site Unique site code
+	 * @return string Generated output
+	 */
+	public function exportction( $resource, $site = 'default' )
+	{
+		$cntl = $this->createClient( $site, $resource );
+
+		if( ( $html = $cntl->export() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
+	}
+
+
+	/**
 	 * Returns the HTML code for the requested resource object
 	 *
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
-	 * @param integer $id Unique resource ID
 	 * @return string Generated output
 	 */
-	public function getAction( $site = 'default', $resource )
+	public function getAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->get() );
+
+		if( ( $html = $cntl->get() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 
@@ -158,7 +189,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
-	public function saveAction( $site = 'default', $resource )
+	public function saveAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
 
@@ -177,10 +208,15 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
-	public function searchAction( $site = 'default', $resource )
+	public function searchAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
-		return $this->getHtml( $cntl->search() );
+
+		if( ( $html = $cntl->search() ) == '' ) {
+			return $this->setPsrResponse( $cntl->getView()->response() );
+		}
+
+		return $this->getHtml( $html );
 	}
 
 

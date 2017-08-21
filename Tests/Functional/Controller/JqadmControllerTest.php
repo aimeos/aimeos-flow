@@ -50,6 +50,15 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	public function testExportAction()
+	{
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/export/order', 'GET' );
+
+		$this->assertEquals( 200, $response->getStatusCode() );
+		$this->assertContains( 'list-items', $response->getContent() );
+	}
+
+
 	public function testGetAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product/0', 'GET' );

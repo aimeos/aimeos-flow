@@ -48,6 +48,10 @@ Aimeos:
         adapter: Standard
         basedir: "%FLOW_PATH_WEB%Uploads"
         tempdir: "%FLOW_PATH_DATA%Temporary"
+      fs-import:
+        adapter: Standard
+        basedir: "%FLOW_PATH_DATA%Import"
+        tempdir: "%FLOW_PATH_DATA%Temporary"
       fs-secure:
         adapter: Standard
         basedir: "%FLOW_PATH_DATA%Persistent/Secure"
