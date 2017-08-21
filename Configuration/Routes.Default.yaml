@@ -87,7 +87,6 @@
 -
   name: 'Checkout confirm page'
   uriPattern: 'confirm'
->>>>>>> ffd4790... Fixed default shop routes
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Checkout'
