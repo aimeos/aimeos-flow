@@ -96,7 +96,7 @@ below to the **beginning** of the Routes.yaml file:
 ```yaml
 -
   name: 'Aimeos'
-  uriPattern: 'shop<AimeosShopRoutes>'
+  uriPattern: 'shop/<AimeosShopRoutes>'
   subRoutes:
     AimeosShopRoutes:
       package: 'Aimeos.Shop'
