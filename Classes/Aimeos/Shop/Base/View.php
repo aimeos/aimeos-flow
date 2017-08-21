@@ -57,7 +57,9 @@ class View
 	{
 		$engines = array( '.html' => new \Aimeos\MW\View\Engine\Flow( $this->view ) );
 		$view = new \Aimeos\MW\View\Standard( $templatePaths, $engines );
+
 		$config = $context->getConfig();
+		$session = $context->getSession();
 
 		$this->addCsrf( $view );
 		$this->addAccess( $view, $context );
@@ -66,6 +68,7 @@ class View
 		$this->addParam( $view, $request );
 		$this->addRequest( $view, $request );
 		$this->addResponse( $view );
+		$this->addSession( $view, $session );
 		$this->addTranslate( $view, $langid );
 		$this->addUrl( $view, $uriBuilder, $request );
 
@@ -199,6 +202,22 @@ class View
 	{
 		$helper = new \Aimeos\MW\View\Helper\Response\Flow( $view );
 		$view->addHelper( 'response', $helper );
+
+		return $view;
+	}
+
+
+	/**
+	 * Adds the "session" helper to the view object
+	 *
+	 * @param \Aimeos\MW\View\Iface $view View object
+	 * @param \Aimeos\MW\Session\Iface $session Session object
+	 * @return \Aimeos\MW\View\Iface Modified view object
+	 */
+	protected function addSession( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Session\Iface $session )
+	{
+		$helper = new \Aimeos\MW\View\Helper\Session\Standard( $view, $session );
+		$view->addHelper( 'session', $helper );
 
 		return $view;
 	}
