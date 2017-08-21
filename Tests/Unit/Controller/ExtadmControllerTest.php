@@ -134,6 +134,7 @@ class ExtadmControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$ctx = new \Aimeos\MShop\Context\Item\Standard();
 		$ctx->setConfig( new \Aimeos\MW\Config\PHPArray() );
+		$ctx->setSession( new \Aimeos\MW\Session\None() );
 
 		$context->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $ctx ) );

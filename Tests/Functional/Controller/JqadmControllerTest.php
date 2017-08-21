@@ -25,7 +25,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 	public function testCopyAction()
 	{
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product/0', 'GET' );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product?id=0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( 'item-product', $response->getContent() );
@@ -43,7 +43,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 	public function testDeleteAction()
 	{
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product/0', 'GET' );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product?id=0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( 'list-items', $response->getContent() );
@@ -61,7 +61,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 	public function testGetAction()
 	{
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product/0', 'GET' );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product?id=0', 'GET' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( 'item-product', $response->getContent() );
@@ -70,7 +70,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 	public function testSaveAction()
 	{
-		$response = $this->browser->request( 'http://localhost/unittest/jqadm/save/product/0', 'POST' );
+		$response = $this->browser->request( 'http://localhost/unittest/jqadm/save/product', 'POST' );
 
 		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertContains( 'item-product', $response->getContent() );

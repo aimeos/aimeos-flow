@@ -151,7 +151,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $site Unique site code
 	 * @return string Generated output
 	 */
-	public function exportction( $resource, $site = 'default' )
+	public function exportAction( $resource, $site = 'default' )
 	{
 		$cntl = $this->createClient( $site, $resource );
 
