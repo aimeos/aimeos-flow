@@ -1,6 +1,6 @@
 -
   name: 'Basket page'
-  uriPattern: '/basket'
+  uriPattern: 'basket'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Basket'
@@ -10,7 +10,7 @@
 
 -
   name: 'Catalog count XHR'
-  uriPattern: '/count'
+  uriPattern: 'count'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -20,7 +20,7 @@
 
 -
   name: 'Catalog detail page'
-  uriPattern: '/detail/{d_prodid}(/{d_name}/{d_pos})'
+  uriPattern: 'detail/{d_prodid}(/{d_name}/{d_pos})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -32,7 +32,7 @@
 
 -
   name: 'Catalog list page'
-  uriPattern: '/list(/{f_catid}/{f_name})'
+  uriPattern: 'list(/{f_catid}/{f_name})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -44,7 +44,7 @@
 
 -
   name: 'Catalog session pinned products'
-  uriPattern: '/detail/pin/{pin_action}/{pin_id}/{d_prodid}(/{d_name})'
+  uriPattern: 'detail/pin/{pin_action}/{pin_id}/{d_prodid}(/{d_name})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -55,7 +55,7 @@
 
 -
   name: 'Catalog stock XHR'
-  uriPattern: '/stock'
+  uriPattern: 'stock'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -65,7 +65,7 @@
 
 -
   name: 'Catalog suggest XHR'
-  uriPattern: '/suggest'
+  uriPattern: 'suggest'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
@@ -75,7 +75,7 @@
 
 -
   name: 'Checkout page'
-  uriPattern: '/checkout(/{c_step})'
+  uriPattern: 'checkout(/{c_step})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Checkout'
@@ -86,7 +86,8 @@
 
 -
   name: 'Checkout confirm page'
-  uriPattern: '/confirm'
+  uriPattern: 'confirm'
+>>>>>>> ffd4790... Fixed default shop routes
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Checkout'
