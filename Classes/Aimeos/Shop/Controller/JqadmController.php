@@ -237,7 +237,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 		$context->setView( $this->viewbase->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
-		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $templatePaths, $resource )->setAimeos( $aimeos );
+		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $aimeos, $resource );
 	}
 
 
