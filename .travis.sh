@@ -7,8 +7,8 @@ cat composer.json | sed 's/^\}$/,\
     "prefer-stable": true,\
     "repositories": [\
         {\
-            "type": "vcs",\
-            "url": "https:\/\/github.com\/aimeos\/php-coveralls.git"\
+            "type": "git",\
+            "url": "https:\/\/github.com\/aimeos\/php-coveralls"\
         }\
     ],\
     "extra": {\
