@@ -26,8 +26,7 @@ pages including routing is also available for a quick start in Flow.
 
 This document is for the latest Aimeos Flow **2016.10 release and later**.
 
-- Stable release: 2017.07
-- LTS release: 2016.10
+- LTS release: 2017.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
 installed easiest by using [Composer](https://getcomposer.org).
@@ -67,7 +66,7 @@ Then add these lines to your composer.json of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~2017.07",
+        "aimeos/aimeos-flow": "~2017.10",
         ...
     },
 ```
