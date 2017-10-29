@@ -19,6 +19,7 @@ pages including routing is also available for a quick start in Flow.
 
 - [Installation](#installation)
 - [Setup](#setup)
+- [Hints](#hints)
 - [License](#license)
 - [Links](#links)
 
@@ -137,6 +138,21 @@ For the administration interface you have to setup authenticaton first and log
 in before you will be able to get into the shop management interface:
 
 ```http://<your web root>/shop/admin```
+
+## Hints
+
+To simplify development, you should configure to use no content cache. You can
+do this in the `Configuration/Settings.yaml` file of your Flow/Neos application
+by adding these lines at the bottom:
+
+```yaml
+Aimeos:
+  Shop:
+    madmin:
+      cache:
+        manager:
+          name: None
+```
 
 ## License
 
