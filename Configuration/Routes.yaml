@@ -9,14 +9,6 @@
   appendExceedingArguments: true
 
 -
-  name: 'Extadm'
-  uriPattern: 'admin/{site}/extadm<ExtadmSubroutes>'
-  subRoutes:
-    'ExtadmSubroutes':
-      package: 'Aimeos.Shop'
-      suffix:  'Extadm'
-
--
   name: 'Jqadm'
   uriPattern: 'admin/{site}/jqadm<JqadmSubroutes>'
   subRoutes:

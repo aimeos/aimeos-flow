@@ -145,20 +145,6 @@ Aimeos:
               # doesn't restrict the size of the image if it's scaled due to a value
               # in the "maxwidth" parameter
               # maxheight: 280
-      extjs:
-        attribute:
-          export:
-            text:
-              default:
-                downloaddir: /Uploads
-        catalog:
-          export:
-                downloaddir: /Uploads
-        product:
-          export:
-            text:
-              default:
-                downloaddir: /Uploads
 
     i18n:
 
