@@ -26,7 +26,7 @@ class ExtadmControllerTest extends \Neos\Flow\Tests\UnitTestCase
 		$this->inject( $this->object, 'view', $this->view );
 
 		$this->request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
+			->setMethods( array( 'getArguments', 'getControllerActionName', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -167,6 +167,9 @@ class ExtadmControllerTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $request ) );
+
+		$this->request->expects( $this->once() )->method( 'getControllerActionName' )
+			->will( $this->returnValue( 'do' ) );
 
 		$this->request->expects( $this->any() )->method( 'getArguments' )
 			->will( $this->returnValue( array()  ) );
