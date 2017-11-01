@@ -157,7 +157,7 @@ class View
 	 */
 	protected function addParam( \Aimeos\MW\View\Iface $view, \Neos\Flow\Mvc\RequestInterface $request = null )
 	{
-		$params = ( $request !== null ? $request->getArguments() : array() );
+		$params = ( $request !== null ? $request->getArguments() + ['action' => $request->getControllerActionName()] : [] );
 		$helper = new \Aimeos\MW\View\Helper\Param\Standard( $view, $params );
 		$view->addHelper( 'param', $helper );
 

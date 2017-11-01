@@ -60,12 +60,15 @@ class ViewTest extends \Neos\Flow\Tests\UnitTestCase
 		$httpRequest = new \Neos\Flow\Http\Request( array(), array(), array(), array() );
 
 		$request = $this->getMockBuilder( '\Neos\Flow\Mvc\ActionRequest' )
-			->setMethods( array( 'getArguments', 'getHttpRequest' ) )
+			->setMethods( array( 'getArguments', 'getControllerActionName', 'getHttpRequest' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
 		$request->expects( $this->exactly( 2 ) )->method( 'getArguments' )
 			->will( $this->returnValue( array( 'site' => 'unittest', 'locale' => 'de', 'currency' => 'EUR' ) ) );
+
+		$request->expects( $this->once() )->method( 'getControllerActionName' )
+			->will( $this->returnValue( 'list' ) );
 
 		$request->expects( $this->once() )->method( 'getHttpRequest' )
 			->will( $this->returnValue( $httpRequest ) );
