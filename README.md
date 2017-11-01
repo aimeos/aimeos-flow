@@ -148,10 +148,9 @@ by adding these lines at the bottom:
 ```yaml
 Aimeos:
   Shop:
-    madmin:
+    flow:
       cache:
-        manager:
-          name: None
+        name: None
 ```
 
 ## License
