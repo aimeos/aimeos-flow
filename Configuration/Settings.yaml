@@ -31,7 +31,7 @@ Aimeos:
         database:
         username:
         password:
-        limit: 2
+        limit: 3
         opt-persistent: 0
       fs:
         adapter: Standard
