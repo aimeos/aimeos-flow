@@ -229,13 +229,20 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	protected function createClient( $sitecode, $resource )
 	{
 		$aimeos = $this->aimeos->get();
+		$paths = $aimeos->getCustomPaths( 'admin/jqadm/templates' );
 		$lang = ( $this->request->hasArgument( 'lang' ) ? $this->request->getArgument( 'lang' ) : 'en' );
-		$templatePaths = $aimeos->getCustomPaths( 'admin/jqadm/templates' );
 
 		$context = $this->context->get( null, 'backend' );
 		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
-		$context->setView( $this->viewbase->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
+
+		$view = $this->viewbase->create( $context, $this->uriBuilder, $paths, $this->request, $lang );
+
+		$view->aimeosType = 'Flow';
+		$view->aimeosVersion = $this->aimeos->getVersion();
+		$view->aimeosExtensions = implode( ',', $aimeos->getExtensions() );
+
+		$context->setView( $view );
 
 		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $aimeos, $resource );
 	}
@@ -248,10 +255,6 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	protected function getHtml( $content )
 	{
-		$version = $this->aimeos->getVersion();
-		$extnames = implode( ',', $this->aimeos->get()->getExtensions() );
-		$content = str_replace( ['{type}', '{version}', '{extensions}'], ['Flow', $version, $extnames], $content );
-
 		$this->view->assign( 'content', $content );
 		return $this->view->render( 'index' );
 	}
