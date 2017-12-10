@@ -171,15 +171,16 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	protected function createClient( $sitecode, $resource, $lang )
 	{
+		$aimeos = $this->aimeos->get();
 		$lang = ( $lang ? $lang : 'en' );
-		$templatePaths = $this->aimeos->get()->getCustomPaths( 'admin/jsonadm/templates' );
+		$templatePaths = $aimeos->getCustomPaths( 'admin/jsonadm/templates' );
 
 		$context = $this->context->get( null, 'backend' );
 		$context->setI18n( $this->i18n->get( array( $lang, 'en' ) ) );
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 		$context->setView( $this->viewContainer->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
-		return \Aimeos\Admin\JsonAdm\Factory::createClient( $context, $templatePaths, $resource );
+		return \Aimeos\Admin\JsonAdm\Factory::createClient( $context, $aimeos, $resource );
 	}
 
 
