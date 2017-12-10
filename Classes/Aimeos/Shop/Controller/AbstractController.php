@@ -58,7 +58,7 @@ abstract class AbstractController extends \Neos\Flow\Mvc\Controller\ActionContro
 		$langid = $context->getLocale()->getLanguageId();
 		$view = $this->viewContainer->create( $context, $this->uriBuilder, $tmplPaths, $this->request, $langid );
 
-		$client = \Aimeos\Client\Html\Factory::createClient( $context, $tmplPaths, $clientName );
+		$client = \Aimeos\Client\Html\Factory::createClient( $context, $clientName );
 		$client->setView( $view );
 		$client->process();
 
