@@ -31,7 +31,9 @@ This document is for the latest Aimeos Flow **2016.10 release and later**.
 - LTS release: 2016.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
-installed easiest by using [Composer](https://getcomposer.org).
+installed easiest by using [Composer](https://getcomposer.org):
+
+`composer create-project neos/flow-base-distribution myshop`
 
 Make sure that the **database is set up and it is configured**.  If you want to
 use a database server other than MySQL, please have a look into the article about
@@ -68,7 +70,7 @@ Then add these lines to your composer.json of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~2017.07",
+        "aimeos/aimeos-flow": "~2017.10",
         ...
     },
 ```
@@ -86,9 +88,6 @@ Flow console command in the base directory of your Flow application:
 
 In a production environment or if you don't want that the demo data gets
 installed, leave out the `--option=setup/default/demo:1` option.
-
-**Note:** If you get an error like `Neos\Flow\Core\ApplicationContext not found`,
-execute `composer update` again to install the missing `typo/flow` package.
 
 For **Flow only** you need to import the routes from the Aimeos web shop
 package into your `Configuration/Routes.yaml` nice looking URLs. Insert the lines
