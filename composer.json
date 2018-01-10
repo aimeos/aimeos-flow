@@ -20,7 +20,6 @@
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-gettext": "dev-master",
         "aimeos/ai-flow": "dev-master",
-        "aimeos/ai-admin-extadm": "dev-master",
         "aimeos/ai-admin-jqadm": "dev-master",
         "aimeos/ai-admin-jsonadm": "dev-master",
         "aimeos/ai-client-jsonapi": "dev-master",
@@ -41,8 +40,6 @@
     },
     "scripts": {
         "post-update-cmd": [
-            "cp -r Resources/Extensions/ai-admin-extadm/admin/extjs/resources/* Resources/Public/admin/extjs/resources/",
-            "cp -r Resources/Extensions/ai-admin-extadm/admin/extjs/lib/* Resources/Public/admin/extjs/lib/",
             "cp -r Resources/Extensions/ai-client-html/client/html/themes/* Resources/Public/themes/"
         ]
     }
