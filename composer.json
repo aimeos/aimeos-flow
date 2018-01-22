@@ -4,7 +4,7 @@
     "keywords": ["aimeos", "flow", "neos", "e-commerce", "ecommerce", "shop", "portal", "market place"],
     "homepage": "https://aimeos.org/Flow",
     "type": "typo3-flow-package",
-    "license": "LGPL-3.0+",
+    "license": "LGPL-3.0-or-later",
     "support": {
         "source": "https://github.com/aimeos/aimeos-flow",
         "issues": "https://github.com/aimeos/aimeos-flow/issues",
