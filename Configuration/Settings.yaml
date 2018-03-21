@@ -54,10 +54,6 @@ Aimeos:
         db: db
 
     admin:
-      extjs:
-        url:
-          controller: Extadm
-          action: index
       jsonadm:
         url:
           config:
