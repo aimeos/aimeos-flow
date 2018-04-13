@@ -92,13 +92,17 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	 * - admin/cache (remove expired cache entries once a day)
 	 * - admin/job (process import/export jobs created in the admin interface every five minutes)
 	 * - admin/log (archivate and delete old log entries once a day)
+	 * - catalog/import/csv (import categories from CSV files)
+	 * - customer/email/account (create new customer accounts and send e-mails)
 	 * - customer/email/watch (send customers e-mails if their watched products have changed)
 	 * - index/rebuild (rebuild the catalog index once a day after midnight)
 	 * - index/optimize (optimize the catalog index once a day one hour after the rebuild)
+	 * - media/scale (rescales the product images to the new sizes)
 	 * - order/cleanup/unfinished (remove unfinised orders once a day)
 	 * - order/cleanup/unfinised (remove unpaid orders once a day)
 	 * - order/email/delivery (send delivery status update e-mails to the customers every few hours)
 	 * - order/email/payment (send payment status update e-mails to the customers every few hours)
+	 * - order/export/csv (export orders in admin interface)
 	 * - order/service/async (import batch delivery or payment status updates if necessary)
 	 * - order/service/delivery (sends paid orders to the ERP system or logistic partner)
 	 * - order/service/payment (captures authorized payments after the configured amount of time automatically)
@@ -106,6 +110,10 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	 * - product/export (export products)
 	 * - product/export/sitemap (generate product sitemaps for search engines)
 	 * - product/import/csv (import products from CSV files)
+	 * - subscription/export/csv (export subscriptions in admin interface)
+	 * - subscription/process/begin (start subscription period and add permissions if applicable)
+	 * - subscription/process/renew (renew subscriptions on next date)
+	 * - subscription/process/end (finish subscription period and revoke permissions if applicable)
 	 *
 	 * Each of these maintenance tasks must be executed for all shop instances
 	 * if you have more than one site in your installation. The sites parameter
