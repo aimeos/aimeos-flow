@@ -79,7 +79,9 @@ class Locale
 		}
 		catch( \Aimeos\MShop\Locale\Exception $e )
 		{
+			$item = \Aimeos\MShop\Factory::createManager( $context, 'locale/site' )->findItem( $sitecode );
 			$localeItem = $localeManager->createItem();
+			$localeItem->setSiteId( $item->getId() );
 		}
 
 		return $localeItem;
