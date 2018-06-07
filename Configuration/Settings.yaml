@@ -79,6 +79,10 @@ Aimeos:
                   url:
                     controller: Page
                     action: terms
+                  cancel:
+                    url:
+                      controller: Page
+                      action: terms
                   privacy:
                     url:
                       controller: Page
