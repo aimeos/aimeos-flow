@@ -6,15 +6,25 @@ php:
   - 7.1
   - 7.0
 
+env:
+  - FLOW_VERSION=5.0
+  - FLOW_VERSION=4.3
+
 before_script:
-  - git clone https://github.com/neos/flow-development-distribution.git -b 4.0 ../flow
+  - git clone https://github.com/neos/flow-development-distribution.git -b ${FLOW_VERSION} ../flow
   - cd ../flow
   - composer self-update
   - bash ../aimeos-flow/.travis.sh
 
 script:
-  - vendor/bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/
-  - vendor/bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-functional.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Functional/
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/
+  - bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-functional.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Functional/
 
 after_success:
   - php bin/coveralls -c Application/Aimeos.Shop/.coveralls.yml
+
+matrix:
+  fast_finish: true
+  exclude:
+  - php: 7.0
+    env: FLOW_VERSION=5.0
