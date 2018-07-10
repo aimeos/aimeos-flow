@@ -90,7 +90,6 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	 * regularly executed. These include
 	 *
 	 * - admin/cache (remove expired cache entries once a day)
-	 * - admin/job (process import/export jobs created in the admin interface every five minutes)
 	 * - admin/log (archivate and delete old log entries once a day)
 	 * - catalog/import/csv (import categories from CSV files)
 	 * - customer/email/account (create new customer accounts and send e-mails)
