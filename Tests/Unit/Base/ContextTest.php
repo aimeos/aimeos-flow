@@ -183,7 +183,7 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$this->object->injectSettings( array( 'test' ) );
 
-		$this->assertEquals( array( 'test' ), \PHPUnit_Framework_Assert::readAttribute( $this->object, 'settings' ) );
+		$this->assertEquals( array( 'test' ), \PHPUnit\Framework\Assert::readAttribute( $this->object, 'settings' ) );
 	}
 
 
@@ -198,6 +198,6 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 
 		$this->object->setCache( $cache );
 
-		$this->assertEquals( $cache, \PHPUnit_Framework_Assert::readAttribute( $this->object, 'cache' ) );
+		$this->assertEquals( $cache, \PHPUnit\Framework\Assert::readAttribute( $this->object, 'cache' ) );
 	}
 }

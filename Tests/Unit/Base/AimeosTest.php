@@ -40,6 +40,6 @@ class AimeosTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$this->object->injectSettings( array( 'test' ) );
 
-		$this->assertEquals( array( 'test' ), \PHPUnit_Framework_Assert::readAttribute( $this->object, 'settings' ) );
+		$this->assertEquals( array( 'test' ), \PHPUnit\Framework\Assert::readAttribute( $this->object, 'settings' ) );
 	}
 }
