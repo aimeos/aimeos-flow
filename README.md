@@ -27,7 +27,7 @@ pages including routing is also available for a quick start in Flow.
 
 This document is for the latest Aimeos Flow **2017.10 release and later**.
 
-- Stable release: 2018.04
+- Stable release: 2018.07
 - LTS release: 2017.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
@@ -70,7 +70,7 @@ Then add these lines to your composer.json of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~2018.04",
+        "aimeos/aimeos-flow": "~2018.07",
         ...
     },
 ```
