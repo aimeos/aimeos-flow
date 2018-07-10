@@ -13,8 +13,8 @@ before_script:
   - bash ../aimeos-flow/.travis.sh
 
 script:
-  - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/
-  - bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-functional.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Functional/
+  - vendor/bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/
+  - vendor/bin/phpunit -c Build/BuildEssentials/PhpUnit/FunctionalTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-functional.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Functional/
 
 after_success:
   - php bin/coveralls -c Application/Aimeos.Shop/.coveralls.yml
