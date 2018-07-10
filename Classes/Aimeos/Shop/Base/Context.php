@@ -225,7 +225,7 @@ class Context
 		$max = $config->get( 'pcntl_max', 4 );
 		$prio = $config->get( 'pcntl_priority', 19 );
 
-		$process = new \Aimeos\MW\Process\Pcntl( $max, $prio );
+		$process = new \Aimeos\MW\Process\None( $max, $prio );
 		$process = new \Aimeos\MW\Process\Decorator\Check( $process );
 
 		return $context->setProcess( $process );
