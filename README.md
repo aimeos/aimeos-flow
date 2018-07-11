@@ -59,7 +59,7 @@ Neos:
 to be two spaces. Not more, not less and no tabs at all! Otherwise, you will get
 an error about an invalid configuration file format.
 
-Then add these lines to your composer.json of your Flow/Neos project:
+Then add these lines to your `composer.json` of your Flow/Neos project:
 
 ```
     "extra": {
