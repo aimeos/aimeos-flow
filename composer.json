@@ -1,6 +1,6 @@
 {
     "name": "aimeos/aimeos-flow",
-    "description": "Full-featured Flow/NeosCMS web shop package and e-commerce solution for high performance shops",
+    "description": "Full-featured Flow/NeosCMS online shop package and e-commerce solution for high performance shops",
     "keywords": ["aimeos", "flow", "neos", "e-commerce", "ecommerce", "shop", "portal", "market place"],
     "homepage": "https://aimeos.org/Flow",
     "type": "typo3-flow-package",
