@@ -14,7 +14,7 @@ high performance e-commerce package for Flow/NeosCMS!  You can install it in you
 existing Flow application within 5 minutes and can adapt, extend, overwrite
 and customize anything to your needs. 
 
-[![Aimeos Flow demo](https://aimeos.org/fileadmin/user_upload/flow-demo.jpg)](http://flow.demo.aimeos.org/)
+[![Aimeos Flow demo](https://aimeos.org/fileadmin/aimeos.org/images/aimeos-github.png)](http://flow.demo.aimeos.org/)
 
 ## Table of content
 
