@@ -7,11 +7,12 @@
 [![Build Status](https://travis-ci.org/aimeos/aimeos-flow.svg?branch=master)](https://travis-ci.org/aimeos/aimeos-flow)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/aimeos/aimeos-flow/?branch=master)
 
-The repository contains the web shop package for Flow/Neos
-integrating the Aimeos e-commerce library into Flow/Neos. The package provides
-controllers for e.g. faceted filter, product lists and detail views, for
-searching products as well as baskets and the checkout process. A full set of
-pages including routing is also available for a quick start in Flow.
+:star: Star us on GitHub — it helps!
+
+[Aimeos](https://aimeos.org/Flow) is THE professional, full-featured and
+high performance e-commerce package for Flow/NeosCMS!  You can install it in your
+existing Flow application within 5 minutes and can adapt, extend, overwrite
+and customize anything to your needs. 
 
 [![Aimeos Flow demo](https://aimeos.org/fileadmin/user_upload/flow-demo.jpg)](http://flow.demo.aimeos.org/)
 
