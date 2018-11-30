@@ -19,14 +19,14 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 
 	public function testGetAction()
 	{
-		$params = ['filter' => ['f_search' => 'Cafe Noire Cap', 'f_listtype' => 'unittype19']];
+		$params = ['filter' => ['f_search' => 'Cafe Noire Cap']];
 		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/product', 'GET', $params );
 		$json = json_decode( $response->getContent(), true );
 
 		$this->assertNotNull( $json );
 		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertEquals( 1, $json['meta']['total'] );
-		$this->assertEquals( 1, count( $json['data'] ) );
+		$this->assertEquals( 2, $json['meta']['total'] );
+		$this->assertEquals( 2, count( $json['data'] ) );
 		$this->assertArrayHasKey( 'id', $json['data'][0] );
 		$this->assertEquals( 'CNC', $json['data'][0]['attributes']['product.code'] );
 
