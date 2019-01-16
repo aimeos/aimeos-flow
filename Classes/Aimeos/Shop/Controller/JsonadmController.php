@@ -64,7 +64,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->delete( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -82,7 +82,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->get( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -100,7 +100,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->patch( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -118,7 +118,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->post( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -136,7 +136,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->put( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -154,7 +154,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	{
 		$request = $this->request->getHttpRequest();
 
-		$client = $this->createClient( $site, $resource, $request->getArgument( 'lang' ) );
+		$client = $this->createAdmin( $site, $resource, $request->getArgument( 'lang' ) );
 		$psrResponse = $client->options( $this->getPsrRequest(), new Response() );
 
 		return $this->setPsrResponse( $psrResponse );
@@ -169,7 +169,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $lang Language code
 	 * @return \Aimeos\Admin\JsonAdm\Iface JsonAdm client
 	 */
-	protected function createClient( $sitecode, $resource, $lang )
+	protected function createAdmin( $sitecode, $resource, $lang )
 	{
 		$aimeos = $this->aimeos->get();
 		$lang = ( $lang ? $lang : 'en' );

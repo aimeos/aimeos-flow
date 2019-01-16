@@ -96,7 +96,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function copyAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->copy() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -115,7 +115,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function createAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->create() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -134,7 +134,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function deleteAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->delete() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -153,7 +153,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function exportAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->export() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -172,7 +172,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function getAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->get() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -191,7 +191,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function saveAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->save() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -210,7 +210,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 */
 	public function searchAction( $resource, $site = 'default' )
 	{
-		$cntl = $this->createClient( $site, $resource );
+		$cntl = $this->createAdmin( $site, $resource );
 
 		if( ( $html = $cntl->search() ) == '' ) {
 			return $this->setPsrResponse( $cntl->getView()->response() );
@@ -226,7 +226,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string $sitecode Unique site code
 	 * @return \Aimeos\Admin\JQAdm\Iface JQAdm client object
 	 */
-	protected function createClient( $sitecode, $resource )
+	protected function createAdmin( $sitecode, $resource )
 	{
 		$aimeos = $this->aimeos->get();
 		$paths = $aimeos->getCustomPaths( 'admin/jqadm/templates' );
