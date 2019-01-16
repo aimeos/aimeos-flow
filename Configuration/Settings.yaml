@@ -37,6 +37,7 @@ Aimeos:
         adapter: Standard
         basedir: "%FLOW_PATH_WEB%"
         tempdir: "%FLOW_PATH_DATA%Temporary"
+        baseurl: "/"
       fs-admin:
         adapter: Standard
         basedir: "%FLOW_PATH_WEB%Uploads"
