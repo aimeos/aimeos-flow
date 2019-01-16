@@ -53,7 +53,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 		$config = $context->getConfig();
 		$name = $config->get( 'flow/cache/name', 'Flow' );
 
-		$localeManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
@@ -66,7 +66,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 			{
 				case 'None':
 					$config->set( 'client/html/basket/cache/enable', false );
-					$cache = \Aimeos\MW\Cache\Factory::createManager( 'None', array(), null );
+					$cache = \Aimeos\MW\Cache\Factory::create( 'None', array(), null );
 					break;
 				case 'Flow':
 					$cache = new \Aimeos\MAdmin\Cache\Proxy\Flow( $lcontext, $this->cache );
@@ -130,7 +130,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 		$process = $context->getProcess();
 
 		$jobs = explode( ' ', $jobs );
-		$localeManager = \Aimeos\MShop\Factory::createManager( $context, 'locale' );
+		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
 
 		foreach( $this->getSiteItems( $context, $sites ) as $siteItem )
 		{
@@ -145,7 +145,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 			foreach( $jobs as $jobname )
 			{
 				$fcn = function( $context, $aimeos, $jobname ) {
-					\Aimeos\Controller\Jobs\Factory::createController( $context, $aimeos, $jobname )->run();
+					\Aimeos\Controller\Jobs::create( $context, $aimeos, $jobname )->run();
 				};
 
 				$process->start( $fcn, [$context, $aimeos, $jobname], true );
@@ -222,7 +222,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 
 		$tmplPaths = $aimeos->getCustomPaths( 'controller/jobs/templates' );
 
-		$langManager = \Aimeos\MShop\Locale\Manager\Factory::createManager( $context )->getSubManager( 'language' );
+		$langManager = \Aimeos\MShop::create( $context, 'locale/language' );
 		$langids = array_keys( $langManager->searchItems( $langManager->createSearch( true ) ) );
 
 		$i18n = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\I18n' )->get( $langids );
@@ -266,7 +266,7 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 	 */
 	protected function getSiteItems( \Aimeos\MShop\Context\Item\Iface $context, $sites )
 	{
-		$manager = \Aimeos\MShop\Factory::createManager( $context, 'locale/site' );
+		$manager = \Aimeos\MShop::create( $context, 'locale/site' );
 		$search = $manager->createSearch();
 
 		if( $sites !== '' ) {

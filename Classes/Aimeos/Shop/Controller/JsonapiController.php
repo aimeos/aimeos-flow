@@ -156,7 +156,7 @@ class JsonapiController extends \Neos\Flow\Mvc\Controller\ActionController
 		$view =$this->viewContainer->create( $context, $this->uriBuilder, $tmplPaths, $this->request, $langid );
 		$context->setView( $view );
 
-		return \Aimeos\Client\JsonApi\Factory::createClient( $context, $resource . '/' . $related );
+		return \Aimeos\Client\JsonApi::create( $context, $resource . '/' . $related );
 	}
 
 

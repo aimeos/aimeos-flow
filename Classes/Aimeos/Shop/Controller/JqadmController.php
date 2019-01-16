@@ -244,7 +244,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 
 		$context->setView( $view );
 
-		return \Aimeos\Admin\JQAdm\Factory::createClient( $context, $aimeos, $resource );
+		return \Aimeos\Admin\JQAdm::create( $context, $aimeos, $resource );
 	}
 
 

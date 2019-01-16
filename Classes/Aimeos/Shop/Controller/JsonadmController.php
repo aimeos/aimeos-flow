@@ -180,7 +180,7 @@ class JsonadmController extends \Neos\Flow\Mvc\Controller\ActionController
 		$context->setLocale( $this->locale->getBackend( $context, $sitecode ) );
 		$context->setView( $this->viewContainer->create( $context, $this->uriBuilder, $templatePaths, $this->request, $lang ) );
 
-		return \Aimeos\Admin\JsonAdm\Factory::createClient( $context, $aimeos, $resource );
+		return \Aimeos\Admin\JsonAdm::create( $context, $aimeos, $resource );
 	}
 
 

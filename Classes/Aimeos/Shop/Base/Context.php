@@ -131,7 +131,7 @@ class Context
 		{
 			case 'None':
 				$config->set( 'client/html/basket/cache/enable', false );
-				return $context->setCache( \Aimeos\MW\Cache\Factory::createManager( 'None', array(), null ) );
+				return $context->setCache( \Aimeos\MW\Cache\Factory::create( 'None', array(), null ) );
 
 			case 'Flow':
 				return $context->setCache( new \Aimeos\MAdmin\Cache\Proxy\Flow( $context, $this->cache ) );
@@ -178,7 +178,7 @@ class Context
 	 */
 	protected function addLogger( \Aimeos\MShop\Context\Item\Iface $context )
 	{
-		$logger = \Aimeos\MAdmin\Log\Manager\Factory::createManager( $context );
+		$logger = \Aimeos\MAdmin::create( $context, 'log' );
 
 		return $context->setLogger( $logger );
 	}
