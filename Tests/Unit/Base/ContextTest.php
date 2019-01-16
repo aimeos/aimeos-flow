@@ -11,6 +11,8 @@ class ContextTest extends \Neos\Flow\Tests\UnitTestCase
 
 	public function setUp()
 	{
+		\Aimeos\MShop::cache( false );
+
 		$this->object = new \Aimeos\Shop\Base\Context();
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
