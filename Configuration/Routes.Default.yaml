@@ -31,14 +31,12 @@
 
 -
   name: 'Catalog list page'
-  uriPattern: 'list(/{f_catid}/{f_name})'
+  uriPattern: 'list'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
     '@action': 'list'
     '@format': 'html'
-    'f_catid': ''
-    'f_name': ''
   appendExceedingArguments: true
 
 -
@@ -69,6 +67,16 @@
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
     '@action': 'suggest'
+    '@format': 'html'
+  appendExceedingArguments: true
+
+-
+  name: 'Catalog tree page'
+  uriPattern: 'c/{f_name}/{f_catid}'
+  defaults:
+    '@package':    'Aimeos.Shop'
+    '@controller': 'Catalog'
+    '@action': 'tree'
     '@format': 'html'
   appendExceedingArguments: true
 

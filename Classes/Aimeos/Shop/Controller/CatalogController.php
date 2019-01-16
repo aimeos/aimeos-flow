@@ -165,4 +165,15 @@ class CatalogController extends AbstractController
 		$this->view->assignMultiple( $this->getSections( 'catalog-suggest' ) );
 		$this->response->setHeader( 'Content-Type', 'application/json' );
 	}
+
+
+	/**
+	 * Content for catalog tree page
+	 *
+	 * @Flow\Session(autoStart = TRUE)
+	 */
+	public function treeAction()
+	{
+		$this->view->assignMultiple( $this->getSections( 'catalog-tree' ) );
+	}
 }

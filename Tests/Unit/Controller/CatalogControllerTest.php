@@ -125,6 +125,23 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
+	public function treeAction()
+	{
+		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
+
+		$this->object->expects( $this->once() )->method( 'getSections' )
+			->will( $this->returnValue( $expected ) );
+
+		$this->view->expects( $this->once() )->method( 'assignMultiple' )
+			->with( $this->equalTo( $expected ) );
+
+		$this->object->treeAction();
+	}
+
+
+	/**
+	 * @test
+	 */
 	public function countComponentAction()
 	{
 		$this->object->expects( $this->once() )->method( 'getOutput' )
