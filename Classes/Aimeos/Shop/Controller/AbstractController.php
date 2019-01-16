@@ -33,10 +33,10 @@ abstract class AbstractController extends \Neos\Flow\Mvc\Controller\ActionContro
 	protected $context;
 
 	/**
-	 * @var \Aimeos\Shop\Base\Page
+	 * @var \Aimeos\Shop\Base\Shop
 	 * @Flow\Inject
 	 */
-	protected $page;
+	protected $shop;
 
 	/**
 	 * @var \Aimeos\Shop\Base\View
@@ -71,10 +71,10 @@ abstract class AbstractController extends \Neos\Flow\Mvc\Controller\ActionContro
 	/**
 	 * Returns the body and header output for the given page name
 	 *
-	 * @param string $pageName Page name as defined in the Settings.yaml file
+	 * @param string $name Page name as defined in the Settings.yaml file
 	 */
-	protected function getSections( $pageName )
+	protected function get( $name )
 	{
-		return $this->page->getSections( $this->request, $pageName );
+		return $this->shop->get( $this->request, $name );
 	}
 }

@@ -118,7 +118,7 @@ class CatalogController extends AbstractController
 	 */
 	public function countAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-count' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-count' ) );
 		$this->response->setHeader( 'Content-Type', 'application/javascript' );
 		$this->response->setHeader( 'Cache-Control', 'max-age=300' );
 	}
@@ -131,7 +131,7 @@ class CatalogController extends AbstractController
 	 */
 	public function detailAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-detail' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-detail' ) );
 	}
 
 
@@ -142,7 +142,7 @@ class CatalogController extends AbstractController
 	 */
 	public function listAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-list' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-list' ) );
 	}
 
 
@@ -151,7 +151,7 @@ class CatalogController extends AbstractController
 	 */
 	public function stockAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-stock' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-stock' ) );
 		$this->response->setHeader( 'Content-Type', 'application/javascript' );
 		$this->response->setHeader( 'Cache-Control', 'max-age=30' );
 	}
@@ -162,7 +162,7 @@ class CatalogController extends AbstractController
 	 */
 	public function suggestAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-suggest' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-suggest' ) );
 		$this->response->setHeader( 'Content-Type', 'application/json' );
 	}
 
@@ -174,6 +174,6 @@ class CatalogController extends AbstractController
 	 */
 	public function treeAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'catalog-tree' ) );
+		$this->view->assignMultiple( $this->get( 'catalog-tree' ) );
 	}
 }

@@ -14,7 +14,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	public function setUp()
 	{
 		$this->object = $this->getMockBuilder( '\Aimeos\Shop\Controller\CatalogController' )
-			->setMethods( array( 'getOutput', 'getSections' ) )
+			->setMethods( array( 'getOutput', 'get' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -38,7 +38,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
@@ -57,7 +57,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
@@ -74,7 +74,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
@@ -91,7 +91,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
@@ -110,7 +110,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )
@@ -129,7 +129,7 @@ class CatalogControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$this->object->expects( $this->once() )->method( 'getSections' )
+		$this->object->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 		$this->view->expects( $this->once() )->method( 'assignMultiple' )

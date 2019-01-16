@@ -14,13 +14,13 @@ use Neos\Flow\Annotations as Flow;
 
 
 /**
- * Class providing the page objects
+ * Class providing the shop objects
  *
  * @package flow
  * @subpackage Base
  * @Flow\Scope("singleton")
  */
-class Page
+class Shop
 {
 	/**
 	 * @var \Aimeos\Shop\Base\Aimeos
@@ -59,7 +59,7 @@ class Page
 	 * @param string $pageName Name of the configured page
 	 * @return array Associative list with body and header output separated by client name
 	 */
-	public function getSections( \Neos\Flow\Mvc\RequestInterface $request, $pageName )
+	public function get( \Neos\Flow\Mvc\RequestInterface $request, $pageName )
 	{
 		$this->uriBuilder->setRequest( $request );
 

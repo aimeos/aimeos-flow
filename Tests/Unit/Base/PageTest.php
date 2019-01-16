@@ -4,14 +4,14 @@
 namespace Aimeos\Shop\Tests\Unit\Base;
 
 
-class PageTest extends \Neos\Flow\Tests\UnitTestCase
+class ShopTest extends \Neos\Flow\Tests\UnitTestCase
 {
 	private $object;
 
 
 	public function setUp()
 	{
-		$this->object = new \Aimeos\Shop\Base\Page();
+		$this->object = new \Aimeos\Shop\Base\Shop();
 
 		$aimeos = new \Aimeos\Shop\Base\Aimeos();
 
@@ -70,7 +70,7 @@ class PageTest extends \Neos\Flow\Tests\UnitTestCase
 			->getMock();
 
 
-		$result = $this->object->getSections( $request, 'catalog/list' );
+		$result = $this->object->get( $request, 'catalog/list' );
 
 		$this->assertInternalType( 'array', $result );
 		$this->assertArrayHasKey( 'aibody', $result );

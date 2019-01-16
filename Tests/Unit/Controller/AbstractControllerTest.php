@@ -109,23 +109,23 @@ class AbstractControllerTest extends \Neos\Flow\Tests\UnitTestCase
 	/**
 	 * @test
 	 */
-	public function getSections()
+	public function get()
 	{
 		$expected = array( 'aibody' => 'body', 'aiheader' => 'header' );
 
-		$page = $this->getMockBuilder( '\Aimeos\Shop\Base\Page' )
-			->setMethods( array( 'getSections' ) )
+		$shop = $this->getMockBuilder( '\Aimeos\Shop\Base\Shop' )
+			->setMethods( array( 'get' ) )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->inject( $this->object, 'page', $page );
+		$this->inject( $this->object, 'shop', $shop );
 
-		$page->expects( $this->once() )->method( 'getSections' )
+		$shop->expects( $this->once() )->method( 'get' )
 			->will( $this->returnValue( $expected ) );
 
 
 		$class = new \ReflectionClass( '\Aimeos\Shop\Controller\AbstractController' );
-		$method = $class->getMethod( 'getSections' );
+		$method = $class->getMethod( 'get' );
 		$method->setAccessible( true );
 
 

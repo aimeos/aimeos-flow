@@ -63,7 +63,7 @@ class CheckoutController extends AbstractController
 	 */
 	public function indexAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'checkout-index' ) );
+		$this->view->assignMultiple( $this->get( 'checkout-index' ) );
 		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
@@ -75,7 +75,7 @@ class CheckoutController extends AbstractController
 	 */
 	public function confirmAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'checkout-confirm' ) );
+		$this->view->assignMultiple( $this->get( 'checkout-confirm' ) );
 		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 
@@ -87,7 +87,7 @@ class CheckoutController extends AbstractController
 	 */
 	public function updateAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'checkout-update' ) );
+		$this->view->assignMultiple( $this->get( 'checkout-update' ) );
 		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 }

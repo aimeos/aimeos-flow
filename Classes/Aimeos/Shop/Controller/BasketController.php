@@ -63,7 +63,7 @@ class BasketController extends AbstractController
 	 */
 	public function indexAction()
 	{
-		$this->view->assignMultiple( $this->getSections( 'basket-index' ) );
+		$this->view->assignMultiple( $this->get( 'basket-index' ) );
 		$this->response->setHeader( 'Cache-Control', 'no-store' );
 	}
 }
