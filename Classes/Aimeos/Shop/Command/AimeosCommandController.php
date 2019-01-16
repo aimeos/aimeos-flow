@@ -180,6 +180,9 @@ class AimeosCommandController extends \Neos\Flow\Cli\CommandController
 		$dbconfig = $this->getDbConfig( $config );
 		$this->setOptions( $config, $option );
 
+		\Aimeos\MShop::cache( false );
+		\Aimeos\MAdmin::cache( false );
+
 		$taskPaths = $this->objectManager->get( '\\Aimeos\\Shop\\Base\\Aimeos' )->get()->getSetupPaths( $tplsite );
 		$manager = new \Aimeos\MW\Setup\Manager\Multiple( $context->getDatabaseManager(), $dbconfig, $taskPaths, $context );
 
