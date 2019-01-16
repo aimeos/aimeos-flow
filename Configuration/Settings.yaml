@@ -72,6 +72,10 @@ Aimeos:
           watch:
             url:
               action: index
+          download:
+            url:
+              error:
+                action: index
         checkout:
           standard:
             summary:
