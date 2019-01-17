@@ -12,7 +12,7 @@
 [Aimeos](https://aimeos.org/Flow) is THE professional, full-featured and
 high performance e-commerce package for Flow/NeosCMS!  You can install it in your
 existing Flow application within 5 minutes and can adapt, extend, overwrite
-and customize anything to your needs. 
+and customize anything to your needs.
 
 [![Aimeos Flow demo](https://aimeos.org/fileadmin/aimeos.org/images/aimeos-github.png)](http://flow.demo.aimeos.org/)
 
@@ -26,10 +26,10 @@ and customize anything to your needs.
 
 ## Installation
 
-This document is for the latest Aimeos Flow **2017.10 release and later**.
+This document is for the latest Aimeos Flow **2018.10 release and later**.
 
-- Stable release: 2018.07
-- LTS release: 2017.10
+- Beta release: 2019.01
+- LTS release: 2018.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
 installed easiest by using [Composer](https://getcomposer.org):
@@ -71,7 +71,7 @@ Then add these lines to your `composer.json` of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~2018.07",
+        "aimeos/aimeos-flow": "~2018.10",
         ...
     },
 ```
