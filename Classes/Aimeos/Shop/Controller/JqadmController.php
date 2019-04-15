@@ -93,6 +93,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function copyAction( $resource, $site = 'default' )
 	{
@@ -112,6 +113,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function createAction( $resource, $site = 'default' )
 	{
@@ -131,6 +133,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function deleteAction( $resource, $site = 'default' )
 	{
@@ -150,6 +153,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "order"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function exportAction( $resource, $site = 'default' )
 	{
@@ -169,6 +173,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function getAction( $resource, $site = 'default' )
 	{
@@ -188,6 +193,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function saveAction( $resource, $site = 'default' )
 	{
@@ -207,6 +213,7 @@ class JqadmController extends \Neos\Flow\Mvc\Controller\ActionController
 	 * @param string Resource location, e.g. "product"
 	 * @param string $site Unique site code
 	 * @return string Generated output
+	 * @Flow\Session(autoStart = TRUE)
 	 */
 	public function searchAction( $resource, $site = 'default' )
 	{
