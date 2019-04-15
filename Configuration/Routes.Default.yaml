@@ -20,7 +20,7 @@
 
 -
   name: 'Catalog detail page'
-  uriPattern: 'd/{d_name}/{d_prodid}(/{d_pos})'
+  uriPattern: 'd/{d_name}(/{d_pos})'
   defaults:
     '@package':    'Aimeos.Shop'
     '@controller': 'Catalog'
