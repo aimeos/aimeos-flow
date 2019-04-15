@@ -64,7 +64,7 @@ class View
 		$this->addCsrf( $view );
 		$this->addAccess( $view, $context );
 		$this->addConfig( $view, $config );
-		$this->addNumber( $view, $config );
+		$this->addNumber( $view, $config, $langid );
 		$this->addParam( $view, $request );
 		$this->addRequest( $view, $request );
 		$this->addResponse( $view );
@@ -133,15 +133,14 @@ class View
 	 *
 	 * @param \Aimeos\MW\View\Iface $view View object
 	 * @param \Aimeos\MW\Config\Iface $config Configuration object
+	 * @param string|null $locale Code of the current language or null for no translation
 	 * @return \Aimeos\MW\View\Iface Modified view object
 	 */
-	protected function addNumber( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config )
+	protected function addNumber( \Aimeos\MW\View\Iface $view, \Aimeos\MW\Config\Iface $config, $locale )
 	{
-		$sepDec = $config->get( 'client/html/common/format/seperatorDecimal', '.' );
-		$sep1000 = $config->get( 'client/html/common/format/seperator1000', ' ' );
-		$decimals = $config->get( 'client/html/common/format/decimals', 2 );
+		$pattern = $config->get( 'client/html/common/format/pattern' );
 
-		$helper = new \Aimeos\MW\View\Helper\Number\Standard( $view, $sepDec, $sep1000, $decimals );
+		$helper = new \Aimeos\MW\View\Helper\Number\Locale( $view, $locale, $pattern );
 		$view->addHelper( 'number', $helper );
 
 		return $view;
