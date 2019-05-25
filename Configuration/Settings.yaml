@@ -67,6 +67,12 @@ Aimeos:
     client:
       html:
         account:
+          index:
+            url:
+              action: index
+          subscription:
+            url:
+              action: index
           favorite:
             url:
               action: index
