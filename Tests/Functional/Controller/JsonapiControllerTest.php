@@ -2,6 +2,8 @@
 
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
+use Neos\Flow\Annotations as Flow;
+
 
 class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
@@ -44,6 +46,9 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testPostAction()
 	{
 		// get CNC product
@@ -57,6 +62,8 @@ class JsonapiControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 		$content = json_encode( ['data' => ['attributes' => ['product.id' => $json['data'][0]['id']]]] );
 		$response = $this->browser->request( 'http://localhost/unittest/jsonapi/basket', 'POST', $params, [], [], $content );
 		$json = json_decode( $response->getContent(), true );
+
+		$this->assertEquals( 200, $response->getStatusCode() );
 		$this->assertEquals( 'CNC', $json['included'][0]['attributes']['order.base.product.prodcode'] );
 	}
 

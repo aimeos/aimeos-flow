@@ -2,6 +2,8 @@
 
 namespace Aimeos\Shop\Tests\Functional\Controller;
 
+use Neos\Flow\Annotations as Flow;
+
 
 class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 {
@@ -23,6 +25,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testCopyAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/copy/product?id=0', 'GET' );
@@ -32,6 +37,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testCreateAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/create/product', 'GET' );
@@ -41,6 +49,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testDeleteAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product?id=0', 'GET' );
@@ -50,6 +61,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testExportAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/export/order', 'GET' );
@@ -59,6 +73,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testGetAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/get/product?id=0', 'GET' );
@@ -68,6 +85,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testSaveAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/save/product', 'POST' );
@@ -77,6 +97,9 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	}
 
 
+	/*
+	 * @Flow\Session(autoStart = TRUE)
+	 */
 	public function testSearchAction()
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/search/product', 'GET' );
