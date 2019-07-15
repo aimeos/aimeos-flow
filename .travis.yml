@@ -31,6 +31,3 @@ matrix:
   exclude:
   - php: 7.3
     env: FLOW_VERSION=4.3
-  include:
-  - php: 7.0
-    env: FLOW_VERSION=4.3
