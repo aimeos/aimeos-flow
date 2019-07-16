@@ -28,7 +28,7 @@ and customize anything to your needs.
 
 This document is for the latest Aimeos Flow **2018.10 release and later**.
 
-- Stable release: 2019.04
+- Stable release: 2019.07
 - LTS release: 2018.10
 
 The Aimeos Flow/Neos web shop package is a composer based library that can be
@@ -71,7 +71,7 @@ Then add these lines to your `composer.json` of your Flow/Neos project:
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "aimeos/aimeos-flow": "~2019.04",
+        "aimeos/aimeos-flow": "~2019.07",
         ...
     },
 ```
