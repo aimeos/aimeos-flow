@@ -1,5 +1,9 @@
 sudo: false
+dist: xenial
 language: php
+
+services:
+  - mysql
 
 php:
   - 7.3
@@ -15,9 +19,7 @@ env:
 
 before_script:
   - git clone https://github.com/neos/flow-development-distribution.git -b ${FLOW_VERSION} ../flow
-  - cd ../flow
-  - composer self-update
-  - bash ../aimeos-flow/.travis.sh
+  - cd ../flow && bash ../aimeos-flow/.travis.sh
 
 script:
   - bin/phpunit -c Build/BuildEssentials/PhpUnit/UnitTests.xml --coverage-clover Packages/Application/Aimeos.Shop/coverage-unit.xml --whitelist Packages/Application/Aimeos.Shop/Classes Packages/Application/Aimeos.Shop/Tests/Unit/

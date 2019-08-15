@@ -19,21 +19,22 @@ cat composer.json | sed 's/^\}$/,\
 }/' > composer.json.new
 mv composer.json.new composer.json
 
-composer require --no-update aimeos/aimeos-flow:dev-master satooshi/php-coveralls:dev-master
-composer update
+composer require aimeos/aimeos-flow:dev-master
 rm -rf Packages/Application/Aimeos.Shop
 mv ../aimeos-flow Packages/Application/Aimeos.Shop
 composer dump-autoload
 
-mysql -e 'create database aimeos;'
+mysql -e "CREATE DATABASE flow; GRANT ALL ON flow.* TO 'aimeos'@'127.0.0.1' IDENTIFIED BY 'aimeos'"
 
 printf "
 Neos:
   Flow:
     persistence:
       backendOptions:
-        dbname: 'aimeos'
-        user: 'root'
+        host: '127.0.0.1'
+        dbname: 'flow'
+        user: 'aimeos'
+        password: 'aimeos'
     http:
       baseUri: http://aimeos.org/
 Aimeos:
