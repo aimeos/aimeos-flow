@@ -77,7 +77,7 @@ class Locale
 			$localeItem = $localeManager->createItem();
 		}
 
-		return $localeItem;
+		return $localeItem->setCurrencyId( null )->setLanguageId( null );
 	}
 
 
