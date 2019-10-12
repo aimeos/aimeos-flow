@@ -5,12 +5,6 @@ set -ev
 cat composer.json | sed 's/^\}$/,\
     "minimum-stability": "dev",\
     "prefer-stable": true,\
-    "repositories": [\
-        {\
-            "type": "git",\
-            "url": "https:\/\/github.com\/aimeos\/php-coveralls"\
-        }\
-    ],\
     "extra": {\
         "installer-paths": {\
             "Packages\/Extensions\/{$name}\/": ["type:aimeos-extension"]\
