@@ -11,7 +11,6 @@ php:
   - 7.1
 
 env:
-  - FLOW_VERSION=6.0
   - FLOW_VERSION=5.3
   - FLOW_VERSION=5.2
   - FLOW_VERSION=5.1
@@ -32,7 +31,5 @@ after_success:
 matrix:
   fast_finish: true
   exclude:
-  - php: 7.1
-    env: FLOW_VERSION=6.0
   - php: 7.3
     env: FLOW_VERSION=4.3

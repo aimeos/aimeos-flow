@@ -14,8 +14,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "neos/flow": "~4.0||~5.0||~6.0",
-        "neos/swiftmailer": "~6.0||~7.0",
+        "neos/flow": "~4.0||~5.0",
+        "neos/swiftmailer": "~6.0",
         "aimeos/aimeos-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-gettext": "dev-master",
