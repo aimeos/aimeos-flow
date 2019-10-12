@@ -21,6 +21,17 @@ use Neos\Flow\Annotations as Flow;
 class BasketController extends AbstractController
 {
 	/**
+	 * Returns the output of the mass order component
+	 *
+	 * @return string Rendered HTML for the body
+	 */
+	public function bulkComponentAction()
+	{
+		$this->view->assign( 'output', $this->getOutput( 'basket/bulk' ) );
+	}
+
+
+	/**
 	 * Returns the output of the basket mini component
 	 *
 	 * @return string Rendered HTML for the body
