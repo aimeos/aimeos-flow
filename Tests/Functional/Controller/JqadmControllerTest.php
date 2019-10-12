@@ -56,8 +56,7 @@ class JqadmControllerTest extends \Neos\Flow\Tests\FunctionalTestCase
 	{
 		$response = $this->browser->request( 'http://localhost/unittest/jqadm/delete/product?id=0', 'GET' );
 
-		$this->assertEquals( 200, $response->getStatusCode() );
-		$this->assertContains( 'list-items', $response->getContent() );
+		$this->assertEquals( 302, $response->getStatusCode() );
 	}
 
 
