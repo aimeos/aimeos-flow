@@ -122,7 +122,6 @@ Aimeos:
     mshop:
       index:
         manager:
-          name: MySQL
           attribute:
             name: MySQL
           catalog:
